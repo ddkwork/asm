@@ -63,9 +63,6 @@ void asm1() {
             PUSH EBX
             LEA EAX,DWORD PTR DS:[EDI+0xF366] ; data[i] 0x00000047 ??
             CDQ
-
-        // hexdump("mov", code3Buf, 8);
-
             PUSH 0x1302
             PUSH EDX //0
             PUSH EAX //0x00000047 CDQ = 0x0000f3ff
@@ -472,11 +469,321 @@ void asm1() {
             popfd
             popad
             }
-
     hexdump("asm1 for code3", code3Buf, 8);
 }
 
+/////////////////////// ghidra test /////////////////////////////////////////////////
+typedef union _LARGE_INTEGER {
+    struct {
+        unsigned long LowPart;
+        unsigned long HighPart;
+    } u;
+
+    unsigned long long QuadPart;
+} LARGE_INTEGER;
+
+LARGE_INTEGER make_large_integer( unsigned long high,  unsigned long low) {
+    LARGE_INTEGER v;
+    v.u.HighPart = high;
+    v.u.LowPart = low;
+    return v;
+}
+
+
+typedef unsigned char undefined; //size = 1
+
+typedef unsigned char uchar; //size = 1
+typedef unsigned char byte; //size = 1
+typedef unsigned char dwfenc; //size = 1
+typedef unsigned short word; //size = 2
+typedef unsigned int dword; //size = 4
+typedef long long longlong; //size = 8
+typedef unsigned long long qword; //size = 8
+typedef unsigned short ushort; //size = 2
+typedef unsigned int uint; //size = 4
+typedef unsigned long ulong; //size = 4
+typedef unsigned long long ulonglong; //size = 8
+
+typedef long double float10;
+
+
+typedef unsigned char undefined1; //size = 1
+typedef unsigned short undefined2; //size = 2
+typedef struct {
+    byte arr[3];
+} undefined3; //size = 3
+typedef unsigned int undefined4; //size = 4
+typedef struct {
+    byte arr[5];
+} undefined5; //size = 5
+typedef struct {
+    byte arr[6];
+} undefined6; //size = 6
+typedef struct {
+    byte arr[7];
+} undefined7; //size = 7
+typedef LARGE_INTEGER undefined8; //size = 8
+
+typedef struct {
+    byte arr[16];
+} arr16;
+
+typedef struct {
+    uint arr[16];
+} arr64;
+
+
+LARGE_INTEGER mul(uint param_1, uint param_2, uint param_3, uint param_4) {
+    LARGE_INTEGER v;
+    if ((param_4 | param_2) == 0) {
+        (ulonglong) param_1 * (ulonglong) param_3;
+        v.QuadPart = param_1 * (ulonglong) param_3;
+        return v;
+    }
+    v.u.HighPart = ((ulonglong) param_1 * (ulonglong) param_3 >> 0x20) +param_2 * param_3 + param_1 * param_4 << 32;
+    v.u.HighPart = ((ulonglong) param_1 * (ulonglong) param_3);
+    return v;
+}
+
+LARGE_INTEGER div(uint param_1, uint param_2, uint param_3, uint param_4) {
+    ulonglong uVar1;
+    longlong lVar2;
+    uint uVar3;
+    int iVar4;
+    uint uVar5;
+    uint uVar6;
+    uint uVar7;
+    uint uVar8;
+    uint uVar9;
+
+    uVar3 = param_1;
+    uVar8 = param_4;
+    uVar6 = param_2;
+    uVar9 = param_3;
+    if (param_4 == 0) {
+        uVar3 = param_2 / param_3;
+        iVar4 = (int) (((ulonglong) param_2 % (ulonglong) param_3 << 0x20 | (ulonglong) param_1) /
+                       (ulonglong) param_3);
+    } else {
+        do {
+            uVar5 = uVar8 >> 1;
+            uVar9 = uVar9 >> 1 | (uint) ((uVar8 & 1) != 0) << 0x1f;
+            uVar7 = uVar6 >> 1;
+            uVar3 = uVar3 >> 1 | (uint) ((uVar6 & 1) != 0) << 0x1f;
+            uVar8 = uVar5;
+            uVar6 = uVar7;
+        } while (uVar5 != 0);
+        uVar1 = (uVar7 << 32 | uVar3) / (ulonglong) uVar9;
+        iVar4 = (int) uVar1;
+        lVar2 = (ulonglong) param_3 * (uVar1 & 0xffffffff);
+        uVar3 = (uint) ((ulonglong) lVar2 >> 0x20);
+        uVar8 = uVar3 + iVar4 * param_4;
+        if (uVar3<(iVar4 * param_4) ||
+            param_2 < uVar8 ||
+            param_2 <= uVar8 && param_1 < (uint) lVar2){
+            iVar4 += -1;
+        }
+        uVar3 = 0;
+    }
+    LARGE_INTEGER v;
+    v.u.HighPart = uVar3 << 32;
+    v.u.LowPart = iVar4;
+    return v;
+}
+
+
+void __cdecl ghidraDecode() {
+    LARGE_INTEGER uVar1;
+    LARGE_INTEGER puVar2;
+    byte *pbVar3;
+    int iVar4;
+    uint uVar5;
+    uchar *puVar6;
+    uint uVar7;
+    undefined4 *puVar8;
+    uint uVar9;
+    uint uVar10;
+    byte in_AF;
+    byte in_TF;
+    byte in_IF;
+    byte in_NT;
+    byte in_AC;
+    byte in_VIF;
+    byte in_VIP;
+    byte in_ID;
+    LARGE_INTEGER lVar11;
+    LARGE_INTEGER lVar12;
+    LARGE_INTEGER uVar13;
+    byte local_167[4];
+    byte local_163;
+    undefined local_160[21];
+    int local_14b;
+    uint local_13f;
+    undefined4 local_13b;
+    undefined8 local_127;
+    LARGE_INTEGER local_11b;
+    uint local_117;
+    uint local_113;
+    int local_10f;
+    uint uStack_68;
+    undefined4 *puStack_64;
+    undefined4 local_38;
+    LARGE_INTEGER local_34;
+    undefined4 local_24;
+    undefined4 local_20;
+    uchar local_14[4];
+    undefined local_10;
+    undefined local_f;
+    undefined local_e;
+    undefined local_d;
+    // uint local_8;
+
+    puVar8 = &local_38;
+    for (iVar4 = 0xd; iVar4 != 0; iVar4 += -1) {
+        *puVar8 = 0xcccccccc;
+        puVar8 = puVar8 + 1;
+    }
+    // local_8 = __security_cookie ^ (uint) &stack0xfffffffc;
+    local_14[0] = '\t'; //todo 0x71B793 ?
+    local_14[1] = 0x99;
+    local_14[2] = 0x8a;
+    local_14[3] = 0x7b;
+    local_10 = 0xfe;
+    local_f = 0x46;
+    local_e = 0xc2;
+    local_d = 0xf0;
+    local_24 = 0;
+    local_20 = 0;
+    local_34.u.HighPart = 0;
+    hexdump("data", local_14, 8);
+    puStack_64 = puVar8;
+    // uStack_68 = (uint) (in_NT & 1) * 0x4000 | (uint) SCARRY4((int) &stack0xffffffb0, 0xc) * 0x800 |
+    //             (uint) (in_IF & 1) * 0x200 | (uint) (in_TF & 1) * 0x100 |
+    //             (uint) ((int) &stack0xffffffbc < 0) * 0x80 |
+    //             (uint) (&stack0x00000000 == (undefined *) 0x44) * 0x40 | (uint) (in_AF & 1) * 0x10 |
+    //             (uint) ((POPCOUNT((uint) &stack0xffffffbc & 0xff) & 1U) == 0) * 4 |
+    //             (uint) ((undefined *) 0xfffffff3 < &stack0xffffffb0) | (uint) (in_ID & 1) * 0x200000 |
+    //             (uint) (in_VIP & 1) * 0x100000 | (uint) (in_VIF & 1) * 0x80000 |
+    //             (uint) (in_AC & 1) * 0x40000;
+    puVar6 = local_14;
+    pbVar3 = local_167;
+    for (iVar4 = 8; iVar4 != 0; iVar4 += -1) {
+        *pbVar3 = *puVar6;
+        puVar6 = puVar6 + 1;
+        pbVar3 = pbVar3 + 1;
+    }
+    // local_11b = local_34;
+    local_34.u.HighPart = 0x71b793;
+    lVar11 = mul(local_167[1] + 0xf366, 0, 0x1302, 0);
+    local_13f = (uint)  lVar11.QuadPart >> 0x20;
+    lVar11.QuadPart += (ulonglong) (uint) local_167[1];
+    lVar11 = mul( lVar11.u.HighPart,  ( lVar11.QuadPart >> 0x20), 0x71b793, 0);
+    local_127.QuadPart = lVar11.QuadPart + 0x7cff86;
+    uVar9 = (uint) local_167[2];
+    local_13f = (local_127.u.HighPart >> 0x12);
+    local_10f = ((local_127.u.HighPart >> 0x12) >> 0x20);
+    local_34 = local_127;
+    lVar11 = div(local_127.u.LowPart, (uint) (local_127.QuadPart >> 0x20), 0x6381be9a, 0);
+    lVar11.QuadPart += (local_10f << 32 | local_13f);
+    lVar11 = mul( lVar11.u.HighPart, (uint) ( lVar11.QuadPart >> 0x20), 2, 0);
+    lVar12= mul(uVar9 + 0xf366, 0, 0x1634, 0);
+    local_13f = (uint) ( lVar12.QuadPart >> 0x20);
+    uVar5 =  lVar12.u.HighPart + uVar9;
+    lVar12 = mul(
+        uVar5 + 1,
+        local_13f + ( lVar12.u.HighPart << 16 | uVar9) + (uint) (0xfffffffe < uVar5),
+        local_127.u.HighPart,
+        local_127.u.LowPart);
+    uVar13.QuadPart = lVar12.u.HighPart + lVar11.u.HighPart + 0x2d1f65;
+    local_127.u.HighPart = (uint) (uVar13.u.HighPart >> 0x20);
+    local_127.QuadPart = local_11b.QuadPart;
+    local_11b = uVar13;
+    uVar7 = (uint) local_167[3];
+    uVar5 = local_127.u.LowPart >> 0x12;
+    uVar9 = local_127.u.LowPart << 0xe;
+    uVar10 = local_127.u.HighPart >> 0x12;
+    lVar11 = div(local_127.u.HighPart, local_127.u.LowPart, 0x6381be9a, 0); //todo  /
+    lVar11.QuadPart+=  (uVar10 << 32 | (uVar5 | uVar9)) + 0x21d78d;
+    lVar11 = mul( lVar11.u.HighPart, (uint) ( lVar11.QuadPart >> 0x20), 3, 0);
+    lVar12 = mul(uVar7 + 0xf366, 0, 0x1968, 0);
+    local_13f = (uint) ( lVar12.QuadPart >> 0x20);
+    uVar5 =  lVar12.u.HighPart + uVar7;
+    lVar12 = mul(uVar5 + 1, local_13f +  lVar12.u.HighPart|uVar7 + (uint) (0xfffffffe < uVar5),
+                  local_127.u.HighPart, local_127.u.HighPart);
+    puVar2.QuadPart = local_11b.QuadPart;
+    uVar13.QuadPart = lVar12.QuadPart + lVar11.QuadPart;
+    uVar7 =  uVar13.u.HighPart;
+    uVar9 = 0;
+    uVar1.QuadPart = uVar13.u.LowPart >> 0x12;
+    uVar5 = 0x6381be9a;
+    local_13b = (undefined4) (uVar1.u.HighPart >> 0x20);
+    local_11b = uVar13;
+    lVar11 = div( uVar13.u.LowPart,  (uVar13.QuadPart >> 0x20), uVar5, uVar9);
+    local_127.u.HighPart = lVar11.QuadPart + (local_13b << 32 |  uVar1.u.HighPart);
+    uVar9 = (uint) local_163;
+    lVar11 = mul(uVar9 + 0xf366, 0, 0x1c9e, 0);
+    uVar5 =  lVar11.QuadPart + uVar9;
+    local_13f = (int) ( lVar11.QuadPart>> 0x20) + make_large_integer( lVar11.u.HighPart, uVar9).QuadPart +// todo make a macro for this?
+                (uint) (0xfffffffe < uVar5);
+    lVar11 = mul(uVar5 + 1, local_13f, uVar7, *(uint *) ( puVar2.u.HighPart + 4));
+    lVar12 = mul( local_127.u.HighPart, local_127.u.HighPart, 4, 0);
+    uVar13.QuadPart = lVar12.u.HighPart + lVar11.u.HighPart + 0xb47d9d;
+    uVar5 =  (uVar13.u.HighPart >> 0x20);
+    puVar2 = uVar13;
+    local_10f = 399 - (int) local_160;
+    puVar2.QuadPart = (uVar13.QuadPart >> 0x13) +make_large_integer(uVar5 >> 0x10, uVar5).QuadPart, (uVar5 >> 0x10) + uVar5 +( uVar13.u.HighPart & 0xfff0);
+    local_14b = 7;
+    do {
+        iVar4 = local_14b;
+        uVar5 = *(uint *) ( puVar2.u.HighPart + 4);
+        local_117 = (uVar5 << 0x19 ^  puVar2.u.HighPart) >> 0x19 | (uVar5 >> 7 ^ uVar5) << 7;
+        local_113 = uVar5 >> 0x19;
+        lVar11 = div( puVar2.u.HighPart, uVar5, 0x6a, 0);
+        local_127.QuadPart = lVar11.QuadPart + (local_113 << 32 | local_117);
+        local_11b.QuadPart =   local_167[iVar4];
+        lVar12 = mul(iVar4 * iVar4, iVar4 * iVar4 >> 0x1f,  local_127.u.HighPart,  (local_127.u.HighPart >> 0x20));
+        local_13f = (uint) ( lVar12.QuadPart >> 0x20);
+        lVar11 = mul( local_11b.u.HighPart + 1,
+                     ( local_11b.u.HighPart >> 0x1f) + (uint) ((ulonglong ) 0xfffffffe < local_11b.QuadPart),
+                       puVar2.u.HighPart, uVar5);
+        iVar4 = local_14b;
+        lVar11.QuadPart += (local_13f << 32 |  lVar12.u.HighPart);
+        local_13f = (uint) ( lVar11.QuadPart >> 0x20);
+        pbVar3 = local_167 + local_14b;
+        puVar2.QuadPart = lVar11.u.HighPart +  local_11b.u.HighPart *  local_11b.u.HighPart *  local_11b.u.HighPart;
+        uVar5 = (uint) *pbVar3;
+        pbVar3 = pbVar3 + local_10f;
+        lVar11 = div( local_127.u.HighPart, local_127.u.HighPart, 0x14c9, 0); //todo
+        local_14b += -1;
+        puVar2.QuadPart = lVar11.u.HighPart + (int) ((int) pbVar3 * uVar5 * uVar5 * iVar4) + puVar2.u.HighPart;
+    } while (-1 < local_14b);
+    printf("Large integer result use ghidra\n");
+    printf("%08lx  ", puVar2.u.HighPart);
+    printf("%08lx  ", puVar2.u.LowPart);
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+
+void test() {
+    LARGE_INTEGER div;
+    div.QuadPart = 0x0000091416154ED7 / 0x6A;
+    LARGE_INTEGER mul;
+    mul.QuadPart = 0x00000015ECE7BB69 * 0x31;
+    printf("0x%016llX\n", div.QuadPart);
+    printf("0x%016llX\n", div.u.HighPart);
+    printf("0x%016llX\n", div.u.LowPart);
+
+    printf("0x%016llX\n", mul.QuadPart);
+    printf("0x%016llX\n", mul.u.HighPart);
+    printf("0x%016llX\n", mul.u.LowPart);
+}
+
+
 int main(void) {
+    test();
     asm1();
+    ghidraDecode();
     return 0;
 }
