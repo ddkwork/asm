@@ -65,7 +65,7 @@ func div(param1, param2, param3, param4 uint32) LargeInteger {
 // ghidraDecode 主要功能
 func ghidraDecode() {
 	var uVar1, puVar2, lVar11, lVar12, uVar13 LargeInteger
-	var local167 [4]byte
+	var local167 [8]byte
 
 	// 初始化数据
 	local167[0] = '\t'
@@ -156,11 +156,11 @@ func ghidraDecode() {
 func test() {
 	var div LargeInteger
 	div.LowPart = 0x0000091416154ED7 % 0xFFFFFFFF // 模拟低位
-	div.HighPart = 0x0000091416154ED7 / 0x6A      // 高位计算
+	div.HighPart = div.LowPart / 0x6A             // 高位计算
 
 	var mul LargeInteger
 	mul.LowPart = 0x00000015ECE7BB69 % 0xFFFFFFFF // 模拟低位
-	mul.HighPart = 0x00000015ECE7BB69 * 0x31      // 高位计算
+	mul.HighPart = mul.LowPart * 0x31             // 高位计算
 
 	fmt.Printf("div QuadPart: 0x%016x\n", (uint64(div.HighPart)<<32)|uint64(div.LowPart))
 	fmt.Printf("div HighPart: 0x%016x\n", div.HighPart)
