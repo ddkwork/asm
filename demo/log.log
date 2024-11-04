@@ -1,203 +1,203 @@
-2024-11-04 20:04:24    Trace ->  --------- title --------- │ ------------------ info ------------------ //runtime.doInit1+0xec C:/Program Files/Go/src/runtime/proc.go:7278
-2024-11-04 20:04:24  HexDump ->                 input data │  //asm.demo+0x4b C:/Users/Admin/Music/asm/demo/demo.go:9
+2024-11-04 20:22:01    Trace ->  --------- title --------- │ ------------------ info ------------------ //runtime.doInit1+0xec C:/Program Files/Go/src/runtime/proc.go:7278
+2024-11-04 20:22:01  HexDump ->                 input data │  //asm.demo+0x4b C:/Users/Admin/Music/asm/demo/demo.go:9
 00000000  09 99 8a 7b fe 46 c2 f0                           |...{.F..|
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x121dd4fe|303944958,
   High: 0x0|0
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x27796b5|41391797,
   High: 0x27fa2de|41919198
 }
-2024-11-04 20:04:24   Struct ->                        div │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          / │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x66d959e|107845022,
   High: 0x0|0
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0xde4a2cb6|3729403062,
   High: 0x13f|319
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x15282cc0|354954432,
   High: 0x0|0
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x2c486249|742941257,
   High: 0xd3f4441a|3556000794
 }
-2024-11-04 20:04:24   Struct ->                 ShiftRight │  //asm.(*Bit64).Debug+0x31 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                         >> │  //asm.(*Bit64).Debug+0x31 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x110782af|285704879,
   High: 0x34fd|13565
 }
-2024-11-04 20:04:24      Hex ->                        bug │ 0XD3F4441 //asm.demo+0x252 C:/Users/Admin/Music/asm/demo/demo.go:59
-2024-11-04 20:04:24   Struct ->                        div │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01      Hex ->                        bug │ 0XD3F4441 //asm.demo+0x252 C:/Users/Admin/Music/asm/demo/demo.go:59
+2024-11-04 20:22:01   Struct ->                          / │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x8852|34898,
   High: 0x0|0
 }
-2024-11-04 20:04:24   Struct ->                        add │  //asm.(*Bit64).Debug+0x33 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          + │  //asm.(*Bit64).Debug+0x33 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x11080b01|285739777,
   High: 0x34fd|13565
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x337da7aa|863872938,
   High: 0x337da7aa|863872938
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x18340c68|406064232,
   High: 0x0|0
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0xaa50fe88|2857434760,
   High: 0x54a1fd76|1419902326
 }
-2024-11-04 20:04:24   Struct ->                        div │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          / │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x6786c79b|1736886171,
   High: 0x217af74|35106676
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0xee8b7c8|250132424,
   High: 0x976|2422
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0xc24ec20a|3259941386,
   High: 0xa007541b|2684834843
 }
-2024-11-04 20:04:24   Struct ->                        div │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          / │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x26a441f|40518687,
   High: 0x80|128
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x1880|6272,
   High: 0x1880|6272
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x31e22d|3269165,
   High: 0x3358dc|3365084
 }
-2024-11-04 20:04:24   Struct ->                        div │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          / │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x26a441f|40518687,
   High: 0x80|128
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x1200|4608,
   High: 0x1200|4608
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x285cb7|2645175,
   High: 0x299db1|2727345
 }
-2024-11-04 20:04:24   Struct ->                        div │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          / │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x26a441f|40518687,
   High: 0x80|128
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0xc80|3200,
   High: 0xc80|3200
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0xeb22b|963115,
   High: 0xfbc38|1031224
 }
-2024-11-04 20:04:24   Struct ->                        div │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          / │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x26a441f|40518687,
   High: 0x80|128
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x800|2048,
   High: 0x800|2048
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x34c803|3459075,
   High: 0x359ff3|3514355
 }
-2024-11-04 20:04:24   Struct ->                        div │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          / │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x26a441f|40518687,
   High: 0x80|128
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x480|1152,
   High: 0x480|1152
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x19aa8c|1682060,
   High: 0x1a4b73|1723251
 }
-2024-11-04 20:04:24   Struct ->                        div │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          / │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x26a441f|40518687,
   High: 0x80|128
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x200|512,
   High: 0x200|512
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x1cc55f|1885535,
   High: 0x1d3185|1913221
 }
-2024-11-04 20:04:24   Struct ->                        div │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          / │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x26a441f|40518687,
   High: 0x80|128
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x80|128,
   High: 0x80|128
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x1fe032|2089010,
   High: 0x201797|2103191
 }
-2024-11-04 20:04:24   Struct ->                        div │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          / │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x26a441f|40518687,
   High: 0x80|128
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x0|0,
   High: 0x0|0
 }
-2024-11-04 20:04:24   Struct ->                        mul │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:93
+2024-11-04 20:22:01   Struct ->                          * │  //asm.(*Bit64).Debug+0x22 C:/Users/Admin/Music/asm/demo/bit64.go:104
 Bit64 {
   Low: 0x211e2|135650,
   High: 0x2120a|135690
 }
-2024-11-04 20:04:24   Struct ->                       demo │  //asm.Test_demo+0x4d C:/Users/Admin/Music/asm/demo/demo_test.go:14
+2024-11-04 20:22:01   Struct ->                       demo │  //asm.Test_demo+0x4d C:/Users/Admin/Music/asm/demo/demo_test.go:14
 Bit64 {
   Low: 0x110782af|285704879,
   High: 0x34fd|13565

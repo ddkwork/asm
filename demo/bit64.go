@@ -22,14 +22,14 @@ func FromUint64(u uint64) Bit64 {
 func (l *Bit64) ShiftLeft(n uint) Bit64 {
 	v := l.Self() << n
 	*l = FromUint64(v)
-	l.Debug("ShiftLeft")
+	l.Debug("<<")
 	return *l
 }
 
 func (l *Bit64) ShiftRight(n uint) Bit64 {
 	v := l.Self() >> n
 	*l = FromUint64(v)
-	l.Debug("ShiftRight")
+	l.Debug(">>")
 	return *l
 }
 
@@ -42,7 +42,7 @@ func (l *Bit64) AddInt(u uint64) Bit64 {
 func (l *Bit64) Add(r Bit64) Bit64 {
 	v := l.Self() + r.Self()
 	*l = FromUint64(v)
-	l.Debug("add")
+	l.Debug("+")
 	return *l
 	return Bit64{
 		Low:  l.Low + r.Low,
@@ -53,7 +53,7 @@ func (l *Bit64) Add(r Bit64) Bit64 {
 func (l *Bit64) Sub(r Bit64) Bit64 {
 	v := l.Self() - r.Self()
 	*l = FromUint64(v)
-	l.Debug("sub")
+	l.Debug("-")
 	return *l
 	return Bit64{
 		Low:  l.Low - r.Low,
@@ -61,31 +61,43 @@ func (l *Bit64) Sub(r Bit64) Bit64 {
 	}
 }
 
-func (l *Bit64) And(r Bit64) Bit64 {
+func (l *Bit64) And(r Bit64) (b Bit64) {
+	defer b.Debug("&")
 	return Bit64{
 		Low:  l.Low & r.Low,
 		High: l.High & r.High,
 	}
 }
 
-func (l *Bit64) Or(r Bit64) Bit64 {
+func (l *Bit64) Or(r Bit64) (b Bit64) {
+	defer b.Debug("|")
 	return Bit64{
 		Low:  l.Low | r.Low,
 		High: l.High | r.High,
 	}
 }
 
-func (l *Bit64) Xor(r Bit64) Bit64 {
+func (l *Bit64) Xor(r Bit64) (b Bit64) {
+	defer b.Debug("^")
 	return Bit64{
 		Low:  l.Low ^ r.Low,
 		High: l.High ^ r.High,
 	}
 }
 
-func (l *Bit64) Not() Bit64 {
+func (l *Bit64) Not() (b Bit64) {
+	defer b.Debug("~")
 	return Bit64{
 		Low:  ^l.Low,
 		High: ^l.High,
+	}
+}
+
+func (l *Bit64) Rem(r Bit64) (b Bit64) {
+	defer b.Debug("%")
+	return Bit64{
+		Low:  l.Low % r.Low,
+		High: l.High % r.High,
 	}
 }
 
@@ -102,14 +114,14 @@ func (l *Bit64) Bytes() []byte {
 }
 
 func mul(xLow, xHigh, yLow, yHigh uint32) (b Bit64) {
-	defer b.Debug("mul")
+	defer b.Debug("*")
 	x := Bit64{Low: xLow, High: xHigh}
 	y := Bit64{Low: yLow, High: yHigh}
 	return FromUint64(x.Self() * y.Self())
 }
 
 func div(xLow, xHigh, yLow, yHigh uint32) (b Bit64) {
-	defer b.Debug("div")
+	defer b.Debug("/")
 	x := Bit64{Low: xLow, High: xHigh}
 	y := Bit64{Low: yLow, High: yHigh}
 	return FromUint64(x.Self() / y.Self())
