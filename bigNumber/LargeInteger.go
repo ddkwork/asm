@@ -3,40 +3,49 @@ package main
 import (
 	"encoding/binary"
 	"slices"
+
+	"github.com/ddkwork/golibrary/mylog"
 )
 
 type LargeInteger struct {
-	LowPart  uint32
-	HighPart uint32
+	Low  uint32
+	High uint32
 }
 
 func FromUint64(u uint64) LargeInteger {
 	return LargeInteger{
-		LowPart:  uint32(u & 0xFFFFFFFF),
-		HighPart: uint32(u >> 32),
+		Low:  uint32(u & 0xFFFFFFFF),
+		High: uint32(u >> 32),
 	}
 }
 
-func (l *LargeInteger) QuadPart() uint64 {
-	return uint64(l.HighPart)<<32 | uint64(l.LowPart)
+func (l *LargeInteger) Debug() {
+	mylog.Struct(l)
+}
+
+func (l *LargeInteger) Self() uint64 {
+	return uint64(l.High)<<32 | uint64(l.Low)
 }
 
 func (l *LargeInteger) Bytes() []byte {
-	return slices.Concat(binary.LittleEndian.AppendUint32(nil, l.HighPart), binary.LittleEndian.AppendUint32(nil, l.LowPart))
+	return slices.Concat(binary.LittleEndian.AppendUint32(nil, l.High), binary.LittleEndian.AppendUint32(nil, l.Low))
 }
 
 func mul(low, high, magic, param4 uint32) LargeInteger {
-	if (param4 | high) == 0 {
-		v := uint64(low) * uint64(magic)
-		return FromUint64(v)
-	}
-	x := LargeInteger{LowPart: low, HighPart: high}
-	y := LargeInteger{LowPart: magic, HighPart: param4}
-	ret := x.QuadPart() * y.QuadPart()
-	return FromUint64(ret)
+	//if (param4 | high) == 0 {
+	//	v := uint64(low) * uint64(magic)
+	//	return FromUint64(v)
+	//}
+	x := LargeInteger{Low: low, High: high}
+	y := LargeInteger{Low: magic, High: param4}
+	return FromUint64(x.Self() * y.Self())
 }
 
 func div(low, high, magic, param4 uint32) LargeInteger {
+	x := LargeInteger{Low: low, High: high}
+	y := LargeInteger{Low: magic, High: param4}
+	return FromUint64(x.Self() / y.Self())
+
 	var v LargeInteger
 	var uVar1 uint64
 	var temp int64
@@ -60,7 +69,7 @@ func div(low, high, magic, param4 uint32) LargeInteger {
 		uVar1 = (uint64(uVar7)<<32 | uint64(uVar3)) / uint64(uVar9)
 		temp = int64(uVar1)
 	}
-	v.HighPart = uint32(temp >> 32)
-	v.LowPart = uint32(temp)
+	v.High = uint32(temp >> 32)
+	v.Low = uint32(temp)
 	return v
 }
