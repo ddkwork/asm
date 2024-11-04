@@ -4,7 +4,7 @@ import (
 	"github.com/ddkwork/golibrary/mylog"
 )
 
-func bigNumber(data []byte) LargeInteger {
+func demo(data []byte) LargeInteger {
 	var uVar1, result, x, lVar12, uVar13 LargeInteger
 	mylog.HexDump("input data", data)
 	x = mul(uint32(data[1])+0xf366, 0, 0x1302, 0)
