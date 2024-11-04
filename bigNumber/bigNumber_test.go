@@ -286,7 +286,7 @@ func TestLargeInteger(t *testing.T) {
 	mylog.Hex("div", div.QuadPart())
 
 	var mul LargeInteger
-	mul.LowPart = 0x00000015ECE7BB69 % 0xFFFFFFFF
+	mul.LowPart = 0x15ECE7BB69 % 0xFFFFFFFF
 	mul.HighPart = mul.LowPart * 0x31
 
 	mylog.Struct(div)
