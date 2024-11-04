@@ -1,9 +1,9 @@
-2024-11-04 15:25:16    Trace ->  --------- title --------- │ ------------------ info ------------------ //runtime.doInit1+0xe1 C:/Program Files/Go/src/runtime/proc.go:7278
-2024-11-04 15:25:16  HexDump ->                 input data │  //asm.bigNumber+0xc4 C:/Users/Admin/Music/asm/bigNumber/bigNumber.go:9
+2024-11-04 15:41:08    Trace ->  --------- title --------- │ ------------------ info ------------------ //runtime.doInit1+0xe1 C:/Program Files/Go/src/runtime/proc.go:7278
+2024-11-04 15:41:08  HexDump ->                 input data │  //asm.bigNumber+0xc4 C:/Users/Admin/Music/asm/bigNumber/bigNumber.go:9
 00000000  09 99 8a 7b fe 46 c2 f0                           |...{.F..|
-2024-11-04 15:25:16      Hex ->                            │ 0XF3FF //asm.bigNumber+0x124 C:/Users/Admin/Music/asm/bigNumber/bigNumber.go:11
-2024-11-04 15:25:16      Hex ->                            │ 0XC4F98 //asm.bigNumber+0x139 C:/Users/Admin/Music/asm/bigNumber/bigNumber.go:12
-2024-11-04 15:25:16      Hex ->                            │ 0X121DD4FE //asm.bigNumber+0x14e C:/Users/Admin/Music/asm/bigNumber/bigNumber.go:13
-2024-11-04 15:25:16      Hex ->                            │ 0X121DD597 //asm.bigNumber+0x164 C:/Users/Admin/Music/asm/bigNumber/bigNumber.go:14
-2024-11-04 15:25:16      Hex ->                            │ 0X5 //asm.bigNumber+0x1c7 C:/Users/Admin/Music/asm/bigNumber/bigNumber.go:20
-2024-11-04 15:25:29      Hex ->                   mul1 bug │ 0X80C29027796B5 //asm.bigNumber+0x239 C:/Users/Admin/Music/asm/bigNumber/bigNumber.go:26
+2024-11-04 15:41:08      Hex ->                            │ 0XF3FF //asm.bigNumber+0x124 C:/Users/Admin/Music/asm/bigNumber/bigNumber.go:11
+2024-11-04 15:41:08      Hex ->                            │ 0XC4F98 //asm.bigNumber+0x139 C:/Users/Admin/Music/asm/bigNumber/bigNumber.go:12
+2024-11-04 15:41:08      Hex ->                            │ 0X121DD4FE //asm.bigNumber+0x14e C:/Users/Admin/Music/asm/bigNumber/bigNumber.go:13
+2024-11-04 15:41:08      Hex ->                            │ 0X121DD597 //asm.bigNumber+0x164 C:/Users/Admin/Music/asm/bigNumber/bigNumber.go:14
+2024-11-04 15:41:08      Hex ->                            │ 0X5 //asm.bigNumber+0x1c7 C:/Users/Admin/Music/asm/bigNumber/bigNumber.go:20
+2024-11-04 15:41:08      Hex ->                   mul1 bug │ 0X80C29027796B5 //asm.bigNumber+0x244 C:/Users/Admin/Music/asm/bigNumber/bigNumber.go:27

@@ -23,11 +23,12 @@ func bigNumber(data []byte) LargeInteger {
 	x.LowPart += uint32(data[1]) // 0x121DD597
 	x = mul(x.LowPart, x.LowPart>>32, 0x71b793, 0)
 	uVar13 = x // 0x27796B5
+	uVar13.LowPart += 0x7CFF86
 	mylog.Hex("mul1 bug", 0x121DD597*0x71b793)
 	mylog.Struct(x)
 
 	uVar9 := uint32(data[2])
-	local13f = uVar13.LowPart >> 18 //todo bug
+	local13f = uVar13.LowPart >> 18 // todo bug   shrd edx, ecx, 0x12
 	local10f := (uVar13.LowPart >> 18) >> 32
 	x = div(uVar13.LowPart, uVar13.LowPart>>32, 0x6381be9a, 0) // todo bug hight is not right
 	x.LowPart += (local10f << 32) | local13f
