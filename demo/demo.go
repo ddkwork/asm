@@ -5,27 +5,26 @@ import (
 )
 
 func demo(data []byte) Bit64 {
-	var uVar1, result, x, lVar12, uVar13 Bit64
+	var a, result, x, c, z Bit64
 	mylog.HexDump("input data", data)
 	x = mul(uint32(data[1])+0xf366, 0, 0x1302, 0)
 	y := x                   //.high
 	x.Low += uint32(data[1]) // 0x121DD597
-	x = mul(x.Low, x.Low>>32, 0x71b793, 0)
-	uVar13 = x // 0x27796B5
-	uVar13.Low += 0x7CFF86
-	x.Debug()
+	x = mul(x.Low, x.Low, 0x71b793, 0)
+	z = x // 0x27796B5
+	z.Low += 0x7CFF86
 
-	uVar9 := uint32(data[2])
-	y.Low = uint32(uVar13.Self() >> 18 & 0xFFFFFFFF)
+	elem2 := uint32(data[2])
+	y.Low = uint32(z.Self() >> 18 & 0xFFFFFFFF)
 	// stream.GenMask()
 
 	local10f := Bit64{}
-	local10f.Low = uVar13.High >> 18
+	local10f.Low = z.High >> 18
 	// 012FFAC5     02F4963B
 	// 012FFAC9     00080C29
 	// 012FFACD     6381BE9A
 	// 012FFAD1     00000000
-	x = div(uVar13.Low, uVar13.High, 0x6381be9a, 0) // 0x14B426 感觉是少了一半的值没有存储
+	x = div(z.Low, z.High, 0x6381be9a, 0) // 0x14B426 感觉是少了一半的值没有存储
 	x.Low += y.Low
 	// 0096F7CD     031EF4E3
 	// 0096F7D1     00000002
@@ -37,74 +36,78 @@ func demo(data []byte) Bit64 {
 	// 006FF905     00000000
 	// 006FF909     00001634
 	// 006FF90D     00000000
-	lVar12 = mul(uVar9+0xf366, 0, 0x1634, 0) // 0x15282CC0 passed
+	c = mul(elem2+0xf366, 0, 0x1634, 0) // 0x15282CC0 passed
 
-	uVar5 := lVar12.Low + uVar9
+	var5 := c.Low + elem2
 	// 00DCFCA1     15282D4B
 	// 00DCFCA5     00000000
 	// 00DCFCA9     02F4963B
 	// 00DCFCAD     00080C29
-	lVar12 = mul(uVar5+1, y.High+lVar12.High, uVar13.Low, uVar13.High)
-	lVar12.High += 4 //?? why // todo bug
+	c = mul(var5+1, y.High+c.High, z.Low, z.High)
+	c.High += 4 //?? why // todo bug
 
-	uVar13.Low = lVar12.Low
-	uVar13.High = lVar12.High
-	uVar13.Low += x.Low + 0x2d1f65
-	uVar11 := uVar13
-	// uVar11.High = uVar11.Low // >> 32
+	z.Low = c.Low
+	z.High = c.High
+	z.Low += x.Low + 0x2d1f65
+	uVar11 := z
+	// uVar11.High = uVar11.Low //
 
-	uVar7 := uint32(data[3])
-	uVar5 = uVar11.Low >> 18
-	uVar9 = uVar11.Low << 14
-	uVar10 := uVar11.High >> 18
+	var7 := uint32(data[3])
+	r := uVar11.ShiftRight(18)
+	// elem2 = uVar11.Low << 14
+	// uVar10 := uVar11.High >> 18
+	mylog.Hex("bug", uVar11.Self()>>18)
 	// 012FFBC9     32B36B74
 	// 012FFBCD     B0254C17 bug
 	// 012FFBD1     6381BE9A
 	// 012FFBD5     00000000
 	x = div(uVar11.Low, uVar11.High, 0x6381be9a, 0)
 
-	x.Low += (uVar10 << 32) | (uVar5 | uVar9) + 0x21d78d
+	// x.Low += (uVar10 << 32) | (var5 | elem2) + 0x21d78d
+	x.Add(r)
+	x.AddInt(0x21d78d)
+
 	// 008FFAED     1852A1B4
 	// 008FFAF1     00002C0B
 	// 008FFAF5     00000003
 	// 008FFAF9     00000000
-	x = mul(x.High, x.Low>>32, 3, 0) // todo bug
+	x = mul(x.Low, x.Low, 3, 0) // todo bug
 
-	lVar12 = mul(uVar7+0xf366, 0, 0x1968, 0)
-	y.Low = lVar12.High
-	uVar5 = lVar12.High + uVar7
-	lVar12 = mul(uVar5+1, y.Low+lVar12.High|(uVar7+1), uVar13.High, uVar13.High)
+	c = mul(var7+0xf366, 0, 0x1968, 0)
+	y.Low = c.High
+	var5 = c.High + var7
+	c = mul(var5+1, y.Low+c.High|(var7+1), z.High, z.High)
 
 	result = uVar11
-	uVar13 = lVar12
-	uVar13.Low += x.Low
-	uVar7 = uVar13.High
+	z = c
+	z.Low += x.Low
+	var7 = z.High
 
-	local13b := result.High >> 32
-	uVar1 = uVar13
-	x = div(uVar13.Low, uVar13.Low>>32, 0x6A, 0)
-	uVar13.Low = x.Low + (local13b<<32 | uVar1.High)
+	local13b := result.High
+	a = z
+	x = div(z.Low, z.Low, 0x6A, 0)
+	z.Low = x.Low + (local13b | a.High)
 
-	local9 := uVar1.High
-	x = mul(local9+0xf366, 0, 0x1c9e, 0)
-	uVar5 = x.Low + local9
-	y = Bit64{Low: x.High, High: local9}
-	x = mul(uVar5+1, y.Low, y.Low, uVar7)
+	high := a.High
+	x = mul(high+0xf366, 0, 0x1c9e, 0)
+	var5 = x.Low + high
+	y = Bit64{Low: x.High, High: high}
+	x = mul(var5+1, y.Low, y.Low, var7)
 
 	i := 7
 	for i >= 0 {
-		iVar4 := i
-		uVar5 := result.High + 4
-		local117 := (uVar5<<25^result.High)>>25 | (uVar5>>7^uVar5)<<7
-		local113 := uVar5 >> 25
-		x = div(result.High, uVar5, 0x6a, 0)
-		local127 := x
-		local127.Low += local113<<32 | local117
-		lVar12 = x
-		local11b := data[iVar4]
-		lVar12 = mul(uint32(iVar4*iVar4), uint32(iVar4*iVar4>>31), local127.High, local127.High>>32)
-		y.Low = lVar12.High // low >> 32
-		x = mul(uint32((local11b)+1), uint32(int(local11b)>>31+i), result.High, uVar5)
+		j := i
+		v := result.High + 4
+		m := (v<<25^result.High)>>25 | (v>>7^v)<<7
+		local113 := v >> 25
+		x = div(result.High, v, 0x6a, 0)
+		k := x
+		k.Low += local113 | m
+		c = x
+		elem := data[j]
+		c = mul(uint32(j*j), uint32(j*j>>31), k.High, k.High)
+		y.Low = c.High // low
+		x = mul(uint32((elem)+1), uint32(int(elem)>>31+i), result.High, v)
 		i--
 	}
 	return result
