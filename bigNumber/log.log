@@ -1,4 +1,4 @@
-2024-11-04 16:23:37    Trace ->  --------- title --------- │ ------------------ info ------------------ //runtime.doInit1+0xe1 C:/Program Files/Go/src/runtime/proc.go:7278
-2024-11-04 16:23:37  HexDump ->                 input data │  //asm.bigNumber+0xc4 C:/Users/Admin/Music/asm/bigNumber/bigNumber.go:10
+2024-11-04 16:27:23    Trace ->  --------- title --------- │ ------------------ info ------------------ //runtime.doInit1+0xe1 C:/Program Files/Go/src/runtime/proc.go:7278
+2024-11-04 16:27:23  HexDump ->                 input data │  //asm.bigNumber+0xc4 C:/Users/Admin/Music/asm/bigNumber/bigNumber.go:10
 00000000  09 99 8a 7b fe 46 c2 f0                           |...{.F..|
-2024-11-04 16:23:37      Hex -> 0x000001000000007E&0xFFFFFFFF │ 0X7E //github.com/ddkwork/golibrary/stream.GenMask+0x1af C:/Users/Admin/go/pkg/mod/github.com/ddkwork/golibrary@v0.0.0-20241104012447-f2090de7a662/stream/safeStream.go:56
+2024-11-04 16:27:23      Hex -> 0x000001000000007E&0xFFFFFFFF │ 0X7E //github.com/ddkwork/golibrary/stream.GenMask+0x1af C:/Users/Admin/go/pkg/mod/github.com/ddkwork/golibrary@v0.0.0-20241104012447-f2090de7a662/stream/safeStream.go:56

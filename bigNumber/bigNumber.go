@@ -32,16 +32,21 @@ func bigNumber(data []byte) LargeInteger {
 	// 0096F7D1     00000002
 	// 0096F7D5     00000002
 	// 0096F7D9     00000000
-	x = mul(x.LowPart, local10f.LowPart, 2, 0) //0x63DE9C6 passed
+	x = mul(x.LowPart, local10f.LowPart, 2, 0) // 0x63DE9C6 passed
 
-	lVar12 = mul(uVar9+0xf366, 0, 0x1634, 0)
+	// 006FF901     0000F3F0
+	// 006FF905     00000000
+	// 006FF909     00001634
+	// 006FF90D     00000000
+	lVar12 = mul(uVar9+0xf366, 0, 0x1634, 0) // 0x15282CC0 passed
+
 	// y = lVar12.HighPart
-	uVar5 := lVar12.HighPart + uVar9
-	//006FF901     0000F3F0
+	uVar5 := lVar12.LowPart + uVar9
+	//006FF901     15282D4B
 	//006FF905     00000000
-	//006FF909     00001634
-	//006FF90D     00000000
-	lVar12 = mul(uVar5+1, y.LowPart+(lVar12.HighPart<<16|uVar9)+1, uVar13.HighPart, uVar13.LowPart)
+	//006FF909     02F4963B
+	//006FF90D     00080C29
+	lVar12 = mul(uVar5+1, y.LowPart+(lVar12.HighPart<<16|uVar9)+1, uVar13.HighPart, uVar13.LowPart) //todo bug arg2 is wrong
 
 	uVar13 = lVar12
 	uVar13.LowPart += x.LowPart + 0x2d1f65
