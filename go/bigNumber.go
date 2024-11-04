@@ -7,7 +7,7 @@ import (
 	"github.com/ddkwork/golibrary/mylog"
 )
 
-func main() {
+func bigNumber() uint64 {
 	var uVar1, puVar2, lVar11, lVar12, uVar13 LargeInteger
 	data := []byte{0x9, 0x99, 0x8a, 0x7b, 0xfe, 0x46, 0xc2, 0xf0}
 	mylog.HexDump("input data", data)
@@ -88,4 +88,5 @@ func main() {
 	mylog.Struct(puVar2)
 	concat := slices.Concat(binary.BigEndian.AppendUint32(nil, puVar2.HighPart), binary.BigEndian.AppendUint32(nil, puVar2.LowPart))
 	mylog.HexDump("Large integer result use ghidra", concat)
+	return puVar2.QuadPart()
 }

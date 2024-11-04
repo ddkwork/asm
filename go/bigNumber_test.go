@@ -4,7 +4,13 @@ import (
 	"testing"
 
 	"github.com/ddkwork/golibrary/mylog"
+
+	"github.com/stretchr/testify/assert"
 )
+
+func Test_bigNumber(t *testing.T) {
+	assert.Equal(t, uint64(0xCD2F21A91272EE20), bigNumber())
+}
 
 func TestLargeInteger(t *testing.T) {
 	var div LargeInteger
