@@ -25,10 +25,6 @@ func (l *LargeInteger) Bytes() []byte {
 	return slices.Concat(binary.LittleEndian.AppendUint32(nil, l.HighPart), binary.LittleEndian.AppendUint32(nil, l.LowPart))
 }
 
-func makeLargeInteger(high, low uint32) LargeInteger {
-	return LargeInteger{LowPart: low, HighPart: high}
-}
-
 func mul(low, high, magic, param4 uint32) LargeInteger {
 	var l LargeInteger
 	if (param4 | high) == 0 {

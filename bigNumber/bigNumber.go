@@ -14,12 +14,10 @@ func bigNumber(data []byte) LargeInteger {
 	x = mul(x.LowPart, x.LowPart>>32, 0x71b793, 0)
 	uVar13 = x // 0x27796B5
 	uVar13.LowPart += 0x7CFF86
-	mylog.Hex("mul1 bug", 0x121DD597*0x71b793)
 	mylog.Struct(x)
 
 	uVar9 := uint32(data[2])
-	y.LowPart = uint32(uVar13.QuadPart() >> 18 & 0x7FFFFFFF)
-	mylog.Hex("0x2F4963B", uVar13.QuadPart()>>18&0x7FFFFFFF)
+	y.LowPart = uint32(uVar13.QuadPart() >> 18 & 0xFFFFFFFF)
 	stream.GenMask()
 
 	local10f := LargeInteger{}
@@ -68,7 +66,7 @@ func bigNumber(data []byte) LargeInteger {
 	local9 := uVar1.HighPart
 	x = mul(local9+0xf366, 0, 0x1c9e, 0)
 	uVar5 = x.LowPart + local9
-	y = makeLargeInteger(x.HighPart, local9)
+	y = LargeInteger{LowPart: x.HighPart, HighPart: local9}
 	x = mul(uVar5+1, y.LowPart, y.LowPart, uVar7)
 
 	i := 7
