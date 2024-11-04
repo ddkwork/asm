@@ -10,6 +10,13 @@ type LargeInteger struct {
 	HighPart uint32
 }
 
+func FromUint64(u uint64) LargeInteger {
+	return LargeInteger{
+		LowPart:  uint32(u),
+		HighPart: uint32(u >> 32),
+	}
+}
+
 func (l *LargeInteger) QuadPart() uint64 {
 	return uint64(l.HighPart)<<32 | uint64(l.LowPart)
 }
@@ -22,30 +29,28 @@ func makeLargeInteger(high, low uint32) LargeInteger {
 	return LargeInteger{LowPart: low, HighPart: high}
 }
 
-func mul(param1, param2, param3, param4 uint32) LargeInteger {
-	var v LargeInteger
-
-	if (param4 | param2) == 0 {
-		v.LowPart = param1 * param3
-		return v
+func mul(low, high, magic, param4 uint32) LargeInteger {
+	var l LargeInteger
+	if (param4 | high) == 0 {
+		v := uint64(low) * uint64(magic)
+		return FromUint64(v)
 	}
-	v.HighPart = param1*param3>>32 + param2*param3 + param1*param4<<32
-	v.LowPart = (param1 * param3) & 0xFFFFFFFF
-	return v
+	l.HighPart = low*magic>>32 + high*magic + low*param4<<32
+	l.LowPart = (low * magic) & 0xFFFFFFFF
+	return l
 }
 
-func div(param1, param2, param3, param4 uint32) LargeInteger {
+func div(low, high, magic, param4 uint32) LargeInteger {
 	var v LargeInteger
 	var uVar1 uint64
 	var temp int64
-	uVar3 := param1
+	uVar3 := low
 	uVar8 := param4
-	uVar6 := param2
-	uVar9 := param3
-
+	uVar6 := high
+	uVar9 := magic
 	if param4 == 0 {
-		uVar3 = param2 / param3
-		temp = (int64(param2)%int64(param3)<<32 | int64(param1)) / int64(param3)
+		uVar3 = high / magic
+		temp = (int64(high)%int64(magic)<<32 | int64(low)) / int64(magic)
 	} else {
 		for uVar8 != 0 {
 			uVar5 := uVar8 >> 1

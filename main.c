@@ -472,6 +472,7 @@ void asm1() {
     hexdump("asm1 for code3", code3Buf, 8);
 }
 
+/*
 /////////////////////// ghidra test /////////////////////////////////////////////////
 typedef union _LARGE_INTEGER {
     struct {
@@ -779,11 +780,11 @@ void test() {
     printf("0x%016llX\n", mul.u.HighPart);
     printf("0x%016llX\n", mul.u.LowPart);
 }
-
+*/
 
 int main(void) {
-    test();
+    // test();
     asm1();
-    ghidraDecode();
+    // ghidraDecode();
     return 0;
 }
