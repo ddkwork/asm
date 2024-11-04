@@ -5,7 +5,7 @@ import (
 )
 
 func bigNumber(data []byte) LargeInteger {
-	var uVar1, puVar2, lVar11, lVar12, uVar13 LargeInteger
+	var uVar1, result, lVar11, lVar12, uVar13 LargeInteger
 	mylog.HexDump("input data", data)
 
 	lVar11 = makeLargeInteger(0, 0)
@@ -47,12 +47,12 @@ func bigNumber(data []byte) LargeInteger {
 	uVar5 = lVar12.HighPart + uVar7
 	lVar12 = mul(uVar5+1, local13f+lVar12.HighPart|(uVar7+1), uVar13.HighPart, uVar13.HighPart)
 
-	puVar2 = uVar11
+	result = uVar11
 	uVar13 = lVar12
 	uVar13.LowPart += lVar11.LowPart
 	uVar7 = uVar13.HighPart
 
-	local13b := puVar2.HighPart >> 32
+	local13b := result.HighPart >> 32
 	uVar1 = uVar13
 	lVar11 = div(uVar13.LowPart, uVar13.LowPart>>32, 0x6A, 0)
 	uVar13.LowPart = lVar11.LowPart + (local13b<<32 | uVar1.HighPart)
@@ -66,18 +66,18 @@ func bigNumber(data []byte) LargeInteger {
 	i := 7
 	for i >= 0 {
 		iVar4 := i
-		uVar5 := puVar2.HighPart + 4
-		local117 := (uVar5<<25^puVar2.HighPart)>>25 | (uVar5>>7^uVar5)<<7
+		uVar5 := result.HighPart + 4
+		local117 := (uVar5<<25^result.HighPart)>>25 | (uVar5>>7^uVar5)<<7
 		local113 := uVar5 >> 25
-		lVar11 = div(puVar2.HighPart, uVar5, 0x6a, 0)
+		lVar11 = div(result.HighPart, uVar5, 0x6a, 0)
 		local127 := lVar11
 		local127.LowPart += local113<<32 | local117
 		lVar12 = lVar11
 		local11b := data[iVar4]
 		lVar12 = mul(uint32(iVar4*iVar4), uint32(iVar4*iVar4>>31), local127.HighPart, local127.HighPart>>32)
 		local13f = lVar12.LowPart >> 32
-		lVar11 = mul(uint32((local11b)+1), uint32(int(local11b)>>31+i), puVar2.HighPart, uVar5)
+		lVar11 = mul(uint32((local11b)+1), uint32(int(local11b)>>31+i), result.HighPart, uVar5)
 		i--
 	}
-	return puVar2
+	return result
 }
