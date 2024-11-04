@@ -41,7 +41,7 @@ func mul(low, high, low2, high2 uint32) LargeInteger {
 	return FromUint64(x.Self() * y.Self())
 }
 
-func div(low, high, low2, high2 uint32) LargeInteger { //todo add remainder ?
+func div(low, high, low2, high2 uint32) LargeInteger { // todo add remainder ?
 	x := LargeInteger{Low: low, High: high}
 	y := LargeInteger{Low: low2, High: high2}
 	return FromUint64(x.Self() / y.Self())
