@@ -4,8 +4,8 @@ import (
 	"github.com/ddkwork/golibrary/mylog"
 )
 
-func demo(data []byte) LargeInteger {
-	var uVar1, result, x, lVar12, uVar13 LargeInteger
+func demo(data []byte) Bit64 {
+	var uVar1, result, x, lVar12, uVar13 Bit64
 	mylog.HexDump("input data", data)
 	x = mul(uint32(data[1])+0xf366, 0, 0x1302, 0)
 	y := x                   //.high
@@ -19,7 +19,7 @@ func demo(data []byte) LargeInteger {
 	y.Low = uint32(uVar13.Self() >> 18 & 0xFFFFFFFF)
 	// stream.GenMask()
 
-	local10f := LargeInteger{}
+	local10f := Bit64{}
 	local10f.Low = uVar13.High >> 18
 	// 012FFAC5     02F4963B
 	// 012FFAC9     00080C29
@@ -45,13 +45,13 @@ func demo(data []byte) LargeInteger {
 	// 00DCFCA9     02F4963B
 	// 00DCFCAD     00080C29
 	lVar12 = mul(uVar5+1, y.High+lVar12.High, uVar13.Low, uVar13.High)
-	lVar12.High -= 4 //?? why
+	lVar12.High += 4 //?? why
 
 	uVar13.Low = lVar12.Low
 	uVar13.High = lVar12.High
-	uVar13.Low += x.Low // + 0x2d1f65
+	uVar13.Low += x.Low + 0x2d1f65
 	uVar11 := uVar13
-	uVar11.High = uVar11.Low >> 32
+	// uVar11.High = uVar11.Low // >> 32
 
 	uVar7 := uint32(data[3])
 	uVar5 = uVar11.Low >> 18
@@ -64,6 +64,10 @@ func demo(data []byte) LargeInteger {
 	x = div(uVar11.Low, uVar11.High, 0x6381be9a, 0) // todo bug
 
 	x.Low += (uVar10 << 32) | (uVar5 | uVar9) + 0x21d78d
+	//008FFAED     1852A1B4
+	//008FFAF1     00002C0B
+	//008FFAF5     00000003
+	//008FFAF9     00000000
 	x = mul(x.High, x.Low>>32, 3, 0)
 
 	lVar12 = mul(uVar7+0xf366, 0, 0x1968, 0)
@@ -84,7 +88,7 @@ func demo(data []byte) LargeInteger {
 	local9 := uVar1.High
 	x = mul(local9+0xf366, 0, 0x1c9e, 0)
 	uVar5 = x.Low + local9
-	y = LargeInteger{Low: x.High, High: local9}
+	y = Bit64{Low: x.High, High: local9}
 	x = mul(uVar5+1, y.Low, y.Low, uVar7)
 
 	i := 7
