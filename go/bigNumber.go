@@ -4,9 +4,8 @@ import (
 	"github.com/ddkwork/golibrary/mylog"
 )
 
-func bigNumber() LargeInteger {
+func bigNumber(data []byte) LargeInteger {
 	var uVar1, puVar2, lVar11, lVar12, uVar13 LargeInteger
-	data := []byte{0x9, 0x99, 0x8a, 0x7b, 0xfe, 0x46, 0xc2, 0xf0}
 	mylog.HexDump("input data", data)
 
 	lVar11 = makeLargeInteger(0, 0)
@@ -30,7 +29,6 @@ func bigNumber() LargeInteger {
 	uVar5 := lVar12.HighPart + uVar9
 	lVar12 = mul(uVar5+1, local13f+(lVar12.HighPart<<16|uVar9)+1, uVar13.HighPart, uVar13.LowPart)
 
-	// 进行后续的数学运算
 	uVar13 = lVar12
 	uVar13.LowPart += lVar11.LowPart + 0x2d1f65
 	uVar11 := uVar13
@@ -65,11 +63,10 @@ func bigNumber() LargeInteger {
 	local13f = lVar11.HighPart>>32 + makeLargeInteger(lVar11.HighPart, local9).LowPart + 1
 	lVar11 = mul(uVar5+1, local13f, local13f, uVar7)
 
-	// 循环部分
 	i := 7
 	for i >= 0 {
 		iVar4 := i
-		uVar5 := puVar2.HighPart + 4 // 假设此处为真实地址
+		uVar5 := puVar2.HighPart + 4
 		local117 := (uVar5<<25^puVar2.HighPart)>>25 | (uVar5>>7^uVar5)<<7
 		local113 := uVar5 >> 25
 		lVar11 = div(puVar2.HighPart, uVar5, 0x6a, 0)
