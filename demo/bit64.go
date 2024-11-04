@@ -31,14 +31,14 @@ func (l *Bit64) Bytes() []byte {
 	return slices.Concat(binary.LittleEndian.AppendUint32(nil, l.High), binary.LittleEndian.AppendUint32(nil, l.Low))
 }
 
-func mul(low, high, low2, high2 uint32) Bit64 {
-	x := Bit64{Low: low, High: high}
-	y := Bit64{Low: low2, High: high2}
+func mul(xLow, xHigh, yLow, yHigh uint32) Bit64 {
+	x := Bit64{Low: xLow, High: xHigh}
+	y := Bit64{Low: yLow, High: yHigh}
 	return FromUint64(x.Self() * y.Self())
 }
 
-func div(low, high, low2, high2 uint32) Bit64 {
-	x := Bit64{Low: low, High: high}
-	y := Bit64{Low: low2, High: high2}
+func div(xLow, xHigh, yLow, yHigh uint32) Bit64 {
+	x := Bit64{Low: xLow, High: xHigh}
+	y := Bit64{Low: yLow, High: yHigh}
 	return FromUint64(x.Self() / y.Self())
 }
