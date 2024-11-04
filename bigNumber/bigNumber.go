@@ -26,9 +26,13 @@ func bigNumber(data []byte) LargeInteger {
 	// 012FFAC9     00080C29
 	// 012FFACD     6381BE9A
 	// 012FFAD1     00000000
-	x = div(uVar13.LowPart, uVar13.HighPart, 0x6381be9a, 0) // todo bug
-	// x.HighPart += local10f.LowPart| y
-	x = mul(x.HighPart, x.LowPart>>32, 2, 0)
+	x = div(uVar13.LowPart, uVar13.HighPart, 0x6381be9a, 0) //0x14B426 感觉是少了一半的值没有存储
+	x.LowPart += local10f.LowPart                           //ecx=30A40BD todo bug
+	// 0096F7CD     031EF4E3
+	// 0096F7D1     00000002
+	// 0096F7D5     00000002
+	// 0096F7D9     00000000
+	x = mul(x.HighPart, local10f.LowPart, 2, 0)
 
 	lVar12 = mul(uVar9+0xf366, 0, 0x1634, 0)
 	// y = lVar12.HighPart
