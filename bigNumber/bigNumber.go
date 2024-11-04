@@ -45,6 +45,7 @@ func bigNumber(data []byte) LargeInteger {
 	// 00DCFCA9     02F4963B
 	// 00DCFCAD     00080C29
 	lVar12 = mul(uVar5+1, y.High+lVar12.High, uVar13.Low, uVar13.High)
+	lVar12.High -= 4 //?? why
 
 	uVar13.Low = lVar12.Low
 	uVar13.High = lVar12.High

@@ -31,31 +31,31 @@ func (l *LargeInteger) Bytes() []byte {
 	return slices.Concat(binary.LittleEndian.AppendUint32(nil, l.High), binary.LittleEndian.AppendUint32(nil, l.Low))
 }
 
-func mul(low, high, magic, param4 uint32) LargeInteger {
-	//if (param4 | high) == 0 {
-	//	v := uint64(low) * uint64(magic)
+func mul(low, high, low2, high2 uint32) LargeInteger {
+	//if (high2 | high) == 0 {
+	//	v := uint64(low) * uint64(low2)
 	//	return FromUint64(v)
 	//}
 	x := LargeInteger{Low: low, High: high}
-	y := LargeInteger{Low: magic, High: param4}
+	y := LargeInteger{Low: low2, High: high2}
 	return FromUint64(x.Self() * y.Self())
 }
 
-func div(low, high, magic, param4 uint32) LargeInteger {
+func div(low, high, low2, high2 uint32) LargeInteger {
 	x := LargeInteger{Low: low, High: high}
-	y := LargeInteger{Low: magic, High: param4}
+	y := LargeInteger{Low: low2, High: high2}
 	return FromUint64(x.Self() / y.Self())
 
 	var v LargeInteger
 	var uVar1 uint64
 	var temp int64
 	uVar3 := low
-	uVar8 := param4
+	uVar8 := high2
 	uVar6 := high
-	uVar9 := magic
-	if param4 == 0 {
-		uVar3 = high / magic
-		temp = (int64(high)%int64(magic)<<32 | int64(low)) / int64(magic)
+	uVar9 := low2
+	if high2 == 0 {
+		uVar3 = high / low2
+		temp = (int64(high)%int64(low2)<<32 | int64(low)) / int64(low2)
 	} else {
 		for uVar8 != 0 {
 			uVar5 := uVar8 >> 1
