@@ -45,7 +45,7 @@ func demo(data []byte) Bit64 {
 	// 00DCFCA9     02F4963B
 	// 00DCFCAD     00080C29
 	lVar12 = mul(uVar5+1, y.High+lVar12.High, uVar13.Low, uVar13.High)
-	lVar12.High += 4 //?? why
+	lVar12.High += 4 //?? why // todo bug
 
 	uVar13.Low = lVar12.Low
 	uVar13.High = lVar12.High
@@ -61,14 +61,14 @@ func demo(data []byte) Bit64 {
 	// 012FFBCD     B0254C17 bug
 	// 012FFBD1     6381BE9A
 	// 012FFBD5     00000000
-	x = div(uVar11.Low, uVar11.High, 0x6381be9a, 0) // todo bug
+	x = div(uVar11.Low, uVar11.High, 0x6381be9a, 0)
 
 	x.Low += (uVar10 << 32) | (uVar5 | uVar9) + 0x21d78d
 	//008FFAED     1852A1B4
 	//008FFAF1     00002C0B
 	//008FFAF5     00000003
 	//008FFAF9     00000000
-	x = mul(x.High, x.Low>>32, 3, 0)
+	x = mul(x.High, x.Low>>32, 3, 0) // todo bug
 
 	lVar12 = mul(uVar7+0xf366, 0, 0x1968, 0)
 	y.Low = lVar12.High
