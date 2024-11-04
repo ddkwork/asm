@@ -8,6 +8,268 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+/*
+hi, it still not working,step here:
+1. msbuild x86 build ../ get ./untitled4.exe
+2. fix x86win.cspec
+   1.<input thisbeforeretpointer="false">
+   2.
+      <callfixup name="__sdivsi3">
+      <target name="__sdivsi3"/>
+      <pcode>
+      <body> r0 = r0 s/ r1; </body>
+      </pcode>
+      </callfixup>
+3. drop ./untitled4.exe into ghidra got this:
+
+we can see the mul and div function is not replaced as * and / or % operator.
+
+///////////////////////////////////
+ lVar11 += CONCAT44(local_10f,local_13f);
+  lVar11 = mul((uint)lVar11,(uint)((ulonglong)lVar11 >> 0x20),2,0);
+  lVar12 = mul(uVar9 + 0xf366,0,0x1634,0);
+  lVar12 = mul(uVar5 + 1,local_13f + CARRY4((uint)lVar12,uVar9) + (uint)(0xfffffffe < uVar5),
+               (uint)local_127,local_127._4_4_);
+...
+
+  lVar11 = div((uint)local_127,local_127._4_4_,0x6381be9a,0);
+///////////////////////////////////
+
+longlong mul(uint param_1,uint param_2,uint param_3,uint param_4)
+
+{
+  if ((param_4 | param_2) == 0) {
+    return (ulonglong)param_1 * (ulonglong)param_3;
+  }
+  return CONCAT44((int)((ulonglong)param_1 * (ulonglong)param_3 >> 0x20) +
+                  param_2 * param_3 + param_1 * param_4,
+                  (int)((ulonglong)param_1 * (ulonglong)param_3));
+}
+
+
+undefined8 div(uint param_1,uint param_2,uint param_3,uint param_4)
+
+{
+  ulonglong uVar1;
+  longlong lVar2;
+  uint uVar3;
+  int iVar4;
+  uint uVar5;
+  uint uVar6;
+  uint uVar7;
+  uint uVar8;
+  uint uVar9;
+
+  uVar3 = param_1;
+  uVar8 = param_4;
+  uVar6 = param_2;
+  uVar9 = param_3;
+  if (param_4 == 0) {
+    uVar3 = param_2 / param_3;
+    iVar4 = (int)(((ulonglong)param_2 % (ulonglong)param_3 << 0x20 | (ulonglong)param_1) /
+                 (ulonglong)param_3);
+  }
+  else {
+    do {
+      uVar5 = uVar8 >> 1;
+      uVar9 = uVar9 >> 1 | (uint)((uVar8 & 1) != 0) << 0x1f;
+      uVar7 = uVar6 >> 1;
+      uVar3 = uVar3 >> 1 | (uint)((uVar6 & 1) != 0) << 0x1f;
+      uVar8 = uVar5;
+      uVar6 = uVar7;
+    } while (uVar5 != 0);
+    uVar1 = CONCAT44(uVar7,uVar3) / (ulonglong)uVar9;
+    iVar4 = (int)uVar1;
+    lVar2 = (ulonglong)param_3 * (uVar1 & 0xffffffff);
+    uVar3 = (uint)((ulonglong)lVar2 >> 0x20);
+    uVar8 = uVar3 + iVar4 * param_4;
+    if (((CARRY4(uVar3,iVar4 * param_4)) || (param_2 < uVar8)) ||
+       ((param_2 <= uVar8 && (param_1 < (uint)lVar2)))) {
+      iVar4 += -1;
+    }
+    uVar3 = 0;
+  }
+  return CONCAT44(uVar3,iVar4);
+}
+
+
+
+
+void FUN_00401680(void)
+
+{
+  ulonglong uVar1;
+  ulonglong *puVar2;
+  byte *pbVar3;
+  int iVar4;
+  uint uVar5;
+  undefined *puVar6;
+  uint uVar7;
+  undefined4 *puVar8;
+  uint uVar9;
+  uint uVar10;
+  byte in_AF;
+  byte in_TF;
+  byte in_IF;
+  byte in_NT;
+  byte in_AC;
+  byte in_VIF;
+  byte in_VIP;
+  byte in_ID;
+  longlong lVar11;
+  longlong lVar12;
+  ulonglong uVar13;
+  byte local_167 [4];
+  byte local_163;
+  undefined local_160 [21];
+  int local_14b;
+  uint local_13f;
+  undefined4 local_13b;
+  undefined8 local_127;
+  ulonglong *local_11b;
+  uint local_117;
+  uint local_113;
+  int local_10f;
+  uint uStack_68;
+  undefined4 *puStack_64;
+  undefined4 local_38;
+  ulonglong local_34 [2];
+  undefined4 local_24;
+  undefined4 local_20;
+  undefined local_14 [4];
+  undefined local_10;
+  undefined local_f;
+  undefined local_e;
+  undefined local_d;
+  uint local_8;
+
+  puVar8 = &local_38;
+  for (iVar4 = 0xd; iVar4 != 0; iVar4 += -1) {
+    *puVar8 = 0xcccccccc;
+    puVar8 = puVar8 + 1;
+  }
+  local_8 = DAT_0040a080 ^ (uint)&stack0xfffffffc;
+  local_14[0] = 9;
+  local_14[1] = 0x99;
+  local_14[2] = 0x8a;
+  local_14[3] = 0x7b;
+  local_10 = 0xfe;
+  local_f = 0x46;
+  local_e = 0xc2;
+  local_d = 0xf0;
+  local_24 = 0;
+  local_20 = 0;
+  local_34[0] = 0;
+  thunk_FUN_004014e0(&DAT_0040a030,(int)local_14,8);
+  puStack_64 = puVar8;
+  uStack_68 = (uint)(in_NT & 1) * 0x4000 | (uint)SCARRY4((int)&stack0xffffffb0,0xc) * 0x800 |
+              (uint)(in_IF & 1) * 0x200 | (uint)(in_TF & 1) * 0x100 |
+              (uint)((int)&stack0xffffffbc < 0) * 0x80 |
+              (uint)(&stack0x00000000 == (undefined *)0x44) * 0x40 | (uint)(in_AF & 1) * 0x10 |
+              (uint)((POPCOUNT((uint)&stack0xffffffbc & 0xff) & 1U) == 0) * 4 |
+              (uint)((undefined *)0xfffffff3 < &stack0xffffffb0) | (uint)(in_ID & 1) * 0x200000 |
+              (uint)(in_VIP & 1) * 0x100000 | (uint)(in_VIF & 1) * 0x80000 |
+              (uint)(in_AC & 1) * 0x40000;
+  puVar6 = local_14;
+  pbVar3 = local_167;
+  for (iVar4 = 8; iVar4 != 0; iVar4 += -1) {
+    *pbVar3 = *puVar6;
+    puVar6 = puVar6 + 1;
+    pbVar3 = pbVar3 + 1;
+  }
+  local_11b = local_34;
+  local_34[0] = 0x71b793;
+  lVar11 = mul(local_167[1] + 0xf366,0,0x1302,0);
+  local_13f = (uint)((ulonglong)lVar11 >> 0x20);
+  lVar11 += (ulonglong)(uint)local_167[1];
+  lVar11 = mul((uint)lVar11,(uint)((ulonglong)lVar11 >> 0x20),0x71b793,0);
+  local_127 = lVar11 + 0x7cff86;
+  uVar9 = (uint)local_167[2];
+  local_13f = (uint)(local_127 >> 0x12);
+  local_10f = (int)((local_127 >> 0x12) >> 0x20);
+  local_34[0] = local_127;
+  lVar11 = div((uint)local_127,(uint)(local_127 >> 0x20),0x6381be9a,0);
+  lVar11 += CONCAT44(local_10f,local_13f);
+  lVar11 = mul((uint)lVar11,(uint)((ulonglong)lVar11 >> 0x20),2,0);
+  lVar12 = mul(uVar9 + 0xf366,0,0x1634,0);
+  local_13f = (uint)((ulonglong)lVar12 >> 0x20);
+  uVar5 = (uint)lVar12 + uVar9;
+  lVar12 = mul(uVar5 + 1,local_13f + CARRY4((uint)lVar12,uVar9) + (uint)(0xfffffffe < uVar5),
+               (uint)local_127,local_127._4_4_);
+  uVar13 = lVar12 + lVar11 + 0x2d1f65;
+  local_127._4_4_ = (uint)(uVar13 >> 0x20);
+  local_127._0_4_ = *(uint *)local_11b;
+  *local_11b = uVar13;
+  uVar7 = (uint)local_167[3];
+  uVar5 = (uint)local_127 >> 0x12;
+  uVar9 = local_127._4_4_ << 0xe;
+  uVar10 = local_127._4_4_ >> 0x12;
+  lVar11 = div((uint)local_127,local_127._4_4_,0x6381be9a,0);
+  lVar11 = lVar11 + CONCAT44(uVar10,uVar5 | uVar9) + 0x21d78d;
+  lVar11 = mul((uint)lVar11,(uint)((ulonglong)lVar11 >> 0x20),3,0);
+  lVar12 = mul(uVar7 + 0xf366,0,0x1968,0);
+  local_13f = (uint)((ulonglong)lVar12 >> 0x20);
+  uVar5 = (uint)lVar12 + uVar7;
+  lVar12 = mul(uVar5 + 1,local_13f + CARRY4((uint)lVar12,uVar7) + (uint)(0xfffffffe < uVar5),
+               (uint)local_127,local_127._4_4_);
+  puVar2 = local_11b;
+  uVar13 = lVar12 + lVar11;
+  uVar7 = (uint)uVar13;
+  uVar9 = 0;
+  uVar1 = uVar13 >> 0x12;
+  uVar5 = 0x6381be9a;
+  local_13b = (undefined4)(uVar1 >> 0x20);
+  *local_11b = uVar13;
+  lVar11 = div((uint)uVar13,(uint)(uVar13 >> 0x20),uVar5,uVar9);
+  local_127 = lVar11 + CONCAT44(local_13b,(int)uVar1);
+  uVar9 = (uint)local_163;
+  lVar11 = mul(uVar9 + 0xf366,0,0x1c9e,0);
+  uVar5 = (uint)lVar11 + uVar9;
+  local_13f = (int)((ulonglong)lVar11 >> 0x20) + (uint)CARRY4((uint)lVar11,uVar9) +
+              (uint)(0xfffffffe < uVar5);
+  lVar11 = mul(uVar5 + 1,local_13f,uVar7,*(uint *)((int)puVar2 + 4));
+  lVar12 = mul((uint)local_127,local_127._4_4_,4,0);
+  uVar13 = lVar12 + lVar11 + 0xb47d9d;
+  uVar5 = (uint)(uVar13 >> 0x20);
+  *puVar2 = uVar13;
+  local_10f = 399 - (int)local_160;
+  *puVar2 = (uVar13 >> 0x13) +
+            (ulonglong)CONCAT14(CARRY4(uVar5 >> 0x10,uVar5),(uVar5 >> 0x10) + uVar5) +
+            (ulonglong)((uint)uVar13 & 0xfff0);
+  local_14b = 7;
+  do {
+    iVar4 = local_14b;
+    uVar5 = *(uint *)((int)puVar2 + 4);
+    local_117 = (uVar5 << 0x19 ^ *(uint *)puVar2) >> 0x19 | (uVar5 >> 7 ^ uVar5) << 7;
+    local_113 = uVar5 >> 0x19;
+    lVar11 = div(*(uint *)puVar2,uVar5,0x6a,0);
+    local_127 = lVar11 + CONCAT44(local_113,local_117);
+    local_11b = (ulonglong *)(uint)local_167[iVar4];
+    lVar12 = mul(iVar4 * iVar4,iVar4 * iVar4 >> 0x1f,(uint)local_127,(uint)(local_127 >> 0x20)) ;
+    local_13f = (uint)((ulonglong)lVar12 >> 0x20);
+    lVar11 = mul((int)local_11b + 1,
+                 ((int)local_11b >> 0x1f) + (uint)((ulonglong *)0xfffffffe < local_11b),
+                 *(uint *)puVar2,uVar5);
+    iVar4 = local_14b;
+    lVar11 += CONCAT44(local_13f,(int)lVar12);
+    local_13f = (uint)((ulonglong)lVar11 >> 0x20);
+    pbVar3 = local_167 + local_14b;
+    *puVar2 = lVar11 + (int)local_11b * (int)local_11b * (int)local_11b;
+    uVar5 = (uint)*pbVar3;
+    pbVar3 = pbVar3 + local_10f;
+    lVar11 = div((uint)local_127,local_127._4_4_,0x14c9,0);
+    local_14b += -1;
+    *puVar2 = lVar11 + (int)((int)pbVar3 * uVar5 * uVar5 * iVar4) + *puVar2;
+  } while (-1 < local_14b);
+  FUN_00401b73();
+  return;
+}
+
+
+
+
+*/
+
 func Test_bigNumber(t *testing.T) {
 	data := []byte{0x9, 0x99, 0x8a, 0x7b, 0xfe, 0x46, 0xc2, 0xf0}
 	b := bigNumber(data)
