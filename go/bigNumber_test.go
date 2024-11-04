@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/hex"
 	"testing"
 
 	"github.com/ddkwork/golibrary/mylog"
@@ -9,7 +10,10 @@ import (
 )
 
 func Test_bigNumber(t *testing.T) {
-	assert.Equal(t, uint64(0xCD2F21A91272EE20), bigNumber())
+	b := bigNumber()
+	mylog.Struct(b)
+	assert.Equal(t, uint64(0xCD2F21A91272EE20), b.QuadPart())
+	assert.Equal(t, mylog.Check2(hex.DecodeString("CD2F21A91272EE20")), b.Bytes())
 }
 
 func TestLargeInteger(t *testing.T) {

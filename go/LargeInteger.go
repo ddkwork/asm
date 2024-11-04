@@ -1,12 +1,21 @@
 package main
 
+import (
+	"encoding/binary"
+	"slices"
+)
+
 type LargeInteger struct {
 	LowPart  uint32
 	HighPart uint32
 }
 
-func (li LargeInteger) QuadPart() uint64 {
-	return uint64(li.HighPart)<<32 | uint64(li.LowPart)
+func (l *LargeInteger) QuadPart() uint64 {
+	return uint64(l.HighPart)<<32 | uint64(l.LowPart)
+}
+
+func (l *LargeInteger) Bytes() []byte {
+	return slices.Concat(binary.LittleEndian.AppendUint32(nil, l.HighPart), binary.LittleEndian.AppendUint32(nil, l.LowPart))
 }
 
 func makeLargeInteger(high, low uint32) LargeInteger {
