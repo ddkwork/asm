@@ -1,69 +1,13 @@
 package main
 
 import (
-	"fmt"
+	"encoding/binary"
+	"slices"
+
+	"github.com/ddkwork/golibrary/mylog"
 )
 
-type LargeInteger struct {
-	LowPart  uint32
-	HighPart uint32
-}
-
-func (li LargeInteger) QuadPart() uint64 {
-	return uint64(li.HighPart)<<32 | uint64(li.LowPart)
-}
-
-// makeLargeInteger 创建一个 LargeInteger
-func makeLargeInteger(high, low uint32) LargeInteger {
-	return LargeInteger{LowPart: low, HighPart: high}
-}
-
-// mul 进行大整数的乘法运算
-func mul(param1, param2, param3, param4 uint32) LargeInteger {
-	var v LargeInteger
-
-	if (param4 | param2) == 0 {
-		v.LowPart = param1 * param3
-		return v
-	}
-	v.HighPart = param1*param3>>32 + param2*param3 + param1*param4<<32
-	v.LowPart = (param1 * param3) & 0xFFFFFFFF
-	return v
-}
-
-// div 进行大整数的除法运算
-func div(param1, param2, param3, param4 uint32) LargeInteger {
-	var v LargeInteger
-	var uVar1 uint64
-	var temp int64
-	uVar3 := param1
-	uVar8 := param4
-	uVar6 := param2
-	uVar9 := param3
-
-	if param4 == 0 {
-		uVar3 = param2 / param3
-		temp = (int64(param2)%int64(param3)<<32 | int64(param1)) / int64(param3)
-	} else {
-		for uVar8 != 0 {
-			uVar5 := uVar8 >> 1
-			uVar9 = uVar9>>1 | (uVar8&1)<<31
-			uVar7 := uVar6 >> 1
-			uVar3 = uVar3>>1 | (uVar6&1)<<31
-			uVar8 = uVar5
-			uVar6 = uVar7
-		}
-		uVar7 := 0
-		uVar1 = (uint64(uVar7)<<32 | uint64(uVar3)) / uint64(uVar9)
-		temp = int64(uVar1)
-	}
-	v.HighPart = uint32(temp >> 32)
-	v.LowPart = uint32(temp)
-	return v
-}
-
-// ghidraDecode 主要功能
-func ghidraDecode() {
+func main() {
 	var uVar1, puVar2, lVar11, lVar12, uVar13 LargeInteger
 	var local167 [8]byte
 
@@ -146,33 +90,7 @@ func ghidraDecode() {
 		lVar11 = mul(uint32((local11b)+1), uint32(int(local11b)>>31+i), puVar2.HighPart, uVar5)
 		i--
 	}
-
-	fmt.Println("Large integer result use ghidra")
-	fmt.Printf("%08x  ", puVar2.HighPart)
-	fmt.Printf("%08x  ", puVar2.LowPart)
-}
-
-// test 测试大整数的基本运算
-func test() {
-	var div LargeInteger
-	div.LowPart = 0x0000091416154ED7 % 0xFFFFFFFF // 模拟低位
-	div.HighPart = div.LowPart / 0x6A             // 高位计算
-
-	var mul LargeInteger
-	mul.LowPart = 0x00000015ECE7BB69 % 0xFFFFFFFF // 模拟低位
-	mul.HighPart = mul.LowPart * 0x31             // 高位计算
-
-	fmt.Printf("div QuadPart: 0x%016x\n", (uint64(div.HighPart)<<32)|uint64(div.LowPart))
-	fmt.Printf("div HighPart: 0x%016x\n", div.HighPart)
-	fmt.Printf("div LowPart: 0x%016x\n", div.LowPart)
-
-	fmt.Printf("mul QuadPart: 0x%016x\n", (uint64(mul.HighPart)<<32)|uint64(mul.LowPart))
-	fmt.Printf("mul HighPart: 0x%016x\n", mul.HighPart)
-	fmt.Printf("mul LowPart: 0x%016x\n", mul.LowPart)
-}
-
-// main 函数
-func main() {
-	test()         // 进行测试
-	ghidraDecode() // 调用主要解码函数
+	mylog.Struct(puVar2)
+	concat := slices.Concat(binary.BigEndian.AppendUint32(nil, puVar2.HighPart), binary.BigEndian.AppendUint32(nil, puVar2.LowPart))
+	mylog.HexDump("Large integer result use ghidra", concat)
 }
