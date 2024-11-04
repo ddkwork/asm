@@ -1,5 +1,0 @@
-2024-11-04 09:56:38    Trace ->  --------- title --------- │ ------------------ info ------------------ //runtime.doInit1+0xec C:/Program Files/Go/src/runtime/proc.go:7278
-2024-11-04 09:56:39  HexDump ->                 input data │  //asm.bigNumber+0x23 C:/Users/Admin/Music/asm/go/bigNumber.go:9
-00000000  09 99 8a 7b fe 46 c2 f0                           |...{.F..|
-2024-11-04 09:56:39      Hex ->                        div │ 0X35555B161557EB //asm.TestLargeInteger+0x73 C:/Users/Admin/Music/asm/go/bigNumber_test.go:24
-2024-11-04 09:56:39      Hex ->                        div │ 0X35555B161557EB //asm.TestLargeInteger+0xc5 C:/Users/Admin/Music/asm/go/bigNumber_test.go:31
