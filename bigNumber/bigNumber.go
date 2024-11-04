@@ -40,13 +40,12 @@ func bigNumber(data []byte) LargeInteger {
 	// 006FF90D     00000000
 	lVar12 = mul(uVar9+0xf366, 0, 0x1634, 0) // 0x15282CC0 passed
 
-	// y = lVar12.HighPart
 	uVar5 := lVar12.LowPart + uVar9
-	//006FF901     15282D4B
-	//006FF905     00000000
-	//006FF909     02F4963B
-	//006FF90D     00080C29
-	lVar12 = mul(uVar5+1, y.LowPart+(lVar12.HighPart<<16|uVar9)+1, uVar13.HighPart, uVar13.LowPart) //todo bug arg2 is wrong
+	// 00DCFCA1     15282D4B
+	// 00DCFCA5     00000000
+	// 00DCFCA9     02F4963B
+	// 00DCFCAD     00080C29
+	lVar12 = mul(uVar5+1, y.HighPart+lVar12.HighPart, uVar13.LowPart, uVar13.HighPart)
 
 	uVar13 = lVar12
 	uVar13.LowPart += x.LowPart + 0x2d1f65
@@ -57,7 +56,12 @@ func bigNumber(data []byte) LargeInteger {
 	uVar5 = uVar11.LowPart >> 18
 	uVar9 = uVar11.LowPart << 14
 	uVar10 := uVar11.HighPart >> 18
-	x = div(uVar11.HighPart, uVar11.LowPart, 0x6381be9a, 0)
+	// 0075F9D5     32B36B74
+	// 0075F9D9     B0254C17
+	// 0075F9DD     6381BE9A
+	// 0075F9E1     00000000
+	x = div(uVar11.HighPart, uVar11.LowPart, 0x6381be9a, 0) // todo bug
+
 	x.LowPart += (uVar10 << 32) | (uVar5 | uVar9) + 0x21d78d
 	x = mul(x.HighPart, x.LowPart>>32, 3, 0)
 
