@@ -47,8 +47,9 @@ func bigNumber(data []byte) LargeInteger {
 	// 00DCFCAD     00080C29
 	lVar12 = mul(uVar5+1, y.HighPart+lVar12.HighPart, uVar13.LowPart, uVar13.HighPart)
 
-	uVar13 = lVar12
-	uVar13.LowPart += x.LowPart + 0x2d1f65
+	uVar13.LowPart = lVar12.LowPart
+	uVar13.HighPart = lVar12.HighPart
+	uVar13.LowPart += x.LowPart // + 0x2d1f65
 	uVar11 := uVar13
 	uVar11.HighPart = uVar11.LowPart >> 32
 
@@ -56,11 +57,11 @@ func bigNumber(data []byte) LargeInteger {
 	uVar5 = uVar11.LowPart >> 18
 	uVar9 = uVar11.LowPart << 14
 	uVar10 := uVar11.HighPart >> 18
-	// 0075F9D5     32B36B74
-	// 0075F9D9     B0254C17
-	// 0075F9DD     6381BE9A
-	// 0075F9E1     00000000
-	x = div(uVar11.HighPart, uVar11.LowPart, 0x6381be9a, 0) // todo bug
+	// 012FFBC9     32B36B74
+	// 012FFBCD     B0254C17 bug
+	// 012FFBD1     6381BE9A
+	// 012FFBD5     00000000
+	x = div(uVar11.LowPart, uVar11.HighPart, 0x6381be9a, 0) // todo bug
 
 	x.LowPart += (uVar10 << 32) | (uVar5 | uVar9) + 0x21d78d
 	x = mul(x.HighPart, x.LowPart>>32, 3, 0)

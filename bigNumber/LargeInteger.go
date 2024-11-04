@@ -12,7 +12,7 @@ type LargeInteger struct {
 
 func FromUint64(u uint64) LargeInteger {
 	return LargeInteger{
-		LowPart:  uint32(u),
+		LowPart:  uint32(u & 0xFFFFFFFF),
 		HighPart: uint32(u >> 32),
 	}
 }
@@ -26,14 +26,14 @@ func (l *LargeInteger) Bytes() []byte {
 }
 
 func mul(low, high, magic, param4 uint32) LargeInteger {
-	var l LargeInteger
 	if (param4 | high) == 0 {
 		v := uint64(low) * uint64(magic)
 		return FromUint64(v)
 	}
-	l.HighPart = low*magic>>32 + high*magic + low*param4<<32
-	l.LowPart = (low * magic) & 0xFFFFFFFF
-	return l
+	x := LargeInteger{LowPart: low, HighPart: high}
+	y := LargeInteger{LowPart: magic, HighPart: param4}
+	ret := x.QuadPart() * y.QuadPart()
+	return FromUint64(ret)
 }
 
 func div(low, high, magic, param4 uint32) LargeInteger {
