@@ -9,24 +9,19 @@ import (
 
 func main() {
 	var uVar1, puVar2, lVar11, lVar12, uVar13 LargeInteger
-	var local167 [8]byte
-
-	// 初始化数据
-	local167[0] = '\t'
-	local167[1] = 0x99
-	local167[2] = 0x8a
-	local167[3] = 0x7b
+	data := []byte{0x9, 0x99, 0x8a, 0x7b, 0xfe, 0x46, 0xc2, 0xf0}
+	mylog.HexDump("input data", data)
 
 	lVar11 = makeLargeInteger(0, 0)
 	lVar12 = makeLargeInteger(0, 0)
 
-	lVar11 = mul(uint32(local167[1])+0xf366, 0, 0x1302, 0)
+	lVar11 = mul(uint32(data[1])+0xf366, 0, 0x1302, 0)
 	local13f := lVar11.HighPart
-	lVar11.LowPart += uint32(local167[1])
+	lVar11.LowPart += uint32(data[1])
 	lVar11 = mul(lVar11.HighPart, lVar11.LowPart>>32, 0x71b793, 0)
 	uVar13 = lVar11
 
-	uVar9 := uint32(local167[2])
+	uVar9 := uint32(data[2])
 	local13f = uVar13.HighPart >> 18
 	local10f := (uVar13.HighPart >> 18) >> 32
 	lVar11 = div(uVar13.LowPart, uVar13.LowPart>>32, 0x6381be9a, 0)
@@ -44,7 +39,7 @@ func main() {
 	uVar11 := uVar13
 	uVar11.HighPart = uVar11.LowPart >> 32
 
-	uVar7 := uint32(local167[3])
+	uVar7 := uint32(data[3])
 	uVar5 = uVar11.LowPart >> 18
 	uVar9 = uVar11.LowPart << 14
 	uVar10 := uVar11.HighPart >> 18
@@ -84,7 +79,7 @@ func main() {
 		local127 := lVar11
 		local127.LowPart += local113<<32 | local117
 		lVar12 = lVar11
-		local11b := local167[iVar4]
+		local11b := data[iVar4]
 		lVar12 = mul(uint32(iVar4*iVar4), uint32(iVar4*iVar4>>31), local127.HighPart, local127.HighPart>>32)
 		local13f = lVar12.LowPart >> 32
 		lVar11 = mul(uint32((local11b)+1), uint32(int(local11b)>>31+i), puVar2.HighPart, uVar5)
