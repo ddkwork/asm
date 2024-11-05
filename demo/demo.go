@@ -189,6 +189,20 @@ func demo(data []byte, t *testing.T) Bit64 {
 	assert.Equal(t, uint32(0x85c42a27), x.High) // EDX
 	return x
 
+	//todo 00A2192D   | 6A  | push 0                                                | main.c:242
+	//这里开始还有个乘法猜到循环的
+
+	// push 0
+	// x.High
+	// push 1090?
+	// push 4
+	// x.Low
+
+	// 00B2FB0D  C9DDF112
+	// 00B2FB11  00001090
+	// 00B2FB15  00000004
+	// 00B2FB19  00000000
+
 	x.Low += 0x2d1f65 // todo test
 	x.High = 0
 	result = x
