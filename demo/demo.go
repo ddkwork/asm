@@ -90,7 +90,6 @@ func demo(data []byte, t *testing.T) Bit64 {
 	c = mul(var5+1, y.High+c.High, z.Low, z.High)
 	assert.Equal(t, uint32(0x2c486249), c.Low)  // EAX
 	assert.Equal(t, uint32(0xb0254c13), c.High) // EDX
-	return x
 
 	c.High += 4 //?? why // todo bug
 
@@ -102,83 +101,76 @@ func demo(data []byte, t *testing.T) Bit64 {
 
 	var7 := uint32(data[3])
 	r := uVar11.ShiftRight(18)
-	assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
-	assert.Equal(t, uint32(0x00000000), x.High) // EDX
-	// elem2 = uVar11.Low << 14
-	// uVar10 := uVar11.High >> 18
-	//$ ==>     32B36B74
-	//$+4       B0254C17
-	//$+8       6381BE9A
-	//$+C       00000000
-	assert.Equal(t, uint32(0x32B36B74), z.Low)
-	assert.Equal(t, uint32(0xB0254C17), z.High)
+	// 0x32B36B74
+	// 0xB0254C17
+	// 0x6381BE9A
+	// 0x00000000
+	assert.Equal(t, uint32(0x32B36B74), uVar11.Low)  // EAX
+	assert.Equal(t, uint32(0xB0254C17), uVar11.High) // EDX
 	x = div(uVar11.Low, uVar11.High, 0x6381be9a, 0)
-	assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
-	assert.Equal(t, uint32(0x00000000), x.High) // EDX
+	assert.Equal(t, uint32(0xc52afd7b), x.Low) // EAX
+	assert.Equal(t, uint32(0x1), x.High)       // EDX
 
 	// x.Low += (uVar10 << 32) | (var5 | elem2) + 0x21d78d
 	x.Add(r)
 	x.AddInt(0x21d78d)
-	assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
-	assert.Equal(t, uint32(0x00000000), x.High) // EDX
-	//$ ==>     1852A1B4
-	//$+4       00002C0B
-	//$+8       00000003
-	//$+C       00000000
-	assert.Equal(t, uint32(0x1852A1B4), z.Low)
-	assert.Equal(t, uint32(0x00002C0B), z.High)
+	// 006FFA75  1852A1B4
+	// 006FFA79  00002C0B
+	// 006FFA7D  00000003
+	// 006FFA81  00000000
+	assert.Equal(t, uint32(0x1852A1B4), x.Low)  // EAX
+	assert.Equal(t, uint32(0x00002C0B), x.High) // EDX
 	x = mul(x.Low, x.High, 3, 0)
-	assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
-	assert.Equal(t, uint32(0x00000000), x.High) // EDX
+	assert.Equal(t, uint32(0x48f7e51c), x.Low) // EAX
+	assert.Equal(t, uint32(0x8421), x.High)    // EDX
 
 	//$ ==>     0000F3E1
 	//$+4       00000000
 	//$+8       00001968
 	//$+C       00000000
-	assert.Equal(t, 0x0000F3E1, var7+0xf366)
+	assert.Equal(t, uint32(0x0000F3E1), var7+0xf366)
 	c = mul(var7+0xf366, 0, 0x1968, 0)
-	assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
-	assert.Equal(t, uint32(0x00000000), x.High) // EDX
+	assert.Equal(t, uint32(0x18340c68), c.Low)  // EAX
+	assert.Equal(t, uint32(0x00000000), c.High) // EDX
 
-	y.Low = c.High
-	var5 = c.High + var7
+	y.Low = c.Low
+	var5 = c.Low + var7
 	//$ ==>     18340CE4
 	//$+4       00000000
 	//$+8       32B36B74
 	//$+C       B0254C17
 	assert.Equal(t, uint32(0x18340CE4), var5+1)
-	assert.Equal(t, uint32(0x00000000), y.Low+c.High|(var7+1))
+	assert.Equal(t, uint32(0x00000000), y.High) // todo test more data
 	assert.Equal(t, uint32(0x32B36B74), z.Low)
 	assert.Equal(t, uint32(0xB0254C17), z.High)
-	c = mul(var5+1, y.Low+c.High|(var7+1), z.Low, z.High)
-	assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
-	assert.Equal(t, uint32(0x00000000), x.High) // EDX
+	// 00A21895   | E8  | call <asm.__allmul>                                   | main.c:193
+	c = mul(var5+1, y.High, z.Low, z.High)
+	assert.Equal(t, uint32(0x44652350), c.Low)  // EAX
+	assert.Equal(t, uint32(0x423ff98e), c.High) // EDX
 
-	result = uVar11
-	z = c
-	z.Low += x.Low
-	var7 = z.High
-
-	local13b := result.High
-	a = z
+	z.Low = x.Low + c.Low
+	z.High = c.High + x.High
 	//$ ==>     8D5D086C
 	//$+4       42407DAF
 	//$+8       6381BE9A
 	//$+C       00000000
-	//todo
-	x = div(z.Low, z.Low, 0x6A, 0)
-	assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
+	assert.Equal(t, uint32(0x8D5D086C), z.Low)
+	assert.Equal(t, uint32(0x42407DAF), z.High)
+	x = div(z.Low, z.High, 0x6381BE9A, 0)
+	// 00A218C7   | E8  | call <asm.__alldiv>                                   | main.c:210
+	assert.Equal(t, uint32(0xaa720dbb), x.Low)  // EAX
 	assert.Equal(t, uint32(0x00000000), x.High) // EDX
 
-	z.Low = x.Low + (local13b | a.High)
-	high := a.High
+	back := z.Low
+	z.Low = x.Low + (z.High | a.High)
+	high := uint32(data[4])
 	//$ ==>     0000F464
 	//$+4       00000000
 	//$+8       00001C9E
 	//$+C       00000000
-	assert.Equal(t, 0x0000F464, high+0xf366)
+	assert.Equal(t, uint32(0x0000F464), high+0xf366)
 	x = mul(high+0xf366, 0, 0x1c9e, 0)
-	assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
+	assert.Equal(t, uint32(0x1b51c5b8), x.Low)  // EAX
 	assert.Equal(t, uint32(0x00000000), x.High) // EDX
 
 	var5 = x.Low + high
@@ -189,11 +181,13 @@ func demo(data []byte, t *testing.T) Bit64 {
 	//$+C       42407DAF
 	assert.Equal(t, uint32(0x1B51C6B7), var5+1)
 	assert.Equal(t, uint32(0x00000000), y.Low)
-	assert.Equal(t, uint32(0x8D5D086C), z.Low)
+	assert.Equal(t, uint32(0x8D5D086C), back)
 	assert.Equal(t, uint32(0x42407DAF), z.High) //?
-	x = mul(var5+1, y.Low, y.Low, var7)
-	assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
-	assert.Equal(t, uint32(0x00000000), x.High) // EDX
+
+	x = mul(var5+1, y.Low, back, z.High)
+	assert.Equal(t, uint32(0x10308d34), x.Low)  // EAX
+	assert.Equal(t, uint32(0x85c42a27), x.High) // EDX
+	return x
 
 	x.Low += 0x2d1f65 // todo test
 	x.High = 0
