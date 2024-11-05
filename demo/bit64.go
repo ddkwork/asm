@@ -19,28 +19,36 @@ func FromUint64(u uint64) Bit64 {
 	}
 }
 
+func (l *Bit64) Uint64() uint64 {
+	return uint64(l.High)<<32 | uint64(l.Low)
+}
+
+func (l *Bit64) Bytes() []byte {
+	return slices.Concat(binary.LittleEndian.AppendUint32(nil, l.High), binary.LittleEndian.AppendUint32(nil, l.Low))
+}
+
 func (l *Bit64) ShiftLeft(n uint) Bit64 {
-	v := l.Self() << n
+	v := l.Uint64() << n
 	b := FromUint64(v)
 	b.Debug("<<")
 	return b
 }
 
 func (l *Bit64) ShiftRight(n uint) Bit64 {
-	v := l.Self() >> n
+	v := l.Uint64() >> n
 	b := FromUint64(v)
 	b.Debug(">>")
 	return b
 }
 
 func (l *Bit64) AddInt(u uint64) Bit64 {
-	v := l.Self() + u
+	v := l.Uint64() + u
 	*l = FromUint64(v)
 	return *l
 }
 
 func (l *Bit64) Add(r Bit64) Bit64 {
-	v := l.Self() + r.Self()
+	v := l.Uint64() + r.Uint64()
 	*l = FromUint64(v)
 	l.Debug("+")
 	return *l
@@ -51,7 +59,7 @@ func (l *Bit64) Add(r Bit64) Bit64 {
 }
 
 func (l *Bit64) Sub(r Bit64) Bit64 {
-	v := l.Self() - r.Self()
+	v := l.Uint64() - r.Uint64()
 	*l = FromUint64(v)
 	l.Debug("-")
 	return *l
@@ -105,14 +113,6 @@ func (l *Bit64) Debug(title string) {
 	mylog.Struct(title, l)
 }
 
-func (l *Bit64) Self() uint64 {
-	return uint64(l.High)<<32 | uint64(l.Low)
-}
-
-func (l *Bit64) Bytes() []byte {
-	return slices.Concat(binary.LittleEndian.AppendUint32(nil, l.High), binary.LittleEndian.AppendUint32(nil, l.Low))
-}
-
 var (
 	mulCount int
 	divCount int
@@ -137,11 +137,11 @@ func mul(xLow, xHigh, yLow, yHigh uint32) (b Bit64) {
 		XLow:  x.Low,
 		XHigh: x.High,
 		YLow:  y.Low,
-		X:     x.Self(),
-		Y:     y.Self(),
-		Z:     x.Self() * y.Self(),
+		X:     x.Uint64(),
+		Y:     y.Uint64(),
+		Z:     x.Uint64() * y.Uint64(),
 	})
-	return FromUint64(x.Self() * y.Self())
+	return FromUint64(x.Uint64() * y.Uint64())
 }
 
 func div(xLow, xHigh, yLow, yHigh uint32) (b Bit64) {
@@ -164,9 +164,9 @@ func div(xLow, xHigh, yLow, yHigh uint32) (b Bit64) {
 		XHigh: x.High,
 		YLow:  y.Low,
 		YHigh: y.High,
-		X:     x.Self(),
-		Y:     y.Self(),
-		Z:     x.Self() / y.Self(),
+		X:     x.Uint64(),
+		Y:     y.Uint64(),
+		Z:     x.Uint64() / y.Uint64(),
 	})
-	return FromUint64(x.Self() / y.Self())
+	return FromUint64(x.Uint64() / y.Uint64())
 }

@@ -12,6 +12,6 @@ func Test_demo(t *testing.T) {
 	data := []byte{0x9, 0x99, 0x8a, 0x7b, 0xfe, 0x46, 0xc2, 0xf0}
 	b := demo(data, t)
 	mylog.Struct("demo", b)
-	assert.Equal(t, uint64(0xCD2F21A91272EE20), b.Self())
+	assert.Equal(t, uint64(0xCD2F21A91272EE20), b.Uint64())
 	assert.Equal(t, mylog.Check2(hex.DecodeString("CD2F21A91272EE20")), b.Bytes())
 }
