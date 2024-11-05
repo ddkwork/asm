@@ -21,16 +21,16 @@ func FromUint64(u uint64) Bit64 {
 
 func (l *Bit64) ShiftLeft(n uint) Bit64 {
 	v := l.Self() << n
-	*l = FromUint64(v)
-	l.Debug("<<")
-	return *l
+	b := FromUint64(v)
+	b.Debug("<<")
+	return b
 }
 
 func (l *Bit64) ShiftRight(n uint) Bit64 {
 	v := l.Self() >> n
-	*l = FromUint64(v)
-	l.Debug(">>")
-	return *l
+	b := FromUint64(v)
+	b.Debug(">>")
+	return b
 }
 
 func (l *Bit64) AddInt(u uint64) Bit64 {
@@ -113,16 +113,60 @@ func (l *Bit64) Bytes() []byte {
 	return slices.Concat(binary.LittleEndian.AppendUint32(nil, l.High), binary.LittleEndian.AppendUint32(nil, l.Low))
 }
 
+var (
+	mulCount int
+	divCount int
+)
+
 func mul(xLow, xHigh, yLow, yHigh uint32) (b Bit64) {
-	defer b.Debug("*")
+	mulCount++
 	x := Bit64{Low: xLow, High: xHigh}
 	y := Bit64{Low: yLow, High: yHigh}
+	type MulInfo struct {
+		Index int
+		XLow  uint32
+		XHigh uint32
+		YLow  uint32
+		YHigh uint32
+		X     uint64
+		Y     uint64
+		Z     uint64
+	}
+	defer mylog.Struct("mul", MulInfo{
+		Index: mulCount,
+		XLow:  x.Low,
+		XHigh: x.High,
+		YLow:  y.Low,
+		X:     x.Self(),
+		Y:     y.Self(),
+		Z:     x.Self() * y.Self(),
+	})
 	return FromUint64(x.Self() * y.Self())
 }
 
 func div(xLow, xHigh, yLow, yHigh uint32) (b Bit64) {
-	defer b.Debug("/")
+	divCount++
 	x := Bit64{Low: xLow, High: xHigh}
 	y := Bit64{Low: yLow, High: yHigh}
+	type DivInfo struct {
+		Index int
+		XLow  uint32
+		XHigh uint32
+		YLow  uint32
+		YHigh uint32
+		X     uint64
+		Y     uint64
+		Z     uint64
+	}
+	defer mylog.Struct("div", DivInfo{
+		Index: divCount,
+		XLow:  x.Low,
+		XHigh: x.High,
+		YLow:  y.Low,
+		YHigh: y.High,
+		X:     x.Self(),
+		Y:     y.Self(),
+		Z:     x.Self() / y.Self(),
+	})
 	return FromUint64(x.Self() / y.Self())
 }
