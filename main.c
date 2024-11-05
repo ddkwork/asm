@@ -469,9 +469,9 @@ void asm1() {
             popfd
             popad
             }
+
     hexdump("asm1 for code3", code3Buf, 8);
 }
-
 
 int main(void) {
     asm1();

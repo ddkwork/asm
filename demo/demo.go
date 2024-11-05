@@ -10,14 +10,13 @@ import (
 func demo(data []byte, t *testing.T) Bit64 {
 	var a, result, x, c, z Bit64
 	mylog.HexDump("input data", data)
-	// 00EFF959  0000F3FF
-	// 00EFF95D  00000000
-	// 00EFF961  00001302
-	// 00EFF965  00000000
-	assert.Equal(t, uint32(0x02F4963B), z.Low)
-	assert.Equal(t, uint32(0x00080C29), z.High)
+	// 0x0000F3FF
+	// 0x00000000
+	// 0x00001302
+	// 0x00000000
+	assert.Equal(t, uint32(0x0000F3FF), uint32(data[1])+0xf366)
 	x = mul(uint32(data[1])+0xf366, 0, 0x1302, 0)
-	assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
+	assert.Equal(t, uint32(0x121DD4FE), x.Low)  // EAX
 	assert.Equal(t, uint32(0x00000000), x.High) // EDX
 
 	y := x                   //.high
@@ -27,11 +26,11 @@ func demo(data []byte, t *testing.T) Bit64 {
 	// 00EFF95D  00000000
 	// 00EFF961  0071B793
 	// 00EFF965  00000000
-	assert.Equal(t, uint32(0x121DD597), z.Low)
-	assert.Equal(t, uint32(0x00000000), z.High)
+	assert.Equal(t, uint32(0x121DD597), x.Low)
+	assert.Equal(t, uint32(0x00000000), x.High)
 	x = mul(x.Low, x.High, 0x71b793, 0)
-	assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
-	assert.Equal(t, uint32(0x00000000), x.High) // EDX
+	assert.Equal(t, uint32(0x27796b5), x.Low)   // EAX
+	assert.Equal(t, uint32(0x00080C29), x.High) // EDX
 
 	z = x // 0x27796B5
 	z.Low += 0x7CFF86
@@ -42,17 +41,18 @@ func demo(data []byte, t *testing.T) Bit64 {
 	// data := []byte{0x9, 0x99, 0x8a, 0x7b, 0xfe, 0x46, 0xc2, 0xf0}
 
 	local10f := z.ShiftRight(18)
-	assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
-	assert.Equal(t, uint32(0x00000000), x.High) // EDX
+	// assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
+	// assert.Equal(t, uint32(0x00000000), x.High) // EDX
 
-	//$ ==>     02F4963B
-	//$+4       00080C29
-	//$+8       6381BE9A
-	//$+C       00000000
+	// 0x02F4963B
+	// 0x00080C29
+	// 0x6381BE9A
+	// 0x00000000
 	assert.Equal(t, uint32(0x02F4963B), z.Low)
 	assert.Equal(t, uint32(0x00080C29), z.High)
+
 	x = div(z.Low, z.High, 0x6381be9a, 0)       // 0x14B426 感觉是少了一半的值没有存储
-	assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
+	assert.Equal(t, uint32(0x14b426), x.Low)    // EAX
 	assert.Equal(t, uint32(0x00000000), x.High) // EDX
 
 	x.Low += y.Low
@@ -62,31 +62,35 @@ func demo(data []byte, t *testing.T) Bit64 {
 	//$+8       00000002
 	//$+C       00000000
 	assert.Equal(t, uint32(0x031EF4E3), x.Low)
-	assert.Equal(t, uint32(0x00000002), local10f.Low)
-	x = mul(x.Low, local10f.Low, 2, 0)          // 0x63DE9C6 passed
-	assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
-	assert.Equal(t, uint32(0x00000000), x.High) // EDX
-	//$ ==>     0000F3F0
-	//$+4       00000000
-	//$+8       00001634
-	//$+C       00000000
-	assert.Equal(t, 0x0000F3F0, elem2+0xf366)
-	c = mul(elem2+0xf366, 0, 0x1634, 0)         // 0x15282CC0 passed
-	assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
-	assert.Equal(t, uint32(0x00000000), x.High) // EDX
+	assert.Equal(t, uint32(0x00000002), local10f.High)
+
+	x = mul(x.Low, local10f.High, 2, 0)       // 0x63DE9C6 passed
+	assert.Equal(t, uint32(0x63de9c6), x.Low) // EAX
+	assert.Equal(t, uint32(0x4), x.High)      // EDX
+
+	// 006FFA75  0000F3F0
+	// 006FFA79  00000000
+	// 006FFA7D  00001634
+	// 006FFA81  00000000
+	assert.Equal(t, uint32(0x0000F3F0), elem2+0xf366) // EAX
+	c = mul(elem2+0xf366, 0, 0x1634, 0)               // 0x15282CC0 passed
+	assert.Equal(t, uint32(0x15282cc0), c.Low)        // EAX
+	assert.Equal(t, uint32(0x00000000), c.High)       // EDX
 
 	var5 := c.Low + elem2
-	//$ ==>     15282D4B
-	//$+4       00000000
-	//$+8       02F4963B
-	//$+C       00080C29
+	// 0x15282D4B
+	// 0x00000000
+	// 0x02F4963B
+	// 0x00080C29
 	assert.Equal(t, uint32(0x15282D4B), var5+1)
 	assert.Equal(t, uint32(0x00000000), y.High+c.High)
 	assert.Equal(t, uint32(0x02F4963B), z.Low)
 	assert.Equal(t, uint32(0x00080C29), z.High)
+
 	c = mul(var5+1, y.High+c.High, z.Low, z.High)
-	assert.Equal(t, uint32(0x0000F3FF), x.Low)  // EAX
-	assert.Equal(t, uint32(0x00000000), x.High) // EDX
+	assert.Equal(t, uint32(0x2c486249), c.Low)  // EAX
+	assert.Equal(t, uint32(0xb0254c13), c.High) // EDX
+	return x
 
 	c.High += 4 //?? why // todo bug
 
