@@ -31,21 +31,22 @@ func asm(data []byte) []byte {
 	v20 := 0
 	out := 0
 
-	out = 0x71B793*(int(data[1])+0x1302*(int(data[1])+0xF0)) + 0x7CFF86
-	v5 = (int(data[2])) + 0x1634*(int(data[2])+0xF0) + 1
-	v6 = (v5*(out) + 2*((out)/0x6381BE9A+(out>>0x12)) + 0x2D1F65) >> 0x20
+	out = 0x71B793*(int(data[1])+0x1302*(int(data[1])+0xf366)) + 0x7CFF86
+	v5 = (int(data[2])) + 0x1634*(int(data[2])+0xf366) + 1
 	out = v5*(out) + 2*((out)/0x6381BE9A+(out>>0x12)) + 0x2D1F65
 	v6 = out
-	v7 = ((int(data[3]))+0x1968*(int(data[3])+0xF0)+1)*(v6) + 3*((v6)/0x6381BE9A+(v6>>0x12)+0x21D78D)
-	v17 = v7/0x6381BE9A + (v7 >> 0x12)
-	v8 = ((int(data[4])) + 0x1C9E*(int(data[4])+0xF0) + 1) * v7
+	v7 = ((int(data[3]))+0x1968*(int(data[3])+0xf366)+1)*v6 + 3*((v6)/0x6381BE9A+(v6>>0x12)+0x21D78D)
+	// 0x423FBDA7D589F776 todo bug
+
+	v17 = v7/0x6381BE9A + (v7 >> 0x12)                            // 0x109099DA1514
+	v8 = ((int(data[4])) + 0x1C9E*(int(data[4])+0xf366) + 1) * v7 // 0x5DE07FE3195B295A
 	v9 = 4*(v17) + v8 + 0xB47D9D
 	index = 7
-	out = (4*(v17)+v8+0xB47D9D)&0xFFF0 + (v9 >> 0x13) + v9&0xFFFFFF + v9&0xFFFFFF
+	out = (4*(v17)+v8+0xB47D9D)&0xFFF0 + (v9 >> 0x13) + v9&0xFFFFFF + v9&0xFFFFFF // 0xBBC1935A1FC
 	i = 7
-	v20 = 0x18F - (int(data[7]))
+	v20 = 0x18F - (int(data[7])) // 0x9F
 	for {
-		v18 = int(data[index])
+		v18 = int(data[index]) // f0 c2 46 fe 7b 8a 99 09 逆序输入的8字节
 		v17 = (out / 0x6A) + (((v6>>32)^((v6>>32)>>7))<<32|((v6)^(v6>>7)))>>0x19
 		out = v18*v18*v18 + ((v18)+1)*(out) + (index * index * (v17))
 		index = i - 1
