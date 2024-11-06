@@ -35,6 +35,8 @@ func asm(data []byte) []byte {
 	v5 = (int(data[2])) + 0x1634*(int(data[2])+0xf366) + 1
 	out = v5*(out) + 2*((out)/0x6381BE9A+(out>>0x12)) + 0x2D1F65
 	v6 = out
+
+	//todo 下面的有bug，ida伪代码调试的时候变量的值刷新很诡异,无法对比
 	v7 = ((int(data[3]))+0x1968*(int(data[3])+0xf366)+1)*v6 + 3*((v6)/0x6381BE9A+(v6>>0x12)+0x21D78D)
 	// 0x423FBDA7D589F776 todo bug
 
@@ -45,13 +47,16 @@ func asm(data []byte) []byte {
 	out = (4*(v17)+v8+0xB47D9D)&0xFFF0 + (v9 >> 0x13) + v9&0xFFFFFF + v9&0xFFFFFF // 0xBBC1935A1FC
 	i = 7
 	v20 = 0x18F - (int(data[7])) // 0x9F
-	for {
-		v18 = int(data[index]) // f0 c2 46 fe 7b 8a 99 09 逆序输入的8字节
-		v17 = (out / 0x6A) + (((v6>>32)^((v6>>32)>>7))<<32|((v6)^(v6>>7)))>>0x19
-		out = v18*v18*v18 + ((v18)+1)*(out) + (index * index * (v17))
-		index = i - 1
-		out += v17/0x14C9 + (i)*(int(data[i]))*(int(data[i]))*(i+v20)
-		i--
+	// v6 0xB0254C1732B36B74
+	// out0xBBC1935A1FC
+	// v18 0
+	for { // 先测试第一轮的计算
+		v18 = int(data[index])                                                   // f0 c2 46 fe 7b 8a 99 09 逆序输入的8字节
+		v17 = (out / 0x6A) + (((v6>>32)^((v6>>32)>>7))<<32|((v6)^(v6>>7)))>>0x19 // 0x43F9B1AC1A
+		out = v18*v18*v18 + ((v18)+1)*(out) + (index * index * (v17))            // 0xB19168E94E0DC
+		index = i - 1                                                            // 6
+		out += v17/0x14C9 + (i)*(int(data[i]))*(int(data[i]))*(i+v20)            // 0xB19168E94E0DC
+		i--                                                                      // 6
 		if i-1 < 0 {
 			break
 		}
