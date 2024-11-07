@@ -118,7 +118,6 @@ func demo(data []byte, t *testing.T) Bit64 {
 	assert.Unsigned(t, uint32(0x8D5D086C), z.Low)
 	assert.Unsigned(t, uint32(0x42407DAF), z.High)
 	x = div(z.Low, z.High, 0x6381BE9A, 0)
-
 	assert.Unsigned(t, uint32(0xaa720dbb), x.Low)
 	assert.Unsigned(t, uint32(0x00000000), x.High)
 
@@ -148,7 +147,7 @@ func demo(data []byte, t *testing.T) Bit64 {
 	// 00CFF77D  00000004
 	// 00CFF781  00000000
 	// out = (4*(v17)+v8+0xB47D9D)&0xFFF0 + (v9 >> 0x13) + v9&0xFFFFFF + v9&0xFFFFFF // 0xBBC1935A1FC
-	x = mul(x.Low, x.High, back, z.High) // 009B1941
+	x = mul(x.Low, x.High, back, z.High) // 002D192D  开始
 	assert.Unsigned(t, uint32(0x2777C448), x.High)
 	assert.Unsigned(t, uint32(0x00004243), x.Low)
 	// return x
@@ -162,11 +161,13 @@ func demo(data []byte, t *testing.T) Bit64 {
 	c = x
 
 	i := 7
+	p := 0x18F - int(data[7]) // 确保 v53 的值在范围内
 	for i >= 0 {
 		j := i
 		v := result.High + 4
 		m := (v<<25^result.High)>>25 | (v>>7^v)<<7
 		local113 := v >> 25
+		// v52 := v29 ^ (v29 >> 7)
 		x = div(result.High, v, 0x6a, 0)
 		k := x
 		k.Low += local113 | m
@@ -185,7 +186,8 @@ func demo(data []byte, t *testing.T) Bit64 {
 		// 00CFF779  00000000
 		// 00CFF77D  13530849
 		// 00CFF781  000010B9
-		x = mul(uint32((elem)+1), uint32(int(elem)>>31+i), result.High, v)
+		// v34 := i * (int(data[i])) * (int(data[i])) * (int(data[i]) + v53)
+		x = mul(uint32((elem)+1), uint32(int(elem)>>31+i), result.High, uint32(elem)+uint32(p))
 		// 312ACCB9
 		// 000FBE3B
 

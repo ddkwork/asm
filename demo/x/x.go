@@ -44,12 +44,20 @@ func asm(data []byte, t *testing.T) []byte {
 	v18 := mul(v14+0xF366, 0x1968)
 	v19 := mul(v14+v18+1, v20[0])
 
+	//v19&0xffffffff + 0x48F7E51C = 0x8D5D086C
+	//v19&0xffffffff00000000 - 0x8421=42407DAF>>18=1F6BE357
+	//
+	//42407DAF>>18=00001090
 	v20[1] = (v19 + v17) >> 32
 
 	v42 := (v19 + v17) << 32
 	v20[0] = v19 + v17
 
-	v22 := div(v42, 0x6381BE9A) //todo bug 002D18C7
+	// 012FFA3D  8D5D086C
+	// 012FFA41  42407DAF
+	// 012FFA45  6381BE9A
+	// 012FFA49  00000000
+	v22 := div(v42, 0x6381BE9A) // todo bug 002D18C7
 	v50 = v22 + v62
 
 	v25 := uint64(data[4]) + 0xF366*0x1C9E + 1
