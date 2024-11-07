@@ -11,9 +11,8 @@ func div(a1, a2 uint64) uint64 {
 	return a1 / a2
 }
 
-func asm() []byte {
+func asm(data []byte) []byte {
 	var out [8]byte
-	data := [8]byte{9, 0x99, 0x8A, 0x7B, 0xFE, 0x46, 0xC2, 0xF0}
 	var v62 uint64 = 0x71B793
 	v5 := uint64(data[1])
 
@@ -75,9 +74,7 @@ func asm() []byte {
 
 		// 使用更新后的计算逻辑
 		v34 := i * (int(data[i])) * (int(data[i])) * (int(data[i]) + v53)
-
 		v20[0] += uint64(v34)
-
 		num = i - 1
 	}
 
