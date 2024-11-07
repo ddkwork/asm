@@ -1,15 +1,16 @@
 package main
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/ddkwork/golibrary/assert"
+)
 
 func mul(a1, a2 uint64) uint64 {
 	return a1 * a2
 }
 
 func div(a1, a2 uint64) uint64 {
-	if a2 == 0 {
-		return 0 // 避免除以零
-	}
 	return a1 / a2
 }
 
@@ -23,8 +24,11 @@ func asm(data []byte, t *testing.T) []byte {
 	v7 := uint64(data[2])
 	v50 := v62
 
+	// 000000000014B426 000000001FA6035F
+	assert.Unsigned(t, uint64(0), 0x80C2902F4963B/0x6381BE9A) // 0x14B426 030A40BD
+
 	v8 := div(v62, 0x6381BE9A)
-	v9 := mul(v8, 2) // 确保计算的正确性
+	v9 := mul(v8+v62>>18, 2) // 确保计算的正确性
 	v10 := mul(v7+0xF366, 0x1634)
 	v11 := mul(v7+v10+1, v50)
 
@@ -32,20 +36,20 @@ func asm(data []byte, t *testing.T) []byte {
 	v20[0] = v11 + v9 + 0x2D1F65
 
 	v14 := uint64(data[3])
-	v41 := v62
+	// v41 := v62
 	v15 := v62 >> 32
 
-	v16 := div(v41, 0x6381BE9A)
+	v16 := div(v11, 0x6381BE9A)
 	v17 := mul(v16+v15+0x21D78D, 3)
 	v18 := mul(v14+0xF366, 0x1968)
-	v19 := mul(v14+v18+1, v50)
+	v19 := mul(v14+v18+1, v20[0])
 
 	v20[1] = (v19 + v17) >> 32
 
 	v42 := (v19 + v17) << 32
 	v20[0] = v19 + v17
 
-	v22 := div(v42, 0x6381BE9A)
+	v22 := div(v42, 0x6381BE9A) //todo bug 002D18C7
 	v50 = v22 + v62
 
 	v25 := uint64(data[4]) + 0xF366*0x1C9E + 1
