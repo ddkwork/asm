@@ -10,7 +10,6 @@ import (
 )
 
 func Test_demo(t *testing.T) {
-
 	data := []byte{0x9, 0x99, 0x8a, 0x7b, 0xfe, 0x46, 0xc2, 0xf0}
 	b := demo(data, t)
 	assert.Equal(t, 0xCD2F21A91272EE20, b.Uint64())

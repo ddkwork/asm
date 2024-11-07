@@ -13,8 +13,8 @@ func demo(data []byte, t *testing.T) Bit64 {
 	want := uint32(0x0000F3FF)
 	assert.Unsigned(t, want, uint32(data[1])+0xf366)
 
-	//assert.Unsigned(t, 0x0000F3FF, uint32(data[1])+0xf366) //todo 这里居然检测不到类型错误？
-	//assert.Unsigned(t, 0x0000F3FF, 0xf366)                 //这样又检测到了类型错误，悬而未决
+	// assert.Unsigned(t, 0x0000F3FF, uint32(data[1])+0xf366) //todo 这里居然检测不到类型错误？
+	// assert.Unsigned(t, 0x0000F3FF, 0xf366)                 //这样又检测到了类型错误，悬而未决
 
 	x = mul(uint32(data[1])+0xf366, 0, 0x1302, 0)
 	want = 0x121DD4FE
