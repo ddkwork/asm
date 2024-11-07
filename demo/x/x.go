@@ -28,20 +28,20 @@ func asm() []byte {
 	v11 := mul(v7+v10+1, v50)
 
 	v20 := make([]uint64, 2)
-	v20[0] = uint64(v11 + v9 + 0x2D1F65)
+	v20[0] = v11 + v9 + 0x2D1F65
 
 	v14 := uint64(data[3])
 	v41 := v62
-	v15 := uint64(v62 >> 32)
+	v15 := v62 >> 32
 
 	v16 := div(v41, 0x6381BE9A)
 	v17 := mul(v16+v15+0x21D78D, 3)
 	v18 := mul(v14+0xF366, 0x1968)
 	v19 := mul(v14+v18+1, v50)
 
-	v20[1] = uint64((v19 + v17) >> 32)
+	v20[1] = (v19 + v17) >> 32
 
-	v42 := (uint64(v19+v17) << 32)
+	v42 := (v19 + v17) << 32
 	v20[0] = v19 + v17
 
 	v22 := div(v42, 0x6381BE9A)
@@ -66,7 +66,7 @@ func asm() []byte {
 
 		v29 := v20[1]
 		v43 := v20[0]
-		v52 := (v29 ^ (v29 >> 7))
+		v52 := v29 ^ (v29 >> 7)
 		v30 := div(v43, 0x6A)
 
 		v51 := uint64(data[index]) // 直接从数据中读取
@@ -75,7 +75,7 @@ func asm() []byte {
 
 		v32 := mul(v51+1, v43) + v31
 		i := num
-		v20[0] = uint64(v51)*uint64(v51)*uint64(v51) + v32
+		v20[0] = v51*v51*v51 + v32
 
 		// 使用更新后的计算逻辑
 		v34 := i * (int(data[i])) * (int(data[i])) * (int(data[i]) + v53)
