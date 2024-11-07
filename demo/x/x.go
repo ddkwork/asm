@@ -1,5 +1,7 @@
 package main
 
+import "testing"
+
 func mul(a1, a2 uint64) uint64 {
 	return a1 * a2
 }
@@ -11,8 +13,8 @@ func div(a1, a2 uint64) uint64 {
 	return a1 / a2
 }
 
-func asm(data []byte) []byte {
-	var out [8]byte
+func asm(data []byte, t *testing.T) []byte {
+	out := make([]byte, 8)
 	var v62 uint64 = 0x71B793
 	v5 := uint64(data[1])
 
@@ -88,5 +90,5 @@ func asm(data []byte) []byte {
 		}
 	}
 
-	return out[:]
+	return out
 }
