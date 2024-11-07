@@ -60,10 +60,6 @@ func asm() []byte {
 		if num < 0 {
 			break
 		}
-		if index < 0 || index >= len(data) {
-			break // 保护性检查，防止越界
-		}
-
 		v29 := v20[1]
 		v43 := v20[0]
 		v52 := v29 ^ (v29 >> 7)
