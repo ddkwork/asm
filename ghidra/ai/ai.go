@@ -3,6 +3,8 @@ package main
 import (
 	"testing"
 
+	"github.com/ddkwork/golibrary/mylog"
+
 	"github.com/ddkwork/golibrary/assert"
 )
 
@@ -123,14 +125,19 @@ func asm1(data []byte, t *testing.T) uint64 {
 	v = uVar1 >> 32
 	out = (uVar1 >> 19) + ((v>>16)<<32|v)<<32 | ((v >> 16) + v) + (uVar1 & 0xfff0)
 	uStack30 = 0x000010B913530849
-	j := uint64(0)
+	v = uStack30
+	j := uint64(0x18f)
 	for i := uint64(7); i >= 0; i-- {
-		v = uStack30
 		highXor = uStack30>>7 ^ uStack30
 		elem = uStack30<<25 ^ out
 		uVar6 = uStack30 >> 25
 		//$ ==>     13530849
 		//$+4       000010B9
+		//$+8       0000006A
+		//$+C       00000000
+
+		//$ ==>     3BF80DB8
+		//$+4       000FC5F6
 		//$+8       0000006A
 		//$+C       00000000
 		iVar11 = div(v&0xffffffff, v>>32, 0x6a, 0)
@@ -140,13 +147,20 @@ func asm1(data []byte, t *testing.T) uint64 {
 
 		uVar6 = iVar11 & 0xffffffff
 		highXor >>= 25
-		highXor += uVar6
+		highXor += uVar6 //todo bug 第二轮错了
 		elem = uint64(data[i])
 		//$ ==>     00000031
 		//$+4       00000000
 		//$+8       633BCC44
 		//$+C       00000028
+
+		//$ ==>     00000024
+		//$+4       00000000
+		//$+8       16FBA94F
+		//$+C       00002618
 		uVar10 = mul(i*i, i*i>>31, highXor, iVar11>>32)
+		// 3B63CF1C
+		// 0x55B62 1E06F610
 		// uVar10 = mul(i*i, i*i>>31, uVar6, highXor)
 
 		//$ ==>     000000F1
@@ -155,6 +169,7 @@ func asm1(data []byte, t *testing.T) uint64 {
 		//$+C       000010B9
 		out = v & 0xffffffff
 		uVar12 = mul(elem+1, fnBool2Uint64(0xfffffffe < elem), out, v>>32)
+
 		// uVar12 = mul(elem+1, 0xfffffffe < elem, out, v)
 		out = uVar10 + uVar12 + (elem * elem * elem)
 		v = uint64(data[i])
@@ -164,9 +179,13 @@ func asm1(data []byte, t *testing.T) uint64 {
 		//$+8       000014C9
 		//$+C       00000000
 		iVar11 = div(highXor, iVar11>>32, 0x14c9, 0)
+		uStack30 = iVar11
 		// out = iVar11 + (uint64(data[i]) + ((0x18f)-uint64(data[7]))*v*v*i) + out
-		out = iVar11 + (uint64(data[i]) + (0x18f-j)*v*v*i) + out
-		j++
+		mylog.Hex(j, j)
+		// out = iVar11 + (uint64(data[i]) + j*v*v*i) + out
+		out += j*v*v*i + iVar11
+		v = out
+		j--
 		if i == 7 {
 			assert.Unsigned(t, 0x01F16EFB, iVar11)
 			assert.Unsigned(t, 0x000FC5F63BF80DB8, out)
