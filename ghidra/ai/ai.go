@@ -129,8 +129,8 @@ func asm1(data []byte, t *testing.T) uint64 {
 	j := uint64(0x18f)
 	for i := uint64(7); i >= 0; i-- {
 		highXor = uStack30>>7 ^ uStack30
-		elem = uStack30<<25 ^ out
-		uVar6 = uStack30 >> 25
+		elem = uStack30 ^ out
+		uVar6 = elem >> 25
 		//$ ==>     13530849
 		//$+4       000010B9
 		//$+8       0000006A
@@ -144,10 +144,15 @@ func asm1(data []byte, t *testing.T) uint64 {
 
 		// lVar2 = iVar11 + uVar6<<32 |
 		//	elem>>25 | highXor<<7
+		//edx=D78FFDA3
+		//ecx=FDA7D
+		//.text:00BC19C0 asm.exe:$19C0 #DC0
 
-		uVar6 = iVar11 & 0xffffffff
-		highXor >>= 25 // todo bug 第二轮错了
-		highXor += uVar6
+		//ecx=7ED3EEB
+		//eax=F0E6A64
+		//.text:00BC19DF asm.exe:$19DF #DDF
+		highXor >>= 25                 // todo bug 第二轮错了
+		highXor += iVar11 & 0xffffffff //+ highXor>>25
 		elem = uint64(data[i])
 		//$ ==>     00000031
 		//$+4       00000000
@@ -161,6 +166,7 @@ func asm1(data []byte, t *testing.T) uint64 {
 		//$+4       00000000
 		//$+8       16FBA94F
 		//$+C       00002618
+		//uVar11 = mul(pvVar4,i * i,i * i >> 0x1f,(uint)pvVar4,highXor);
 		uVar10 = mul(i*i, i*i>>31, highXor, iVar11>>32)
 		// 3B63CF1C
 		// 0x55B62 1E06F610
