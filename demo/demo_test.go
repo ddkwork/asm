@@ -53,11 +53,13 @@ func asm(data []byte) []byte {
 	out = 0x000010B913530849
 	v6 = 0x000010B913530849
 	for { // 先测试第一轮的计算
-		elem = int(data[index])                                                  // f0 c2 46 fe 7b 8a 99 09 逆序输入的8字节
-		v17 = (out / 0x6A) + (((v6>>32)^((v6>>32)>>7))<<32|((v6)^(v6>>7)))>>0x19 // 0x43F9B1AC1A
-		out = elem*elem*elem + (elem+1)*out + (index * index * v17)              // 0xB19168E94E0DC
-		index = i - 1                                                            // 6
-		out += v17/0x14C9 + i*(int(data[i]))*(int(data[i]))*v20                  // 0x3BF80DB8 000FC5F6 todo must
+		elem = int(data[index])                                                // f0 c2 46 fe 7b 8a 99 09 逆序输入的8字节
+		v17 = (out / 0x6A) + (((v6>>32)^((v6>>32)>>7))<<32|(v6^(v6>>7)))>>0x19 // 0x43F9B1AC1A
+		//16FBA94F 第二轮就错了
+
+		out = elem*elem*elem + (elem+1)*out + (index * index * v17) // 0xB19168E94E0DC
+		index = i - 1                                               // 6
+		out += v17/0x14C9 + i*(int(data[i]))*(int(data[i]))*v20     // 0x3BF80DB8 000FC5F6 todo must
 		i--
 		v20--
 		if i-1 < 0 {
