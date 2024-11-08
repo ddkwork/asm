@@ -50,9 +50,8 @@ func asm(data []byte) []byte {
 	out = (4*(v17)+v8+0xB47D9D)&0xFFF0 + (v9 >> 0x13) + v9&0xFFFFFF + v9&0xFFFFFF // 0xBBC1935A1FC
 	i = 7
 	v20 = 0x18F
-	v20 = 0xC90B9788
-	out = 0x13530849000010B9
-	v6 = 0x1353084910B9
+	out = 0x000010B913530849
+	v6 = 0x000010B913530849
 	for { // 先测试第一轮的计算
 		elem = int(data[index])                                                  // f0 c2 46 fe 7b 8a 99 09 逆序输入的8字节
 		v17 = (out / 0x6A) + (((v6>>32)^((v6>>32)>>7))<<32|((v6)^(v6>>7)))>>0x19 // 0x43F9B1AC1A

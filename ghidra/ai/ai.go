@@ -124,6 +124,8 @@ func asm1(data []byte, t *testing.T) uint64 {
 	uVar1 = uVar12 + uVar10 + 0xb47d9d
 	v = uVar1 >> 32
 	out = (uVar1 >> 19) + ((v>>16)<<32|v)<<32 | ((v >> 16) + v) + (uVar1 & 0xfff0)
+
+	out = 0x000010B913530849
 	uStack30 = 0x000010B913530849
 	v = uStack30
 	j := uint64(0x18f)
