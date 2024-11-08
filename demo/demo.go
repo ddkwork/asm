@@ -3,6 +3,8 @@ package main
 import (
 	"testing"
 
+	"github.com/ddkwork/golibrary/stream"
+
 	"github.com/ddkwork/golibrary/assert"
 	"github.com/ddkwork/golibrary/mylog"
 )
@@ -147,17 +149,27 @@ func demo(data []byte, t *testing.T) Bit64 {
 	// 00CFF77D  00000004
 	// 00CFF781  00000000
 	// out = (4*(v17)+v8+0xB47D9D)&0xFFF0 + (v9 >> 0x13) + v9&0xFFFFFF + v9&0xFFFFFF // 0xBBC1935A1FC
-	x = mul(x.Low, x.High, back, z.High) // 002D192D  开始
+	m := Bit64{
+		Low:  0xC9DDF112,
+		High: 0x00001090,
+	}
+	m = mul(m.Low, m.High, 4, 0) // 002D192D  开始
 	assert.Unsigned(t, uint32(0x2777C448), x.High)
 	assert.Unsigned(t, uint32(0x00004243), x.Low)
 	// return x
 
-	x.Low += 0x2d1f65
-	x.High = 0
+	x.Low += m.Low + 0xB47D9D // 37A8517C
+	x.High += m.High          // 00004243
+	stream.GenMask()
 	result = Bit64{
-		Low:  0x13530849,
-		High: 0x000010B9,
+		Low: 0,
+		// High: x.High & 0xFFFF0000,
+		High: x.High >> 16,
 	}
+
+	fuck := x.High + x.High>>16
+	fuck = fuck
+
 	c = x
 
 	i := 7

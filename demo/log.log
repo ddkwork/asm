@@ -1,7 +1,7 @@
-2024-11-07 17:48:14    Trace ->  --------- title --------- │ ------------------ info ------------------ //runtime.doInit1+0xe1 C:/Program Files/Go/src/runtime/proc.go:7278
-2024-11-07 17:48:14  HexDump ->                 input data │  //asm.demo+0xe4 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/demo.go:12
+2024-11-07 18:15:02    Trace ->  --------- title --------- │ ------------------ info ------------------ //runtime.doInit1+0xe1 C:/Program Files/Go/src/runtime/proc.go:7278
+2024-11-07 18:15:02  HexDump ->                 input data │  //asm.demo+0xe4 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/demo.go:14
 00000000  09 99 8a 7b fe 46 c2 f0                           |...{.F..|
-2024-11-07 17:48:14   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+2024-11-07 18:15:02   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
 MulInfo {
   Index: 0x1|1,
   XLow: 0xf3ff|62463,
@@ -12,7 +12,7 @@ MulInfo {
   Y: 0x1302|4866,
   Z: 0x121dd4fe|303944958
 }
-2024-11-07 17:48:14   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+2024-11-07 18:15:02   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
 MulInfo {
   Index: 0x2|2,
   XLow: 0x121dd597|303945111,
@@ -23,12 +23,12 @@ MulInfo {
   Y: 0x71b793|7452563,
   Z: 0x80c29027796b5|2265170088269493
 }
-2024-11-07 17:48:14   Struct ->                         >> │  //asm.(*Bit64).Debug+0x31 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:113
+2024-11-07 18:15:02   Struct ->                         >> │  //asm.(*Bit64).Debug+0x31 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:113
 Bit64 {
   Low: 0x30a40bd|51003581,
   High: 0x2|2
 }
-2024-11-07 17:48:14   Struct ->                        div │  //asm.div+0x29d D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:171
+2024-11-07 18:15:02   Struct ->                        div │  //asm.div+0x29d D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:171
 DivInfo {
   Index: 0x1|1,
   XLow: 0x2f4963b|49583675,
@@ -39,7 +39,7 @@ DivInfo {
   Y: 0x6381be9a|1669447322,
   Z: 0x14b426|1356838
 }
-2024-11-07 17:48:14   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+2024-11-07 18:15:02   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
 MulInfo {
   Index: 0x3|3,
   XLow: 0x31ef4e3|52360419,
@@ -50,7 +50,7 @@ MulInfo {
   Y: 0x2|2,
   Z: 0x4063de9c6|17284590022
 }
-2024-11-07 17:48:14   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+2024-11-07 18:15:02   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
 MulInfo {
   Index: 0x4|4,
   XLow: 0xf3f0|62448,
@@ -61,7 +61,7 @@ MulInfo {
   Y: 0x1634|5684,
   Z: 0x15282cc0|354954432
 }
-2024-11-07 17:48:14   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+2024-11-07 18:15:02   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
 MulInfo {
   Index: 0x5|5,
   XLow: 0x15282d4b|354954571,
@@ -72,12 +72,12 @@ MulInfo {
   Y: 0x80c2902f4963b|2265170096461371,
   Z: 0xb0254c132c486249|12692634770044641865
 }
-2024-11-07 17:48:14   Struct ->                         >> │  //asm.(*Bit64).Debug+0x31 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:113
+2024-11-07 18:15:02   Struct ->                         >> │  //asm.(*Bit64).Debug+0x31 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:113
 Bit64 {
   Low: 0x5305ccac|1392889004,
   High: 0x2c09|11273
 }
-2024-11-07 17:48:14   Struct ->                        div │  //asm.div+0x29d D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:171
+2024-11-07 18:15:02   Struct ->                        div │  //asm.div+0x29d D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:171
 DivInfo {
   Index: 0x2|2,
   XLow: 0x32b36b74|850619252,
@@ -88,12 +88,12 @@ DivInfo {
   Y: 0x6381be9a|1669447322,
   Z: 0x1c52afd7b|7602896251
 }
-2024-11-07 17:48:14   Struct ->                          + │  //asm.(*Bit64).Debug+0x31 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:113
+2024-11-07 18:15:02   Struct ->                          + │  //asm.(*Bit64).Debug+0x31 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:113
 Bit64 {
   Low: 0x1830ca27|405850663,
   High: 0x2c0b|11275
 }
-2024-11-07 17:48:14   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+2024-11-07 18:15:02   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
 MulInfo {
   Index: 0x6|6,
   XLow: 0x1852a1b4|408068532,
@@ -104,7 +104,7 @@ MulInfo {
   Y: 0x3|3,
   Z: 0x842148f7e51c|145278492992796
 }
-2024-11-07 17:48:14   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+2024-11-07 18:15:02   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
 MulInfo {
   Index: 0x7|7,
   XLow: 0xf3e1|62433,
@@ -115,7 +115,7 @@ MulInfo {
   Y: 0x1968|6504,
   Z: 0x18340c68|406064232
 }
-2024-11-07 17:48:14   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+2024-11-07 18:15:02   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
 MulInfo {
   Index: 0x8|8,
   XLow: 0x18340ce4|406064356,
@@ -126,7 +126,7 @@ MulInfo {
   Y: 0xb0254c1732b36b74|12692634787332189044,
   Z: 0x423ff98e44652350|4773808519464166224
 }
-2024-11-07 17:48:14   Struct ->                        div │  //asm.div+0x29d D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:171
+2024-11-07 18:15:02   Struct ->                        div │  //asm.div+0x29d D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:171
 DivInfo {
   Index: 0x3|3,
   XLow: 0x8d5d086c|2371684460,
@@ -137,7 +137,7 @@ DivInfo {
   Y: 0x6381be9a|1669447322,
   Z: 0xaa720dbb|2859601339
 }
-2024-11-07 17:48:16   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+2024-11-07 18:15:02   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
 MulInfo {
   Index: 0x9|9,
   XLow: 0xf464|62564,
@@ -148,7 +148,7 @@ MulInfo {
   Y: 0x1c9e|7326,
   Z: 0x1b51c5b8|458343864
 }
-2024-11-07 17:48:49   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+2024-11-07 18:15:02   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
 MulInfo {
   Index: 0xa|10,
   XLow: 0x1b51c6b7|458344119,
@@ -158,4 +158,148 @@ MulInfo {
   X: 0x1b51c6b7|458344119,
   Y: 0x42407daf8d5d086c|4773953797957159020,
   Z: 0x85c42a2710308d34|9638875449743412532
+}
+2024-11-07 18:15:02   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+MulInfo {
+  Index: 0xb|11,
+  XLow: 0xc9ddf112|3386765586,
+  XHigh: 0x1090|4240,
+  YLow: 0x4|4,
+  YHigh: 0x0|0,
+  X: 0x1090c9ddf112|18214048100626,
+  Y: 0x4|4,
+  Z: 0x42432777c448|72856192402504
+}
+2024-11-07 18:15:05      Hex -> 0x000001000000007E&0xFFFFFFFF │ 0X7E //github.com/ddkwork/golibrary/stream.GenMask+0x1af D:/workspace/workspace/branch/golibrary/stream/safeStream.go:56
+2024-11-07 18:36:11   Struct ->                        div │  //asm.div+0x29d D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:171
+DivInfo {
+  Index: 0x4|4,
+  XLow: 0x85c4|34244,
+  XHigh: 0x85c8|34248,
+  YLow: 0x6a|106,
+  YHigh: 0x0|0,
+  X: 0x85c8000085c4|147094039987652,
+  Y: 0x6a|106,
+  Z: 0x1431826a57d|1387679622525
+}
+2024-11-07 18:36:11   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+MulInfo {
+  Index: 0xc|12,
+  XLow: 0x31|49,
+  XHigh: 0x0|0,
+  YLow: 0x143|323,
+  YHigh: 0x0|0,
+  X: 0x31|49,
+  Y: 0x14300000143|1387274436931,
+  Z: 0x3dd300003dd3|67976447409619
+}
+2024-11-07 18:36:11   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+MulInfo {
+  Index: 0xd|13,
+  XLow: 0xf1|241,
+  XHigh: 0x7|7,
+  YLow: 0x85c4|34244,
+  YHigh: 0x0|0,
+  X: 0x7000000f1|30064771313,
+  Y: 0x18f000085c4|1713691985348,
+  Z: 0x51ffb007ded84|1442537789058436
+}
+2024-11-07 18:36:11   Struct ->                        div │  //asm.div+0x29d D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:171
+DivInfo {
+  Index: 0x5|5,
+  XLow: 0x7ded84|8252804,
+  XHigh: 0x51ffb|335867,
+  YLow: 0x14c9|5321,
+  YHigh: 0x0|0,
+  X: 0x51ffb007ded84|1442537789058436,
+  Y: 0x14c9|5321,
+  Z: 0x3f1efbd686|271102760582
+}
+2024-11-07 18:36:11   Struct ->                        div │  //asm.div+0x29d D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:171
+DivInfo {
+  Index: 0x6|6,
+  XLow: 0x85c4|34244,
+  XHigh: 0x85c8|34248,
+  YLow: 0x6a|106,
+  YHigh: 0x0|0,
+  X: 0x85c8000085c4|147094039987652,
+  Y: 0x6a|106,
+  Z: 0x1431826a57d|1387679622525
+}
+2024-11-07 18:36:11   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+MulInfo {
+  Index: 0xe|14,
+  XLow: 0x24|36,
+  XHigh: 0x0|0,
+  YLow: 0x143|323,
+  YHigh: 0x0|0,
+  X: 0x24|36,
+  Y: 0x14300000143|1387274436931,
+  Z: 0x2d6c00002d6c|49941879729516
+}
+2024-11-07 18:36:11   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+MulInfo {
+  Index: 0xf|15,
+  XLow: 0xc3|195,
+  XHigh: 0x6|6,
+  YLow: 0x85c4|34244,
+  YHigh: 0x0|0,
+  X: 0x6000000c3|25769803971,
+  Y: 0x161000085c4|1516123489732,
+  Z: 0x42f7b0065e44c|1178105241003084
+}
+2024-11-07 18:36:11   Struct ->                        div │  //asm.div+0x29d D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:171
+DivInfo {
+  Index: 0x7|7,
+  XLow: 0x65e44c|6677580,
+  XHigh: 0x42f7b|274299,
+  YLow: 0x14c9|5321,
+  YHigh: 0x0|0,
+  X: 0x42f7b0065e44c|1178105241003084,
+  Y: 0x14c9|5321,
+  Z: 0x338cdead94|221406735764
+}
+2024-11-07 18:36:11   Struct ->                        div │  //asm.div+0x29d D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:171
+DivInfo {
+  Index: 0x8|8,
+  XLow: 0x85c4|34244,
+  XHigh: 0x85c8|34248,
+  YLow: 0x6a|106,
+  YHigh: 0x0|0,
+  X: 0x85c8000085c4|147094039987652,
+  Y: 0x6a|106,
+  Z: 0x1431826a57d|1387679622525
+}
+2024-11-07 18:36:11   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+MulInfo {
+  Index: 0x10|16,
+  XLow: 0x19|25,
+  XHigh: 0x0|0,
+  YLow: 0x143|323,
+  YHigh: 0x0|0,
+  X: 0x19|25,
+  Y: 0x14300000143|1387274436931,
+  Z: 0x1f8b00001f8b|34681860923275
+}
+2024-11-07 18:36:11   Struct ->                        mul │  //asm.mul+0x272 D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:144
+MulInfo {
+  Index: 0x11|17,
+  XLow: 0x47|71,
+  XHigh: 0x5|5,
+  YLow: 0x85c4|34244,
+  YHigh: 0x0|0,
+  X: 0x500000047|21474836551,
+  Y: 0xe5000085c4|983547545028,
+  Z: 0x2dc570025195c|805216176118108
+}
+2024-11-07 18:36:11   Struct ->                        div │  //asm.div+0x29d D:/workspace/workspace/branch/datarecovery/keygen/asm/demo/bit64.go:171
+DivInfo {
+  Index: 0x9|9,
+  XLow: 0x25195c|2431324,
+  XHigh: 0x2dc57|187479,
+  YLow: 0x14c9|5321,
+  YHigh: 0x0|0,
+  X: 0x2dc570025195c|805216176118108,
+  Y: 0x14c9|5321,
+  Z: 0x233bd9b5dd|151327978973
 }
