@@ -1,2 +1,10 @@
 2024-11-08 22:51:32    Trace ->  --------- title --------- │ ------------------ info ------------------ //runtime.doInit1+0xe1 C:/Program Files/Go/src/runtime/proc.go:7278
 2024-11-08 22:51:36      Hex ->                        399 │ 0X18F //github.com/ddkwork/keygen/asm/ghidra/ai.asm1+0x784 D:/workspace/workspace/branch/datarecovery/keygen/asm/ghidra/ai/ai.go:193
+2024-11-09 00:03:06      Hex ->                        398 │ 0X18E //github.com/ddkwork/keygen/asm/ghidra/ai.asm1+0x784 D:/workspace/workspace/branch/datarecovery/keygen/asm/ghidra/ai/ai.go:193
+2024-11-09 00:03:06      Hex ->                        397 │ 0X18D //github.com/ddkwork/keygen/asm/ghidra/ai.asm1+0x784 D:/workspace/workspace/branch/datarecovery/keygen/asm/ghidra/ai/ai.go:193
+2024-11-09 00:03:06      Hex ->                        396 │ 0X18C //github.com/ddkwork/keygen/asm/ghidra/ai.asm1+0x784 D:/workspace/workspace/branch/datarecovery/keygen/asm/ghidra/ai/ai.go:193
+2024-11-09 00:03:06      Hex ->                        395 │ 0X18B //github.com/ddkwork/keygen/asm/ghidra/ai.asm1+0x784 D:/workspace/workspace/branch/datarecovery/keygen/asm/ghidra/ai/ai.go:193
+2024-11-09 00:03:06      Hex ->                        394 │ 0X18A //github.com/ddkwork/keygen/asm/ghidra/ai.asm1+0x784 D:/workspace/workspace/branch/datarecovery/keygen/asm/ghidra/ai/ai.go:193
+2024-11-09 00:03:06      Hex ->                        393 │ 0X189 //github.com/ddkwork/keygen/asm/ghidra/ai.asm1+0x784 D:/workspace/workspace/branch/datarecovery/keygen/asm/ghidra/ai/ai.go:193
+2024-11-09 00:03:06      Hex ->                        392 │ 0X188 //github.com/ddkwork/keygen/asm/ghidra/ai.asm1+0x784 D:/workspace/workspace/branch/datarecovery/keygen/asm/ghidra/ai/ai.go:193
+2024-11-09 00:03:06      Hex ->                            │ 0X54FE6A55324A248E //github.com/ddkwork/keygen/asm/ghidra/ai.Test_asm1+0xcb D:/workspace/workspace/branch/datarecovery/keygen/asm/ghidra/ai/ai_test.go:15
