@@ -152,7 +152,7 @@ func asm1(data []byte, t *testing.T) uint64 {
 		//eax=F0E6A64
 		//.text:00BC19DF asm.exe:$19DF #DDF
 		highXor >>= 25                 // todo bug 第二轮错了
-		highXor += iVar11 & 0xffffffff //+ highXor>>25
+		highXor += iVar11 & 0xffffffff //+ 7ED3EEB ? 应该和 uVar6接近
 		elem = uint64(data[i])
 		//$ ==>     00000031
 		//$+4       00000000
