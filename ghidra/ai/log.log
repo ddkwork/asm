@@ -1,2 +1,2 @@
-2024-11-08 17:29:29    Trace ->  --------- title --------- │ ------------------ info ------------------ //runtime.doInit1+0xe1 C:/Program Files/Go/src/runtime/proc.go:7278
-2024-11-08 17:29:51      Hex ->                            │ 0XA73AC32FC4B7 //github.com/ddkwork/keygen/asm/ghidra/ai.Test_asm1+0xcb D:/workspace/workspace/branch/datarecovery/keygen/asm/ghidra/ai/ai_test.go:15
+2024-11-08 18:00:27    Trace ->  --------- title --------- │ ------------------ info ------------------ //runtime.doInit1+0xec C:/Program Files/Go/src/runtime/proc.go:7278
+2024-11-08 18:00:27      Hex ->                            │ 0XA73AC32FC4B7 //github.com/ddkwork/keygen/asm/ghidra/ai.Test_asm1+0x4e D:/workspace/workspace/branch/datarecovery/keygen/asm/ghidra/ai/ai_test.go:15

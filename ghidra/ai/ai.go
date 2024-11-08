@@ -1,6 +1,10 @@
 package main
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/ddkwork/golibrary/assert"
+)
 
 func mul(param1, param2, param3, param4 uint64) uint64 {
 	x := param1 | param2<<32
@@ -8,11 +12,6 @@ func mul(param1, param2, param3, param4 uint64) uint64 {
 	z := x * y
 	return z
 }
-
-//$ ==>     15282D4B
-//$+4       00000000
-//$+8       02F4963B
-//$+C       00080C29
 
 func div(param1, param2, param3, param4 uint64) uint64 {
 	x := param1 | param2<<32
@@ -141,7 +140,6 @@ func asm1(data []byte, t *testing.T) uint64 {
 		uVar6 = iVar11 & 0xffffffff
 		highXor >>= 25
 		highXor += uVar6
-		println(i)
 		elem = uint64(data[i])
 		//$ ==>     00000031
 		//$+4       00000000
@@ -166,6 +164,11 @@ func asm1(data []byte, t *testing.T) uint64 {
 		//$+C       00000000
 		iVar11 = div(highXor, iVar11>>32, 0x14c9, 0)
 		out = iVar11 + (uint64(data[i]) + ((0x18f)-uint64(data[7]))*v*v*i) + out
+		if i == 7 {
+			assert.Unsigned(t, 0x01F16EFB, iVar11)
+			assert.Unsigned(t, 0x000FC5F63BF80DB8, out)
+			assert.Equal(t, 0x000FC5F63BF80DB8, out)
+		}
 		if i == 0 {
 			break
 		}
