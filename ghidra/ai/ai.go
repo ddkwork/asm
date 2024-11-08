@@ -146,14 +146,17 @@ func asm1(data []byte, t *testing.T) uint64 {
 		//	elem>>25 | highXor<<7
 
 		uVar6 = iVar11 & 0xffffffff
-		highXor >>= 25
-		highXor += uVar6 //todo bug 第二轮错了
+		highXor >>= 25 // todo bug 第二轮错了
+		highXor += uVar6
 		elem = uint64(data[i])
 		//$ ==>     00000031
 		//$+4       00000000
 		//$+8       633BCC44
 		//$+C       00000028
 
+		//ecx=7ED3EEB
+		//eax=F0E6A64
+		//.text:00BC19DF asm.exe:$19DF #DDF
 		//$ ==>     00000024
 		//$+4       00000000
 		//$+8       16FBA94F
