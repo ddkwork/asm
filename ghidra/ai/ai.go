@@ -123,6 +123,7 @@ func asm1(data []byte, t *testing.T) uint64 {
 	v = uVar1 >> 32
 	out = (uVar1 >> 19) + ((v>>16)<<32|v)<<32 | ((v >> 16) + v) + (uVar1 & 0xfff0)
 	uStack30 = 0x000010B913530849
+	j := uint64(0)
 	for i := uint64(7); i >= 0; i-- {
 		v = uStack30
 		highXor = uStack30>>7 ^ uStack30
@@ -163,7 +164,9 @@ func asm1(data []byte, t *testing.T) uint64 {
 		//$+8       000014C9
 		//$+C       00000000
 		iVar11 = div(highXor, iVar11>>32, 0x14c9, 0)
-		out = iVar11 + (uint64(data[i]) + ((0x18f)-uint64(data[7]))*v*v*i) + out
+		// out = iVar11 + (uint64(data[i]) + ((0x18f)-uint64(data[7]))*v*v*i) + out
+		out = iVar11 + (uint64(data[i]) + (0x18f-j)*v*v*i) + out
+		j++
 		if i == 7 {
 			assert.Unsigned(t, 0x01F16EFB, iVar11)
 			assert.Unsigned(t, 0x000FC5F63BF80DB8, out)
