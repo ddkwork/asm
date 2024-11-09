@@ -40,14 +40,16 @@ func asm(data []byte) []byte {
 	v6 = out
 
 	// todo 下面的有bug，ida伪代码调试的时候变量的值刷新很诡异,无法对比
-	v7 = ((int(data[3]))+0x1968*(int(data[3])+0xf366)+1)*v6 + 3*((v6)/0x6381BE9A+(v6>>0x12)+0x21D78D)
+	v7 = ((int(data[3]))+
+		0x1968*(int(data[3])+0xf366)+1)*v6 +
+		3*(v6/0x6381BE9A+(v6>>0x12)+0x21D78D)
 	// 0x423FBDA7D589F776 todo bug
 
 	v17 = v7/0x6381BE9A + (v7 >> 0x12)                            // 0x109099DA1514
 	v8 = ((int(data[4])) + 0x1C9E*(int(data[4])+0xf366) + 1) * v7 // 0x5DE07FE3195B295A
 	v9 = 4*(v17) + v8 + 0xB47D9D
 	index = 7
-	out = (4*(v17)+v8+0xB47D9D)&0xFFF0 + (v9 >> 0x13) + v9&0xFFFFFF + v9&0xFFFFFF // 0xBBC1935A1FC
+	out = (4*v17+v8+0xB47D9D)&0xFFF0 + (v9 >> 0x13) + v9&0xFFFFFF + v9&0xFFFFFF // 0xBBC1935A1FC
 	i = 7
 	v20 = 0x18F
 	out = 0x000010B913530849
