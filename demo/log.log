@@ -1,2 +1,9 @@
 2024-11-09 13:17:06    Trace ->  --------- title --------- │ ------------------ info ------------------ //runtime.doInit1+0xec C:/Program Files/Go/src/runtime/proc.go:7278
 2024-11-09 14:18:41  Success ->                updated mod │ "D:\\workspace\\workspace\\branch\\datarecovery\\keygen" //github.com/ddkwork/golibrary/stream.updateModsByWorkSpace.func2+0x95 D:/workspace/workspace/branch/golibrary/stream/UpdateModsByWorkSpace.go:78
+2024-11-09 14:31:34  Success ->                updated mod │ "D:\\workspace\\workspace\\branch\\datarecovery\\keygen" //github.com/ddkwork/golibrary/stream.updateModsByWorkSpace.func2+0x95 D:/workspace/workspace/branch/golibrary/stream/UpdateModsByWorkSpace.go:78
+2024-11-09 14:31:34    Error ->                            │ exit status 1
+                                                           │ github.com/ddkwork/golibrary/mylog.check[...]+0x14d D:/workspace/workspace/branch/golibrary/mylog/check.go:211
+                                                           │ github.com/ddkwork/golibrary/mylog.Check[...]+0x5d D:/workspace/workspace/branch/golibrary/mylog/check.go:156
+                                                           │ github.com/ddkwork/golibrary/stream.(*CommandSession).run+0x604 D:/workspace/workspace/branch/golibrary/stream/command.go:125
+                                                           │ github.com/ddkwork/golibrary/stream.RunCommand+0x1c D:/workspace/workspace/branch/golibrary/stream/command.go:25
+
