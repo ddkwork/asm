@@ -7,80 +7,99 @@ import (
 	"unsafe"
 )
 
-type int8_t = int8
-type int16_t = int16
-type int32_t = int32
-type int64_t = int64
-type uint8_t = uint8
-type uint16_t = uint16
-type uint32_t = uint32
-type uint64_t = uint64
-type int_least8_t = int8
-type int_least16_t = int16
-type int_least32_t = int32
-type int_least64_t = int64
-type uint_least8_t = uint8
-type uint_least16_t = uint16
-type uint_least32_t = uint32
-type uint_least64_t = uint64
-type int_fast8_t = int8
-type int_fast16_t = int32
-type int_fast32_t = int32
-type int_fast64_t = int64
-type uint_fast8_t = uint8
-type uint_fast16_t = uint32
-type uint_fast32_t = uint32
-type uint_fast64_t = uint64
-type intmax_t = int64
-type uintmax_t = uint64
-type undefined = uint8
-type byte = uint8
-type uchar = uint8
-type dwfenc = uint8
-type word = uint16
-type dword = uint32
-type longlong = int64
-type qword = uint64
-type ushort = uint16
-type uint = uint32
-type ulong = uint64
-type ulonglong = uint64
-type float10 = float64
-type undefined1 = uint8
-type undefined2 = uint16
-type _cgoa_1_main struct {
-	arr [3]uint8
-}
-type undefined3 = _cgoa_1_main
-type undefined4 = uint32
-type _cgoa_2_main struct {
-	arr [5]uint8
-}
-type undefined5 = _cgoa_2_main
-type _cgoa_3_main struct {
-	arr [6]uint8
-}
-type undefined6 = _cgoa_3_main
-type _cgoa_4_main struct {
-	arr [7]uint8
-}
-type undefined7 = _cgoa_4_main
-type undefined8 = uint64
-type _cgoa_5_main struct {
-	arr [16]uint8
-}
-type arr16 = _cgoa_5_main
-type _cgoa_6_main struct {
-	arr [16]uint32
-}
+type (
+	int8_t         = int8
+	int16_t        = int16
+	int32_t        = int32
+	int64_t        = int64
+	uint8_t        = uint8
+	uint16_t       = uint16
+	uint32_t       = uint32
+	uint64_t       = uint64
+	int_least8_t   = int8
+	int_least16_t  = int16
+	int_least32_t  = int32
+	int_least64_t  = int64
+	uint_least8_t  = uint8
+	uint_least16_t = uint16
+	uint_least32_t = uint32
+	uint_least64_t = uint64
+	int_fast8_t    = int8
+	int_fast16_t   = int32
+	int_fast32_t   = int32
+	int_fast64_t   = int64
+	uint_fast8_t   = uint8
+	uint_fast16_t  = uint32
+	uint_fast32_t  = uint32
+	uint_fast64_t  = uint64
+	intmax_t       = int64
+	uintmax_t      = uint64
+	undefined      = uint8
+	byte           = uint8
+	uchar          = uint8
+	dwfenc         = uint8
+	word           = uint16
+	dword          = uint32
+	longlong       = int64
+	qword          = uint64
+	ushort         = uint16
+	uint           = uint32
+	ulong          = uint64
+	ulonglong      = uint64
+	float10        = float64
+	undefined1     = uint8
+	undefined2     = uint16
+	_cgoa_1_main   struct {
+		arr [3]uint8
+	}
+)
+
+type (
+	undefined3   = _cgoa_1_main
+	undefined4   = uint32
+	_cgoa_2_main struct {
+		arr [5]uint8
+	}
+)
+
+type (
+	undefined5   = _cgoa_2_main
+	_cgoa_3_main struct {
+		arr [6]uint8
+	}
+)
+
+type (
+	undefined6   = _cgoa_3_main
+	_cgoa_4_main struct {
+		arr [7]uint8
+	}
+)
+
+type (
+	undefined7   = _cgoa_4_main
+	undefined8   = uint64
+	_cgoa_5_main struct {
+		arr [16]uint8
+	}
+)
+
+type (
+	arr16        = _cgoa_5_main
+	_cgoa_6_main struct {
+		arr [16]uint32
+	}
+)
 type arr64 = _cgoa_6_main
 
 func mul(l uint32, h uint32, l2 uint32, h2 uint32) uint64 {
-	return uint64(l)<<32 | uint64(h) * uint64(l2)<<32 | uint64(h2)
+	return uint64(l)<<32 | uint64(h)*uint64(l2)<<32 | uint64(h2)
 }
+
 func div(l uint32, h uint32, l2 uint32, h2 uint32) uint64 {
-	return uint64(l)<<32 | uint64(h) / uint64(l2)<<32 | uint64(h2)
+	return uint64(l)<<32 | uint64(h)/uint64(l2)<<32 | uint64(h2)
 }
+
 func asm1() uint64 {
 	var uVar1 uint64
 	var lVar2 int64
@@ -183,10 +202,12 @@ func asm1() uint64 {
 	}
 	return out
 }
+
 func _cgo_main() int32 {
 	asm1()
 	return int32(0)
 }
+
 func main() {
 	os.Exit(int(_cgo_main()))
 }
