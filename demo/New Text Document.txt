@@ -1,0 +1,93 @@
+__int64 __usercall asm@<edx:eax>(int a1@<ebx>, __int64 a2@<esi:edi>)
+{
+  __int64 v2; // rax
+  int v3; // ecx
+  unsigned int v4; // kr00_4
+  __int64 v5; // kr20_8
+  unsigned __int64 v6; // rcx
+  __int64 v7; // kr40_8
+  __int64 v8; // rax
+  unsigned __int64 v9; // kr58_8
+  int v10; // edi
+  bool v11; // sf
+  char data[28]; // [esp+0h] [ebp-164h] BYREF
+  int v14; // [esp+1Ch] [ebp-148h]
+  int v15; // [esp+28h] [ebp-13Ch]
+  int v16; // [esp+2Ch] [ebp-138h]
+  __int64 v17; // [esp+40h] [ebp-124h]
+  int v18; // [esp+4Ch] [ebp-118h]
+  unsigned __int64 v19; // [esp+50h] [ebp-114h]
+  int v20; // [esp+58h] [ebp-10Ch]
+  unsigned int v21; // [esp+100h] [ebp-64h]
+  __int64 v22; // [esp+104h] [ebp-60h]
+  int v23; // [esp+10Ch] [ebp-58h]
+  int v24; // [esp+110h] [ebp-54h]
+  int *v25; // [esp+114h] [ebp-50h]
+  int *v26; // [esp+118h] [ebp-4Ch]
+  __int64 v27; // [esp+11Ch] [ebp-48h]
+  int v28; // [esp+124h] [ebp-40h] BYREF
+  _QWORD out[2]; // [esp+134h] [ebp-30h] BYREF
+  int v30[2]; // [esp+144h] [ebp-20h] BYREF
+  char input[12]; // [esp+154h] [ebp-10h] BYREF
+  int savedregs; // [esp+164h] [ebp+0h] BYREF
+
+  input[0] = 9;
+  input[1] = 0x99;
+  input[2] = 0x8A;
+  input[3] = 0x7B;
+  input[4] = 0xFE;
+  input[5] = 0x46;
+  input[6] = 0xC2;
+  input[7] = 0xF0;
+  v30[0] = 0;
+  v30[1] = 0;
+  v2 = hexdump(aXor, input, 8);
+  v27 = a2;
+  v26 = &savedregs;
+  v25 = &v28;
+  v24 = a1;
+  v23 = v3;
+  v22 = v2;
+  v4 = __readeflags();
+  v21 = v4;
+  qmemcpy(data, input, 8u);
+  v18 = (int)out;
+  out[0] = 0x71B793 * ((unsigned __int8)data[1] + 0x1302i64 * ((unsigned __int8)data[1] + 0xF366)) + 0x7CFF86;
+  v5 = (unsigned __int8)data[2] + 0x1634i64 * ((unsigned __int8)data[2] + 0xF366) + 1;
+  HIDWORD(v6) = (unsigned __int64)(v5 * out[0] + 2 * (out[0] / 0x6381BE9Ai64 + (out[0] >> 0x12)) + 0x2D1F65) >> 0x20;
+  LODWORD(out[0]) = v5 * LODWORD(out[0]) + 2 * (out[0] / 0x6381BE9Ai64 + (out[0] >> 0x12)) + 0x2D1F65;
+  LODWORD(v6) = out[0];
+  v7 = ((unsigned __int8)data[3] + 0x1968i64 * ((unsigned __int8)data[3] + 0xF366) + 1) * v6
+     + 3 * ((__int64)v6 / 0x6381BE9A + (v6 >> 0x12) + 0x21D78D);
+  v16 = HIDWORD(v7) >> 0x12;
+  v17 = v7 / 0x6381BE9A + ((unsigned __int64)v7 >> 0x12);
+  v15 = ((unsigned __int64)(unsigned __int8)data[4] + 0x1C9Ei64 * ((unsigned __int8)data[4] + 0xF366) + 1) >> 0x20;
+  v8 = ((unsigned __int8)data[4] + 0x1C9Ei64 * ((unsigned __int8)data[4] + 0xF366) + 1) * v7;
+  v9 = 4 * v17 + v8 + 0xB47D9D;
+  v10 = 7;
+  out[0] = ((4 * (_DWORD)v17 + (_DWORD)v8 + 0xB47D9D) & 0xFFF0)
+         + (v9 >> 0x13)
+         + HIDWORD(v9)
+         + (unsigned __int64)HIWORD(HIDWORD(v9));
+  v14 = 7;
+  v20 = 0x18F - (_DWORD)&data[7];
+  do
+  {
+    v19 = __PAIR64__(HIDWORD(out[0]) ^ (HIDWORD(out[0]) >> 7), LODWORD(out[0]) ^ (unsigned int)(out[0] >> 7)) >> 0x19;
+    v18 = (unsigned __int8)data[v10];
+    v17 = out[0] / 0x6Ai64
+        + (__PAIR64__(HIDWORD(out[0]) ^ (HIDWORD(out[0]) >> 7), LODWORD(out[0]) ^ (unsigned int)(out[0] >> 7)) >> 0x19);
+    v15 = (unsigned __int64)((v18 + 1i64) * out[0] + v10 * v10 * v17) >> 0x20;
+    out[0] = v18 * v18 * v18 + (v18 + 1i64) * out[0] + v10 * v10 * v17;
+    v10 = v14 - 1;
+    v11 = v14 - 1 < 0;
+    out[0] += v17 / 0x14C9 + v14 * (unsigned __int8)data[v14] * (unsigned __int8)data[v14] * (int)&data[v14 + v20];
+    --v14;
+  }
+  while ( !v11 );
+  qmemcpy(v30, out, sizeof(v30));
+  __writeeflags(v21);
+  v27 = hexdump(aAsm1ForCode3, v26 + 0xFFFFFFF8, 8);
+  sub_14112C(&savedregs, &dword_141BC4);
+  return v27;
+}

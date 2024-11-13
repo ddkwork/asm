@@ -1,0 +1,1101 @@
+地址  线程   命令                                           ; 寄存器和注释
+    RUN 跟踪已停止
+00095EC1 主       MOV EBP,ESP                               ; EBP=007BFA04
+00095EC3 主       SUB ESP,34
+00095EC6 主       PUSH EBX
+00095EC7 主       PUSH ESI
+00095EC8 主       PUSH EDI
+00095EC9 主       LEA EDI,DWORD PTR SS:[EBP-34]             ; EDI=007BF9D0
+00095ECC 主       MOV ECX,0D                                ; ECX=0000000D
+00095ED1 主       MOV EAX,CCCCCCCC                          ; EAX=CCCCCCCC
+00095ED6 主       REP STOS DWORD PTR ES:[EDI]               ; ECX=00000000, EDI=007BFA04
+00095ED8 主       MOV EAX,DWORD PTR DS:[__security_cookie]  ; EAX=4B17BA04
+00095EDD 主       XOR EAX,EBP                               ; EAX=4B6C4000
+00095EDF 主       MOV DWORD PTR SS:[EBP-4],EAX
+00095EE2 主       MOV BYTE PTR SS:[EBP-10],9
+00095EE6 主       MOV BYTE PTR SS:[EBP-F],99
+00095EEA 主       MOV BYTE PTR SS:[EBP-E],8A
+00095EEE 主       MOV BYTE PTR SS:[EBP-D],7B
+00095EF2 主       MOV BYTE PTR SS:[EBP-C],0FE
+00095EF6 主       MOV BYTE PTR SS:[EBP-B],46
+00095EFA 主       MOV BYTE PTR SS:[EBP-A],0C2
+00095EFE 主       MOV BYTE PTR SS:[EBP-9],0F0
+00095F02 主       XOR EAX,EAX                               ; EAX=00000000
+00095F04 主       MOV DWORD PTR SS:[EBP-20],EAX
+00095F07 主       MOV DWORD PTR SS:[EBP-1C],EAX
+00095F0A 主       XOR ECX,ECX
+00095F0C 主       MOV DWORD PTR SS:[EBP-30],ECX
+00095F0F 主       MOV DWORD PTR SS:[EBP-2C],ECX
+00095F12 主       PUSH 8
+00095F14 主       LEA EDX,DWORD PTR SS:[EBP-10]             ; EDX=007BF9F4
+00095F17 主       PUSH EDX
+00095F18 主       PUSH untitled.0009B030
+00095F1D 主       CALL untitled.00091280                    ; EAX=00000010, ECX=00000010, EDX=00000000
+00095F22 主       ADD ESP,0C
+00095F25 主       PUSHAD
+00095F26 主       PUSHFD
+00095F27 主       SUB ESP,0FF
+00095F2D 主       XOR EBX,EBX                               ; EBX=00000000
+00095F2F 主       LEA ESI,DWORD PTR SS:[EBP-10]             ; ESI=007BF9F4
+00095F32 主       LEA EDI,DWORD PTR SS:[ESP]                ; EDI=007BF8A1
+00095F36 主       MOV ECX,8                                 ; ECX=00000008
+00095F3B 主       REP MOVS BYTE PTR ES:[EDI],BYTE PTR DS:[ESI]; ECX=00000000, ESI=007BF9FC, EDI=007BF8A9
+00095F3D 主       LEA ESI,DWORD PTR DS:[EBP-30]             ; ESI=007BF9D4
+00095F41 主       MOV DWORD PTR DS:[ESI],71B793  todo
+00095F48 主       MOV DWORD PTR DS:[ESI+4],EBX
+
+09
+
+99
+8A
+7B
+FE
+
+46
+C2
+F0
+94
+D7
+
+00095F4C 主       MOVZX EDI,BYTE PTR SS:[ESP+1]             ; EDI=00000099  todo 0X09998A7BFE46C2F094D7 输入
+00095F52 主       PUSH EBX
+00095F53 主       LEA EAX,DWORD PTR DS:[EDI+F366]           ; EAX=0000F3FF
+00095F5A 主       CDQ
+00095F5B 主       PUSH 1302
+00095F60 主       PUSH EDX
+00095F61 主       PUSH EAX
+00095F62 主       MOV DWORD PTR SS:[ESP+5C],ESI
+00095F67 主       CALL __allmul                    ; EAX=121DD4FE, ECX=00001302
+00095F6C 主       MOV ECX,EAX                               ; ECX=121DD4FE
+00095F6E 主       MOV EAX,EDX                               ; EAX=00000000
+00095F70 主       MOV DWORD PTR SS:[ESP+28],EAX
+00095F75 主       MOV EAX,EDI                               ; EAX=00000099
+00095F77 主       CDQ
+00095F78 主       ADD ECX,EAX                               ; ECX=121DD597
+00095F7A 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=00000000
+00095F7F 主       PUSH EBX
+00095F80 主       PUSH 71B793
+00095F85 主       ADC EAX,EDX
+00095F87 主       PUSH EAX
+00095F88 主       PUSH ECX
+00095F89 主       CALL __allmul                    ; EAX=027796B5, ECX=0071B793, EDX=00080C29
+00095F8E 主       ADD EAX,7CFF86                            ; EAX=02F4963B
+00095F93 主       ADC EDX,EBX
+00095F95 主       MOV DWORD PTR DS:[ESI+4],EDX
+00095F99 主       MOV DWORD PTR DS:[ESI],EAX
+00095F9C 主       MOVZX EDI,BYTE PTR SS:[ESP+2]             ; EDI=0000008A
+00095FA2 主       MOV ESI,EDX                               ; ESI=00080C29
+00095FA4 主       MOV EDX,EAX                               ; EDX=02F4963B
+00095FA6 主       PUSH EBX
+00095FA7 主       MOV ECX,ESI                               ; ECX=00080C29
+00095FA9 主       SHRD EDX,ECX,12                           ; EDX=030A40BD
+00095FAD 主       PUSH 6381BE9A
+00095FB2 主       PUSH ESI
+00095FB3 主       SHR ECX,12                                ; ECX=00000002
+00095FB6 主       PUSH EAX
+00095FB7 主       MOV DWORD PTR SS:[ESP+50],EAX
+00095FBC 主       MOV DWORD PTR SS:[ESP+54],ESI
+00095FC1 主       MOV DWORD PTR SS:[ESP+38],EDX
+00095FC6 主       MOV DWORD PTR SS:[ESP+68],ECX
+00095FCB 主       CALL __alldiv                    ; EAX=0014B426, ECX=6381BE9A, EDX=00000000
+00095FD0 主       MOV ECX,DWORD PTR SS:[ESP+28]             ; ECX=030A40BD
+00095FD5 主       ADD ECX,EAX                               ; ECX=031EF4E3
+00095FD7 主       MOV EAX,DWORD PTR SS:[ESP+58]             ; EAX=00000002
+00095FDC 主       PUSH 0
+00095FDE 主       PUSH 2
+00095FE0 主       ADC EAX,EDX
+00095FE2 主       PUSH EAX
+00095FE3 主       PUSH ECX
+00095FE4 主       CALL __allmul                    ; EAX=063DE9C6, ECX=00000002, EDX=00000004
+00095FE9 主       MOV ESI,EAX                               ; ESI=063DE9C6
+00095FEB 主       PUSH 0
+00095FED 主       MOV EBX,EDX                               ; EBX=00000004
+00095FEF 主       LEA EAX,DWORD PTR DS:[EDI+F366]           ; EAX=0000F3F0
+00095FF6 主       CDQ                                       ; EDX=00000000
+00095FF7 主       PUSH 1634
+00095FFC 主       PUSH EDX
+00095FFD 主       PUSH EAX
+00095FFE 主       CALL __allmul                    ; EAX=15282CC0, ECX=00001634
+00096003 主       MOV ECX,EAX                               ; ECX=15282CC0
+00096005 主       MOV EAX,EDX                               ; EAX=00000000
+00096007 主       MOV DWORD PTR SS:[ESP+28],EAX
+
+
+0009600C 主       MOV EAX,EDI                               ; EAX=0000008A
+0009600E 主       CDQ
+0009600F 主       ADD ECX,EAX                               ; ECX=15282D4A
+00096011 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=00000000
+00096016 主       ADC EAX,EDX
+00096018 主       MOV EDX,DWORD PTR SS:[ESP+44]             ; EDX=00080C29
+0009601D 主       ADD ECX,1                                 ; ECX=15282D4B
+00096020 主       PUSH EDX
+00096021 主       MOV EDX,DWORD PTR SS:[ESP+44]             ; EDX=02F4963B
+00096026 主       ADC EAX,0
+00096029 主       PUSH EDX
+0009602A 主       PUSH EAX
+0009602B 主       PUSH ECX
+0009602C 主       CALL __allmul                    ; EAX=2C486249, ECX=02F4963B, EDX=B0254C13
+00096031 主       ADD ESI,EAX                               ; ESI=32864C0F
+00096033 主       MOV EAX,DWORD PTR SS:[ESP+4C]             ; EAX=007BF9D4
+00096038 主       ADC EBX,EDX                               ; EBX=B0254C17
+0009603A 主       ADD ESI,2D1F65                            ; ESI=32B36B74
+00096040 主       ADC EBX,0
+00096043 主       MOV DWORD PTR DS:[EAX],ESI
+00096046 主       MOV ECX,DWORD PTR DS:[EAX]                ; ECX=32B36B74
+00096049 主       MOV DWORD PTR DS:[EAX+4],EBX
+
+
+0009604D 主       MOVZX ESI,BYTE PTR SS:[ESP+3]             ; ESI=0000007B
+00096053 主       MOV EAX,EBX                               ; EAX=B0254C17
+00096055 主       PUSH 0
+00096057 主       MOV EDX,ECX                               ; EDX=32B36B74
+00096059 主       MOV EDI,EAX                               ; EDI=B0254C17
+0009605B 主       SHRD EDX,EDI,12                           ; EDX=5305CCAC
+0009605F 主       PUSH 6381BE9A
+00096064 主       PUSH EAX
+00096065 主       PUSH ECX
+00096066 主       MOV DWORD PTR SS:[ESP+50],ECX
+0009606B 主       MOV DWORD PTR SS:[ESP+54],EAX
+00096070 主       SHR EDI,12                                ; EDI=00002C09
+00096073 主       MOV EBX,EDX                               ; EBX=5305CCAC
+00096075 主       CALL __alldiv                    ; EAX=C52AFD7B, ECX=6381BE9A, EDX=00000001
+0009607A 主       ADD EBX,EAX                               ; EBX=1830CA27
+0009607C 主       ADC EDI,EDX                               ; EDI=00002C0B
+0009607E 主       PUSH 0
+00096080 主       ADD EBX,21D78D                            ; EBX=1852A1B4
+00096086 主       PUSH 3
+00096088 主       ADC EDI,0
+0009608B 主       PUSH EDI
+0009608C 主       PUSH EBX
+0009608D 主       CALL __allmul                    ; EAX=48F7E51C, ECX=00000003, EDX=00008421
+00096092 主       MOV EDI,EAX                               ; EDI=48F7E51C
+00096094 主       PUSH 0
+00096096 主       MOV EBX,EDX                               ; EBX=00008421
+00096098 主       LEA EAX,DWORD PTR DS:[ESI+F366]           ; EAX=0000F3E1
+0009609F 主       CDQ                                       ; EDX=00000000
+000960A0 主       PUSH 1968
+000960A5 主       PUSH EDX
+000960A6 主       PUSH EAX
+000960A7 主       CALL __allmul                    ; EAX=18340C68, ECX=00001968
+000960AC 主       MOV ECX,EAX                               ; ECX=18340C68
+000960AE 主       MOV EAX,EDX                               ; EAX=00000000
+000960B0 主       MOV DWORD PTR SS:[ESP+28],EAX
+000960B5 主       MOV EAX,ESI                               ; EAX=0000007B
+000960B7 主       CDQ
+000960B8 主       ADD ECX,EAX                               ; ECX=18340CE3
+000960BA 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=00000000
+000960BF 主       ADC EAX,EDX
+000960C1 主       MOV EDX,DWORD PTR SS:[ESP+44]             ; EDX=B0254C17
+000960C6 主       PUSH EDX
+000960C7 主       MOV EDX,DWORD PTR SS:[ESP+44]             ; EDX=32B36B74
+000960CC 主       ADD ECX,1                                 ; ECX=18340CE4
+000960CF 主       PUSH EDX
+000960D0 主       ADC EAX,0
+000960D3 主       PUSH EAX
+000960D4 主       PUSH ECX
+000960D5 主       CALL __allmul                    ; EAX=44652350, ECX=32B36B74, EDX=423FF98E
+000960DA 主       MOV ESI,DWORD PTR SS:[ESP+4C]             ; ESI=007BF9D4
+000960DF 主       ADD EDI,EAX                               ; EDI=8D5D086C
+000960E1 主       ADC EBX,EDX                               ; EBX=42407DAF
+000960E3 主       MOV EAX,EBX                               ; EAX=42407DAF
+000960E5 主       MOV EDX,EBX                               ; EDX=42407DAF
+000960E7 主       PUSH 0
+000960E9 主       MOV ECX,EDI                               ; ECX=8D5D086C
+000960EB 主       SHRD ECX,EDX,12                           ; ECX=1F6BE357
+000960EF 主       PUSH 6381BE9A
+000960F4 主       PUSH EAX
+000960F5 主       SHR EDX,12                                ; EDX=00001090
+000960F8 主       MOV DWORD PTR DS:[ESI+4],EBX
+000960FC 主       PUSH EDI
+000960FD 主       MOV DWORD PTR DS:[ESI],EDI
+00096100 主       MOV EBX,ECX                               ; EBX=1F6BE357
+00096102 主       MOV DWORD PTR SS:[ESP+3C],EDX
+00096107 主       CALL __alldiv                    ; EAX=AA720DBB, ECX=6381BE9A, EDX=00000000
+0009610C 主       ADD EBX,EAX                               ; EBX=C9DDF112
+0009610E 主       MOV EAX,DWORD PTR SS:[ESP+2C]             ; EAX=00001090
+00096113 主       MOV DWORD PTR SS:[ESP+40],EBX
+
+
+00096118 主       MOVZX EBX,BYTE PTR SS:[ESP+4]             ; EBX=000000FE
+0009611E 主       ADC EAX,EDX
+00096120 主       MOV DWORD PTR SS:[ESP+44],EAX
+00096125 主       PUSH 0
+00096127 主       LEA EAX,DWORD PTR DS:[EBX+F366]           ; EAX=0000F464
+0009612E 主       CDQ
+0009612F 主       PUSH 1C9E
+00096134 主       PUSH EDX
+00096135 主       PUSH EAX
+00096136 主       CALL __allmul                    ; EAX=1B51C5B8, ECX=00001C9E
+0009613B 主       MOV ECX,EAX                               ; ECX=1B51C5B8
+0009613D 主       MOV EAX,EDX                               ; EAX=00000000
+0009613F 主       MOV DWORD PTR SS:[ESP+28],EAX
+00096144 主       MOV EAX,EBX                               ; EAX=000000FE
+00096146 主       CDQ
+00096147 主       ADD ECX,EAX                               ; ECX=1B51C6B6
+00096149 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=00000000
+0009614E 主       ADC EAX,EDX
+00096150 主       ADD ECX,1                                 ; ECX=1B51C6B7
+00096153 主       ADC EAX,0
+00096156 主       MOV DWORD PTR SS:[ESP+28],EAX
+0009615B 主       MOV EAX,DWORD PTR DS:[ESI+4]              ; EAX=42407DAF
+0009615F 主       PUSH EAX
+00096160 主       MOV EAX,DWORD PTR SS:[ESP+2C]             ; EAX=00000000
+00096165 主       PUSH EDI
+00096166 主       PUSH EAX
+00096167 主       PUSH ECX
+00096168 主       CALL __allmul                    ; EAX=10308D34, ECX=8D5D086C, EDX=85C42A27
+0009616D 主       PUSH 0
+0009616F 主       MOV EBX,EDX                               ; EBX=85C42A27
+00096171 主       MOV EDX,DWORD PTR SS:[ESP+48]             ; EDX=00001090
+00096176 主       PUSH 4
+00096178 主       MOV EDI,EAX                               ; EDI=10308D34
+0009617A 主       MOV EAX,DWORD PTR SS:[ESP+48]             ; EAX=C9DDF112
+0009617F 主       PUSH EDX
+00096180 主       PUSH EAX
+00096181 主       CALL __allmul                    ; EAX=2777C448, ECX=00000004, EDX=00004243
+00096186 主       ADD EDI,EAX                               ; EDI=37A8517C
+00096188 主       ADC EBX,EDX                               ; EBX=85C46C6A
+0009618A 主       ADD EDI,0B47D9D                           ; EDI=385CCF19
+00096190 主       ADC EBX,0
+00096193 主       MOV EAX,EBX                               ; EAX=85C46C6A
+00096195 主       MOV ECX,EDI                               ; ECX=385CCF19
+00096197 主       MOV EDX,EAX                               ; EDX=85C46C6A
+00096199 主       MOV DWORD PTR DS:[ESI],EDI
+0009619C 主       XOR EDI,EDI                               ; EDI=00000000
+0009619E 主       MOV DWORD PTR DS:[ESI+4],EBX
+000961A2 主       XOR EBX,EBX                               ; EBX=00000000
+000961A4 主       SHR EDX,10                                ; EDX=000085C4
+000961A7 主       ADD EDX,EAX                               ; EDX=85C4F22E
+000961A9 主       ADC EDI,EBX
+000961AB 主       MOV EBX,ECX                               ; EBX=385CCF19
+000961AD 主       SHRD EBX,EAX,13                           ; EBX=8D8D470B
+000961B1 主       SHR EAX,13                                ; EAX=000010B8
+000961B4 主       ADD EDX,EBX                               ; EDX=13523939
+000961B6 主       ADC EDI,EAX                               ; EDI=000010B9
+000961B8 主       AND ECX,0FFF0                             ; ECX=0000CF10
+000961BE 主       XOR EAX,EAX                               ; EAX=00000000
+000961C0 主       ADD EDX,ECX                               ; EDX=13530849
+000961C2 主       ADC EDI,EAX
+000961C4 主       MOV EAX,18F                               ; EAX=0000018F
+000961C9 主       LEA ECX,DWORD PTR SS:[ESP+7]              ; ECX=007BF8A8
+000961CE 主       MOV DWORD PTR DS:[ESI+4],EDI
+000961D2 主       MOV EDI,7                                 ; EDI=00000007
+000961D7 主       SUB EAX,ECX                               ; EAX=FF8408E7
+000961D9 主       MOV DWORD PTR DS:[ESI],EDX
+000961DC 主       MOV DWORD PTR SS:[ESP+1C],EDI
+000961E1 主       MOV DWORD PTR SS:[ESP+58],EAX
+000961E6 主       JMP SHORT untitled.000961E8
+000961E8 主       MOV EAX,DWORD PTR DS:[ESI]                ; EAX=13530849
+000961EB 主       MOV EBX,DWORD PTR DS:[ESI+4]              ; EBX=000010B9
+000961EF 主       MOV EDX,EAX
+000961F1 主       MOV ECX,EBX                               ; ECX=000010B9
+000961F3 主       SHRD EDX,ECX,7                            ; EDX=7226A610
+000961F7 主       SHR ECX,7                                 ; ECX=00000021
+000961FA 主       XOR ECX,EBX                               ; ECX=00001098
+000961FC 主       XOR EDX,EAX                               ; EDX=6175AE59
+000961FE 主       PUSH 0
+00096200 主       SHRD EDX,ECX,19                           ; EDX=00084C30
+00096204 主       PUSH 6A
+00096206 主       PUSH EBX
+00096207 主       SHR ECX,19                                ; ECX=00000000
+0009620A 主       PUSH EAX
+0009620B 主       MOV DWORD PTR SS:[ESP+60],EDX
+00096210 主       MOV DWORD PTR SS:[ESP+64],ECX
+00096215 主       CALL __alldiv                    ; EAX=63338014, ECX=0000006A, EDX=00000028
+0009621A 主       MOV ECX,DWORD PTR SS:[ESP+50]             ; ECX=00084C30
+0009621F 主       ADD ECX,EAX                               ; ECX=633BCC44
+00096221 主       MOV EAX,DWORD PTR SS:[ESP+54]             ; EAX=00000000
+00096226 主       ADC EAX,EDX                               ; EAX=00000028
+00096228 主       MOVZX EDX,BYTE PTR SS:[ESP+EDI]           ; EDX=000000F0
+0009622D 主       MOV DWORD PTR SS:[ESP+44],EAX
+00096232 主       MOV EAX,EDI                               ; EAX=00000007
+00096234 主       IMUL EAX,EDI                              ; EAX=00000031
+00096237 主       MOV EDI,DWORD PTR SS:[ESP+44]             ; EDI=00000028
+0009623C 主       PUSH EDI
+0009623D 主       MOV DWORD PTR SS:[ESP+50],EDX
+00096242 主       CDQ                                       ; EDX=00000000
+00096243 主       PUSH ECX
+00096244 主       PUSH EDX
+00096245 主       PUSH EAX
+00096246 主       MOV DWORD PTR SS:[ESP+50],ECX
+0009624B 主       CALL __allmul                    ; EAX=FE721904, EDX=000007BA
+00096250 主       MOV EDI,EAX                               ; EDI=FE721904
+00096252 主       MOV EAX,EDX                               ; EAX=000007BA
+00096254 主       MOV DWORD PTR SS:[ESP+28],EAX
+
+
+00096259 主       MOV EAX,DWORD PTR SS:[ESP+4C]             ; EAX=000000F0
+0009625E 主       CDQ                                       ; EDX=00000000
+0009625F 主       MOV ECX,EAX                               ; ECX=000000F0
+00096261 主       MOV EAX,DWORD PTR DS:[ESI]                ; EAX=13530849
+00096264 主       PUSH EBX
+00096265 主       ADD ECX,1                                 ; ECX=000000F1
+00096268 主       PUSH EAX
+00096269 主       ADC EDX,0
+0009626C 主       PUSH EDX
+0009626D 主       PUSH ECX
+0009626E 主       CALL __allmul                    ; EAX=312ACCB9, ECX=13530849, EDX=000FBE3B
+00096273 主       MOV ECX,DWORD PTR SS:[ESP+4C]             ; ECX=000000F0
+00096278 主       ADD EDI,EAX                               ; EDI=2F9CE5BD
+0009627A 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=000007BA
+0009627F 主       ADC EAX,EDX                               ; EAX=000FC5F6
+00096281 主       MOV DWORD PTR SS:[ESP+28],EAX
+00096286 主       MOV EAX,ECX                               ; EAX=000000F0
+00096288 主       IMUL EAX,ECX                              ; EAX=0000E100
+0009628B 主       IMUL EAX,ECX                              ; EAX=00D2F000
+0009628E 主       CDQ                                       ; EDX=00000000
+0009628F 主       ADD EDI,EAX                               ; EDI=306FD5BD
+00096291 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=000FC5F6
+00096296 主       ADC EAX,EDX
+00096298 主       MOV EDX,DWORD PTR SS:[ESP+1C]             ; EDX=00000007
+0009629D 主       MOV DWORD PTR DS:[ESI+4],EAX
+000962A1 主       LEA EAX,DWORD PTR SS:[ESP+EDX]            ; EAX=007BF8A8
+000962A5 主       MOV DWORD PTR DS:[ESI],EDI
+000962A8 主       MOVZX ECX,BYTE PTR DS:[EAX]
+000962AC 主       MOV EDI,DWORD PTR SS:[ESP+58]             ; EDI=FF8408E7
+000962B1 主       ADD EAX,EDI                               ; EAX=0000018F
+000962B3 主       IMUL EAX,ECX                              ; EAX=00017610
+000962B6 主       IMUL EAX,ECX                              ; EAX=015EAF00
+000962B9 主       IMUL EAX,EDX                              ; EAX=0996C900
+000962BC 主       CDQ                                       ; EDX=00000000
+000962BD 主       PUSH 0
+000962BF 主       MOV EBX,EDX                               ; EBX=00000000
+000962C1 主       MOV EDX,DWORD PTR SS:[ESP+48]             ; EDX=00000028
+000962C6 主       PUSH 14C9
+000962CB 主       MOV EDI,EAX                               ; EDI=0996C900
+000962CD 主       MOV EAX,DWORD PTR SS:[ESP+48]             ; EAX=633BCC44
+000962D2 主       PUSH EDX
+000962D3 主       PUSH EAX
+000962D4 主       CALL __alldiv                    ; EAX=01F16EFB, ECX=000014C9, EDX=00000000
+000962D9 主       ADD EDI,EAX                               ; EDI=0B8837FB
+000962DB 主       MOV ECX,DWORD PTR DS:[ESI+4]              ; ECX=000FC5F6
+000962DF 主       ADC EBX,EDX
+000962E1 主       MOV EDX,DWORD PTR DS:[ESI]                ; EDX=306FD5BD
+000962E4 主       ADD EDX,EDI                               ; EDX=3BF80DB8
+000962E6 主       MOV EDI,DWORD PTR SS:[ESP+1C]             ; EDI=00000007
+000962EB 主       ADC ECX,EBX
+000962ED 主       DEC EDI                                   ; EDI=00000006
+000962EE 主       MOV DWORD PTR DS:[ESI],EDX
+000962F1 主       MOV DWORD PTR DS:[ESI+4],ECX
+000962F5 主       MOV DWORD PTR SS:[ESP+1C],EDI
+000962FA 主       JNS untitled.000961E8
+000961E8 主       MOV EAX,DWORD PTR DS:[ESI]                ; EAX=3BF80DB8
+000961EB 主       MOV EBX,DWORD PTR DS:[ESI+4]              ; EBX=000FC5F6
+000961EF 主       MOV EDX,EAX
+000961F1 主       MOV ECX,EBX
+000961F3 主       SHRD EDX,ECX,7                            ; EDX=EC77F01B
+000961F7 主       SHR ECX,7                                 ; ECX=00001F8B
+000961FA 主       XOR ECX,EBX                               ; ECX=000FDA7D
+000961FC 主       XOR EDX,EAX                               ; EDX=D78FFDA3
+000961FE 主       PUSH 0
+00096200 主       SHRD EDX,ECX,19                           ; EDX=07ED3EEB
+00096204 主       PUSH 6A
+00096206 主       PUSH EBX
+00096207 主       SHR ECX,19                                ; ECX=00000000
+0009620A 主       PUSH EAX
+0009620B 主       MOV DWORD PTR SS:[ESP+60],EDX
+00096210 主       MOV DWORD PTR SS:[ESP+64],ECX
+00096215 主       CALL __alldiv                    ; EAX=0F0E6A64, ECX=0000006A, EDX=00002618
+0009621A 主       MOV ECX,DWORD PTR SS:[ESP+50]             ; ECX=07ED3EEB
+0009621F 主       ADD ECX,EAX                               ; ECX=16FBA94F
+00096221 主       MOV EAX,DWORD PTR SS:[ESP+54]             ; EAX=00000000
+00096226 主       ADC EAX,EDX                               ; EAX=00002618
+
+
+00096228 主       MOVZX EDX,BYTE PTR SS:[ESP+EDI]           ; EDX=000000C2
+0009622D 主       MOV DWORD PTR SS:[ESP+44],EAX
+00096232 主       MOV EAX,EDI                               ; EAX=00000006
+00096234 主       IMUL EAX,EDI                              ; EAX=00000024
+00096237 主       MOV EDI,DWORD PTR SS:[ESP+44]             ; EDI=00002618
+0009623C 主       PUSH EDI
+0009623D 主       MOV DWORD PTR SS:[ESP+50],EDX
+00096242 主       CDQ                                       ; EDX=00000000
+00096243 主       PUSH ECX
+00096244 主       PUSH EDX
+00096245 主       PUSH EAX
+00096246 主       MOV DWORD PTR SS:[ESP+50],ECX
+0009624B 主       CALL __allmul                    ; EAX=3B63CF1C, EDX=00055B63
+00096250 主       MOV EDI,EAX                               ; EDI=3B63CF1C
+00096252 主       MOV EAX,EDX                               ; EAX=00055B63
+00096254 主       MOV DWORD PTR SS:[ESP+28],EAX
+00096259 主       MOV EAX,DWORD PTR SS:[ESP+4C]             ; EAX=000000C2
+0009625E 主       CDQ                                       ; EDX=00000000
+0009625F 主       MOV ECX,EAX                               ; ECX=000000C2
+00096261 主       MOV EAX,DWORD PTR DS:[ESI]                ; EAX=3BF80DB8
+00096264 主       PUSH EBX
+00096265 主       ADD ECX,1                                 ; ECX=000000C3
+00096268 主       PUSH EAX
+00096269 主       ADC EDX,0
+0009626C 主       PUSH EDX
+0009626D 主       PUSH ECX
+0009626E 主       CALL __allmul                    ; EAX=ADF27328, ECX=3BF80DB8, EDX=0C03CA8F
+00096273 主       MOV ECX,DWORD PTR SS:[ESP+4C]             ; ECX=000000C2
+00096278 主       ADD EDI,EAX                               ; EDI=E9564244
+0009627A 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=00055B63
+0009627F 主       ADC EAX,EDX                               ; EAX=0C0925F2
+00096281 主       MOV DWORD PTR SS:[ESP+28],EAX
+00096286 主       MOV EAX,ECX                               ; EAX=000000C2
+00096288 主       IMUL EAX,ECX                              ; EAX=00009304
+0009628B 主       IMUL EAX,ECX                              ; EAX=006F6908
+0009628E 主       CDQ                                       ; EDX=00000000
+0009628F 主       ADD EDI,EAX                               ; EDI=E9C5AB4C
+00096291 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=0C0925F2
+00096296 主       ADC EAX,EDX
+00096298 主       MOV EDX,DWORD PTR SS:[ESP+1C]             ; EDX=00000006
+0009629D 主       MOV DWORD PTR DS:[ESI+4],EAX
+000962A1 主       LEA EAX,DWORD PTR SS:[ESP+EDX]            ; EAX=007BF8A7
+000962A5 主       MOV DWORD PTR DS:[ESI],EDI
+000962A8 主       MOVZX ECX,BYTE PTR DS:[EAX]
+000962AC 主       MOV EDI,DWORD PTR SS:[ESP+58]             ; EDI=FF8408E7
+000962B1 主       ADD EAX,EDI                               ; EAX=0000018E
+000962B3 主       IMUL EAX,ECX                              ; EAX=00012D9C
+000962B6 主       IMUL EAX,ECX                              ; EAX=00E49038
+000962B9 主       IMUL EAX,EDX                              ; EAX=055B6150
+000962BC 主       CDQ                                       ; EDX=00000000
+000962BD 主       PUSH 0
+000962BF 主       MOV EBX,EDX                               ; EBX=00000000
+000962C1 主       MOV EDX,DWORD PTR SS:[ESP+48]             ; EDX=00002618
+000962C6 主       PUSH 14C9
+000962CB 主       MOV EDI,EAX                               ; EDI=055B6150
+000962CD 主       MOV EAX,DWORD PTR SS:[ESP+48]             ; EAX=16FBA94F
+000962D2 主       PUSH EDX
+000962D3 主       PUSH EAX
+000962D4 主       CALL __alldiv                    ; EAX=D52F6FD7, ECX=000014C9, EDX=00000001
+000962D9 主       ADD EDI,EAX                               ; EDI=DA8AD127
+000962DB 主       MOV ECX,DWORD PTR DS:[ESI+4]              ; ECX=0C0925F2
+000962DF 主       ADC EBX,EDX                               ; EBX=00000001
+000962E1 主       MOV EDX,DWORD PTR DS:[ESI]                ; EDX=E9C5AB4C
+000962E4 主       ADD EDX,EDI                               ; EDX=C4507C73
+000962E6 主       MOV EDI,DWORD PTR SS:[ESP+1C]             ; EDI=00000006
+000962EB 主       ADC ECX,EBX                               ; ECX=0C0925F4
+000962ED 主       DEC EDI                                   ; EDI=00000005
+000962EE 主       MOV DWORD PTR DS:[ESI],EDX
+000962F1 主       MOV DWORD PTR DS:[ESI+4],ECX
+000962F5 主       MOV DWORD PTR SS:[ESP+1C],EDI
+000962FA 主       JNS untitled.000961E8
+000961E8 主       MOV EAX,DWORD PTR DS:[ESI]                ; EAX=C4507C73
+000961EB 主       MOV EBX,DWORD PTR DS:[ESI+4]              ; EBX=0C0925F4
+000961EF 主       MOV EDX,EAX
+000961F1 主       MOV ECX,EBX
+000961F3 主       SHRD EDX,ECX,7                            ; EDX=E988A0F8
+000961F7 主       SHR ECX,7                                 ; ECX=0018124B
+000961FA 主       XOR ECX,EBX                               ; ECX=0C1137BF
+000961FC 主       XOR EDX,EAX                               ; EDX=2DD8DC8B
+000961FE 主       PUSH 0
+00096200 主       SHRD EDX,ECX,19                           ; EDX=089BDF96
+00096204 主       PUSH 6A
+00096206 主       PUSH EBX
+00096207 主       SHR ECX,19                                ; ECX=00000006
+0009620A 主       PUSH EAX
+0009620B 主       MOV DWORD PTR SS:[ESP+60],EDX
+00096210 主       MOV DWORD PTR SS:[ESP+64],ECX
+00096215 主       CALL __alldiv                    ; EAX=844461C7, ECX=0000006A, EDX=001D1143
+0009621A 主       MOV ECX,DWORD PTR SS:[ESP+50]             ; ECX=089BDF96
+0009621F 主       ADD ECX,EAX                               ; ECX=8CE0415D
+00096221 主       MOV EAX,DWORD PTR SS:[ESP+54]             ; EAX=00000006
+00096226 主       ADC EAX,EDX                               ; EAX=001D1149
+
+
+00096228 主       MOVZX EDX,BYTE PTR SS:[ESP+EDI]           ; EDX=00000046
+0009622D 主       MOV DWORD PTR SS:[ESP+44],EAX
+00096232 主       MOV EAX,EDI                               ; EAX=00000005
+00096234 主       IMUL EAX,EDI                              ; EAX=00000019
+00096237 主       MOV EDI,DWORD PTR SS:[ESP+44]             ; EDI=001D1149
+0009623C 主       PUSH EDI
+0009623D 主       MOV DWORD PTR SS:[ESP+50],EDX
+00096242 主       CDQ                                       ; EDX=00000000
+00096243 主       PUSH ECX
+00096244 主       PUSH EDX
+00096245 主       PUSH EAX
+00096246 主       MOV DWORD PTR SS:[ESP+50],ECX
+0009624B 主       CALL __allmul                    ; EAX=C1E66215, EDX=02D6B02E
+00096250 主       MOV EDI,EAX                               ; EDI=C1E66215
+00096252 主       MOV EAX,EDX                               ; EAX=02D6B02E
+00096254 主       MOV DWORD PTR SS:[ESP+28],EAX
+00096259 主       MOV EAX,DWORD PTR SS:[ESP+4C]             ; EAX=00000046
+0009625E 主       CDQ                                       ; EDX=00000000
+0009625F 主       MOV ECX,EAX                               ; ECX=00000046
+00096261 主       MOV EAX,DWORD PTR DS:[ESI]                ; EAX=C4507C73
+00096264 主       PUSH EBX
+00096265 主       ADD ECX,1                                 ; ECX=00000047
+00096268 主       PUSH EAX
+00096269 主       ADC EDX,0
+0009626C 主       PUSH EDX
+0009626D 主       PUSH ECX
+0009626E 主       CALL __allmul                    ; EAX=725283E5, ECX=C4507C73, EDX=568986E2
+00096273 主       MOV ECX,DWORD PTR SS:[ESP+4C]             ; ECX=00000046
+00096278 主       ADD EDI,EAX                               ; EDI=3438E5FA
+0009627A 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=02D6B02E
+0009627F 主       ADC EAX,EDX                               ; EAX=59603711
+00096281 主       MOV DWORD PTR SS:[ESP+28],EAX
+00096286 主       MOV EAX,ECX                               ; EAX=00000046
+00096288 主       IMUL EAX,ECX                              ; EAX=00001324
+0009628B 主       IMUL EAX,ECX                              ; EAX=00053BD8
+0009628E 主       CDQ                                       ; EDX=00000000
+0009628F 主       ADD EDI,EAX                               ; EDI=343E21D2
+00096291 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=59603711
+00096296 主       ADC EAX,EDX
+00096298 主       MOV EDX,DWORD PTR SS:[ESP+1C]             ; EDX=00000005
+0009629D 主       MOV DWORD PTR DS:[ESI+4],EAX
+000962A1 主       LEA EAX,DWORD PTR SS:[ESP+EDX]            ; EAX=007BF8A6
+000962A5 主       MOV DWORD PTR DS:[ESI],EDI
+000962A8 主       MOVZX ECX,BYTE PTR DS:[EAX]
+000962AC 主       MOV EDI,DWORD PTR SS:[ESP+58]             ; EDI=FF8408E7
+000962B1 主       ADD EAX,EDI                               ; EAX=0000018D
+000962B3 主       IMUL EAX,ECX                              ; EAX=00006C8E
+000962B6 主       IMUL EAX,ECX                              ; EAX=001DAED4
+000962B9 主       IMUL EAX,EDX                              ; EAX=00946A24
+000962BC 主       CDQ                                       ; EDX=00000000
+000962BD 主       PUSH 0
+000962BF 主       MOV EBX,EDX                               ; EBX=00000000
+000962C1 主       MOV EDX,DWORD PTR SS:[ESP+48]             ; EDX=001D1149
+000962C6 主       PUSH 14C9
+000962CB 主       MOV EDI,EAX                               ; EDI=00946A24
+000962CD 主       MOV EAX,DWORD PTR SS:[ESP+48]             ; EAX=8CE0415D
+000962D2 主       PUSH EDX
+000962D3 主       PUSH EAX
+000962D4 主       CALL __alldiv                    ; EAX=027AEB15, ECX=000014C9, EDX=00000166
+000962D9 主       ADD EDI,EAX                               ; EDI=030F5539
+000962DB 主       MOV ECX,DWORD PTR DS:[ESI+4]              ; ECX=59603711
+000962DF 主       ADC EBX,EDX                               ; EBX=00000166
+000962E1 主       MOV EDX,DWORD PTR DS:[ESI]                ; EDX=343E21D2
+000962E4 主       ADD EDX,EDI                               ; EDX=374D770B
+000962E6 主       MOV EDI,DWORD PTR SS:[ESP+1C]             ; EDI=00000005
+000962EB 主       ADC ECX,EBX                               ; ECX=59603877
+000962ED 主       DEC EDI                                   ; EDI=00000004
+000962EE 主       MOV DWORD PTR DS:[ESI],EDX
+000962F1 主       MOV DWORD PTR DS:[ESI+4],ECX
+000962F5 主       MOV DWORD PTR SS:[ESP+1C],EDI
+000962FA 主       JNS untitled.000961E8
+000961E8 主       MOV EAX,DWORD PTR DS:[ESI]                ; EAX=374D770B
+000961EB 主       MOV EBX,DWORD PTR DS:[ESI+4]              ; EBX=59603877
+000961EF 主       MOV EDX,EAX
+000961F1 主       MOV ECX,EBX
+000961F3 主       SHRD EDX,ECX,7                            ; EDX=EE6E9AEE
+000961F7 主       SHR ECX,7                                 ; ECX=00B2C070
+000961FA 主       XOR ECX,EBX                               ; ECX=59D2F807
+000961FC 主       XOR EDX,EAX                               ; EDX=D923EDE5
+000961FE 主       PUSH 0
+00096200 主       SHRD EDX,ECX,19                           ; EDX=E97C03EC
+00096204 主       PUSH 6A
+00096206 主       PUSH EBX
+00096207 主       SHR ECX,19                                ; ECX=0000002C
+0009620A 主       PUSH EAX
+0009620B 主       MOV DWORD PTR SS:[ESP+60],EDX
+00096210 主       MOV DWORD PTR SS:[ESP+64],ECX
+00096215 主       CALL __alldiv                    ; EAX=24BF85F4, ECX=0000006A, EDX=00D7D9E4
+0009621A 主       MOV ECX,DWORD PTR SS:[ESP+50]             ; ECX=E97C03EC
+0009621F 主       ADD ECX,EAX                               ; ECX=0E3B89E0
+00096221 主       MOV EAX,DWORD PTR SS:[ESP+54]             ; EAX=0000002C
+00096226 主       ADC EAX,EDX                               ; EAX=00D7DA11
+
+
+00096228 主       MOVZX EDX,BYTE PTR SS:[ESP+EDI]           ; EDX=000000FE
+0009622D 主       MOV DWORD PTR SS:[ESP+44],EAX
+00096232 主       MOV EAX,EDI                               ; EAX=00000004
+00096234 主       IMUL EAX,EDI                              ; EAX=00000010
+00096237 主       MOV EDI,DWORD PTR SS:[ESP+44]             ; EDI=00D7DA11
+0009623C 主       PUSH EDI
+0009623D 主       MOV DWORD PTR SS:[ESP+50],EDX
+00096242 主       CDQ                                       ; EDX=00000000
+00096243 主       PUSH ECX
+00096244 主       PUSH EDX
+00096245 主       PUSH EAX
+00096246 主       MOV DWORD PTR SS:[ESP+50],ECX
+0009624B 主       CALL __allmul                    ; EAX=E3B89E00, EDX=0D7DA110
+00096250 主       MOV EDI,EAX                               ; EDI=E3B89E00
+00096252 主       MOV EAX,EDX                               ; EAX=0D7DA110
+00096254 主       MOV DWORD PTR SS:[ESP+28],EAX
+00096259 主       MOV EAX,DWORD PTR SS:[ESP+4C]             ; EAX=000000FE
+0009625E 主       CDQ                                       ; EDX=00000000
+0009625F 主       MOV ECX,EAX                               ; ECX=000000FE
+00096261 主       MOV EAX,DWORD PTR DS:[ESI]                ; EAX=374D770B
+00096264 主       PUSH EBX
+00096265 主       ADD ECX,1                                 ; ECX=000000FF
+00096268 主       PUSH EAX
+00096269 主       ADC EDX,0
+0009626C 主       PUSH EDX
+0009626D 主       PUSH ECX
+0009626E 主       CALL __allmul                    ; EAX=162993F5, ECX=374D770B, EDX=06D83EC0
+00096273 主       MOV ECX,DWORD PTR SS:[ESP+4C]             ; ECX=000000FE
+00096278 主       ADD EDI,EAX                               ; EDI=F9E231F5
+0009627A 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=0D7DA110
+0009627F 主       ADC EAX,EDX                               ; EAX=1455DFD0
+00096281 主       MOV DWORD PTR SS:[ESP+28],EAX
+00096286 主       MOV EAX,ECX                               ; EAX=000000FE
+00096288 主       IMUL EAX,ECX                              ; EAX=0000FC04
+0009628B 主       IMUL EAX,ECX                              ; EAX=00FA0BF8
+0009628E 主       CDQ                                       ; EDX=00000000
+0009628F 主       ADD EDI,EAX                               ; EDI=FADC3DED
+00096291 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=1455DFD0
+00096296 主       ADC EAX,EDX
+00096298 主       MOV EDX,DWORD PTR SS:[ESP+1C]             ; EDX=00000004
+0009629D 主       MOV DWORD PTR DS:[ESI+4],EAX
+000962A1 主       LEA EAX,DWORD PTR SS:[ESP+EDX]            ; EAX=007BF8A5
+000962A5 主       MOV DWORD PTR DS:[ESI],EDI
+000962A8 主       MOVZX ECX,BYTE PTR DS:[EAX]
+000962AC 主       MOV EDI,DWORD PTR SS:[ESP+58]             ; EDI=FF8408E7
+000962B1 主       ADD EAX,EDI                               ; EAX=0000018C
+000962B3 主       IMUL EAX,ECX                              ; EAX=000188E8
+000962B6 主       IMUL EAX,ECX                              ; EAX=0185D630
+000962B9 主       IMUL EAX,EDX                              ; EAX=061758C0
+000962BC 主       CDQ                                       ; EDX=00000000
+000962BD 主       PUSH 0
+000962BF 主       MOV EBX,EDX                               ; EBX=00000000
+000962C1 主       MOV EDX,DWORD PTR SS:[ESP+48]             ; EDX=00D7DA11
+000962C6 主       PUSH 14C9
+000962CB 主       MOV EDI,EAX                               ; EDI=061758C0
+000962CD 主       MOV EAX,DWORD PTR SS:[ESP+48]             ; EAX=0E3B89E0
+000962D2 主       PUSH EDX
+000962D3 主       PUSH EAX
+000962D4 主       CALL __alldiv                    ; EAX=88F9B567, ECX=000014C9, EDX=00000A62
+000962D9 主       ADD EDI,EAX                               ; EDI=8F110E27
+000962DB 主       MOV ECX,DWORD PTR DS:[ESI+4]              ; ECX=1455DFD0
+000962DF 主       ADC EBX,EDX                               ; EBX=00000A62
+000962E1 主       MOV EDX,DWORD PTR DS:[ESI]                ; EDX=FADC3DED
+000962E4 主       ADD EDX,EDI                               ; EDX=89ED4C14
+000962E6 主       MOV EDI,DWORD PTR SS:[ESP+1C]             ; EDI=00000004
+000962EB 主       ADC ECX,EBX                               ; ECX=1455EA33
+000962ED 主       DEC EDI                                   ; EDI=00000003
+000962EE 主       MOV DWORD PTR DS:[ESI],EDX
+000962F1 主       MOV DWORD PTR DS:[ESI+4],ECX
+000962F5 主       MOV DWORD PTR SS:[ESP+1C],EDI
+000962FA 主       JNS untitled.000961E8
+000961E8 主       MOV EAX,DWORD PTR DS:[ESI]                ; EAX=89ED4C14
+000961EB 主       MOV EBX,DWORD PTR DS:[ESI+4]              ; EBX=1455EA33
+000961EF 主       MOV EDX,EAX
+000961F1 主       MOV ECX,EBX
+000961F3 主       SHRD EDX,ECX,7                            ; EDX=6713DA98
+000961F7 主       SHR ECX,7                                 ; ECX=0028ABD4
+000961FA 主       XOR ECX,EBX                               ; ECX=147D41E7
+000961FC 主       XOR EDX,EAX                               ; EDX=EEFE968C
+000961FE 主       PUSH 0
+00096200 主       SHRD EDX,ECX,19                           ; EDX=3EA0F3F7
+00096204 主       PUSH 6A
+00096206 主       PUSH EBX
+00096207 主       SHR ECX,19                                ; ECX=0000000A
+0009620A 主       PUSH EAX
+0009620B 主       MOV DWORD PTR SS:[ESP+60],EDX
+00096210 主       MOV DWORD PTR SS:[ESP+64],ECX
+00096215 主       CALL __alldiv                    ; EAX=8621A287, ECX=0000006A, EDX=00311CC6
+0009621A 主       MOV ECX,DWORD PTR SS:[ESP+50]             ; ECX=3EA0F3F7
+0009621F 主       ADD ECX,EAX                               ; ECX=C4C2967E
+00096221 主       MOV EAX,DWORD PTR SS:[ESP+54]             ; EAX=0000000A
+00096226 主       ADC EAX,EDX                               ; EAX=00311CD0
+
+
+00096228 主       MOVZX EDX,BYTE PTR SS:[ESP+EDI]           ; EDX=0000007B
+0009622D 主       MOV DWORD PTR SS:[ESP+44],EAX
+00096232 主       MOV EAX,EDI                               ; EAX=00000003
+00096234 主       IMUL EAX,EDI                              ; EAX=00000009
+00096237 主       MOV EDI,DWORD PTR SS:[ESP+44]             ; EDI=00311CD0
+0009623C 主       PUSH EDI
+0009623D 主       MOV DWORD PTR SS:[ESP+50],EDX
+00096242 主       CDQ                                       ; EDX=00000000
+00096243 主       PUSH ECX
+00096244 主       PUSH EDX
+00096245 主       PUSH EAX
+00096246 主       MOV DWORD PTR SS:[ESP+50],ECX
+0009624B 主       CALL __allmul                    ; EAX=EAD74A6E, EDX=01BA0356
+00096250 主       MOV EDI,EAX                               ; EDI=EAD74A6E
+00096252 主       MOV EAX,EDX                               ; EAX=01BA0356
+00096254 主       MOV DWORD PTR SS:[ESP+28],EAX
+00096259 主       MOV EAX,DWORD PTR SS:[ESP+4C]             ; EAX=0000007B
+0009625E 主       CDQ                                       ; EDX=00000000
+0009625F 主       MOV ECX,EAX                               ; ECX=0000007B
+00096261 主       MOV EAX,DWORD PTR DS:[ESI]                ; EAX=89ED4C14
+00096264 主       PUSH EBX
+00096265 主       ADD ECX,1                                 ; ECX=0000007C
+00096268 主       PUSH EAX
+00096269 主       ADC EDX,0
+0009626C 主       PUSH EDX
+0009626D 主       PUSH ECX
+0009626E 主       CALL __allmul                    ; EAX=CEF0D9B0, ECX=89ED4C14, EDX=D99D70F6
+00096273 主       MOV ECX,DWORD PTR SS:[ESP+4C]             ; ECX=0000007B
+00096278 主       ADD EDI,EAX                               ; EDI=B9C8241E
+0009627A 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=01BA0356
+0009627F 主       ADC EAX,EDX                               ; EAX=DB57744D
+00096281 主       MOV DWORD PTR SS:[ESP+28],EAX
+00096286 主       MOV EAX,ECX                               ; EAX=0000007B
+00096288 主       IMUL EAX,ECX                              ; EAX=00003B19
+0009628B 主       IMUL EAX,ECX                              ; EAX=001C6503
+0009628E 主       CDQ                                       ; EDX=00000000
+0009628F 主       ADD EDI,EAX                               ; EDI=B9E48921
+00096291 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=DB57744D
+00096296 主       ADC EAX,EDX
+00096298 主       MOV EDX,DWORD PTR SS:[ESP+1C]             ; EDX=00000003
+0009629D 主       MOV DWORD PTR DS:[ESI+4],EAX
+000962A1 主       LEA EAX,DWORD PTR SS:[ESP+EDX]            ; EAX=007BF8A4
+000962A5 主       MOV DWORD PTR DS:[ESI],EDI
+000962A8 主       MOVZX ECX,BYTE PTR DS:[EAX]
+000962AC 主       MOV EDI,DWORD PTR SS:[ESP+58]             ; EDI=FF8408E7
+000962B1 主       ADD EAX,EDI                               ; EAX=0000018B
+000962B3 主       IMUL EAX,ECX                              ; EAX=0000BDC9
+000962B6 主       IMUL EAX,ECX                              ; EAX=005B2F93
+000962B9 主       IMUL EAX,EDX                              ; EAX=01118EB9
+000962BC 主       CDQ                                       ; EDX=00000000
+000962BD 主       PUSH 0
+000962BF 主       MOV EBX,EDX                               ; EBX=00000000
+000962C1 主       MOV EDX,DWORD PTR SS:[ESP+48]             ; EDX=00311CD0
+000962C6 主       PUSH 14C9
+000962CB 主       MOV EDI,EAX                               ; EDI=01118EB9
+000962CD 主       MOV EAX,DWORD PTR SS:[ESP+48]             ; EAX=C4C2967E
+000962D2 主       PUSH EDX
+000962D3 主       PUSH EAX
+000962D4 主       CALL __alldiv                    ; EAX=E4DAA774, ECX=000014C9, EDX=0000025C
+000962D9 主       ADD EDI,EAX                               ; EDI=E5EC362D
+000962DB 主       MOV ECX,DWORD PTR DS:[ESI+4]              ; ECX=DB57744D
+000962DF 主       ADC EBX,EDX                               ; EBX=0000025C
+000962E1 主       MOV EDX,DWORD PTR DS:[ESI]                ; EDX=B9E48921
+000962E4 主       ADD EDX,EDI                               ; EDX=9FD0BF4E
+000962E6 主       MOV EDI,DWORD PTR SS:[ESP+1C]             ; EDI=00000003
+000962EB 主       ADC ECX,EBX                               ; ECX=DB5776AA
+000962ED 主       DEC EDI                                   ; EDI=00000002
+000962EE 主       MOV DWORD PTR DS:[ESI],EDX
+000962F1 主       MOV DWORD PTR DS:[ESI+4],ECX
+000962F5 主       MOV DWORD PTR SS:[ESP+1C],EDI
+000962FA 主       JNS untitled.000961E8
+000961E8 主       MOV EAX,DWORD PTR DS:[ESI]                ; EAX=9FD0BF4E
+000961EB 主       MOV EBX,DWORD PTR DS:[ESI+4]              ; EBX=DB5776AA
+000961EF 主       MOV EDX,EAX
+000961F1 主       MOV ECX,EBX
+000961F3 主       SHRD EDX,ECX,7                            ; EDX=553FA17E
+000961F7 主       SHR ECX,7                                 ; ECX=01B6AEED
+000961FA 主       XOR ECX,EBX                               ; ECX=DAE1D847
+000961FC 主       XOR EDX,EAX                               ; EDX=CAEF1E30
+000961FE 主       PUSH 0
+00096200 主       SHRD EDX,ECX,19                           ; EDX=70EC23E5
+00096204 主       PUSH 6A
+00096206 主       PUSH EBX
+00096207 主       SHR ECX,19                                ; ECX=0000006D
+0009620A 主       PUSH EAX
+0009620B 主       MOV DWORD PTR SS:[ESP+60],EDX
+00096210 主       MOV DWORD PTR SS:[ESP+64],ECX
+00096215 主       CALL __alldiv                    ; EAX=EE2FDB29, ECX=0000006A, EDX=0211BB14
+0009621A 主       MOV ECX,DWORD PTR SS:[ESP+50]             ; ECX=70EC23E5
+0009621F 主       ADD ECX,EAX                               ; ECX=5F1BFF0E
+00096221 主       MOV EAX,DWORD PTR SS:[ESP+54]             ; EAX=0000006D
+00096226 主       ADC EAX,EDX                               ; EAX=0211BB82
+
+
+00096228 主       MOVZX EDX,BYTE PTR SS:[ESP+EDI]           ; EDX=0000008A
+0009622D 主       MOV DWORD PTR SS:[ESP+44],EAX
+00096232 主       MOV EAX,EDI                               ; EAX=00000002
+00096234 主       IMUL EAX,EDI                              ; EAX=00000004
+00096237 主       MOV EDI,DWORD PTR SS:[ESP+44]             ; EDI=0211BB82
+0009623C 主       PUSH EDI
+0009623D 主       MOV DWORD PTR SS:[ESP+50],EDX
+00096242 主       CDQ                                       ; EDX=00000000
+00096243 主       PUSH ECX
+00096244 主       PUSH EDX
+00096245 主       PUSH EAX
+00096246 主       MOV DWORD PTR SS:[ESP+50],ECX
+0009624B 主       CALL __allmul                    ; EAX=7C6FFC38, EDX=0846EE09
+00096250 主       MOV EDI,EAX                               ; EDI=7C6FFC38
+00096252 主       MOV EAX,EDX                               ; EAX=0846EE09
+00096254 主       MOV DWORD PTR SS:[ESP+28],EAX
+00096259 主       MOV EAX,DWORD PTR SS:[ESP+4C]             ; EAX=0000008A
+0009625E 主       CDQ                                       ; EDX=00000000
+0009625F 主       MOV ECX,EAX                               ; ECX=0000008A
+00096261 主       MOV EAX,DWORD PTR DS:[ESI]                ; EAX=9FD0BF4E
+00096264 主       PUSH EBX
+00096265 主       ADD ECX,1                                 ; ECX=0000008B
+00096268 主       PUSH EAX
+00096269 主       ADC EDX,0
+0009626C 主       PUSH EDX
+0009626D 主       PUSH ECX
+0009626E 主       CALL __allmul                    ; EAX=C657DF5A, ECX=9FD0BF4E, EDX=187D6EA4
+00096273 主       MOV ECX,DWORD PTR SS:[ESP+4C]             ; ECX=0000008A
+00096278 主       ADD EDI,EAX                               ; EDI=42C7DB92
+0009627A 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=0846EE09
+0009627F 主       ADC EAX,EDX                               ; EAX=20C45CAE
+00096281 主       MOV DWORD PTR SS:[ESP+28],EAX
+00096286 主       MOV EAX,ECX                               ; EAX=0000008A
+00096288 主       IMUL EAX,ECX                              ; EAX=00004A64
+0009628B 主       IMUL EAX,ECX                              ; EAX=002819E8
+0009628E 主       CDQ                                       ; EDX=00000000
+0009628F 主       ADD EDI,EAX                               ; EDI=42EFF57A
+00096291 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=20C45CAE
+00096296 主       ADC EAX,EDX
+00096298 主       MOV EDX,DWORD PTR SS:[ESP+1C]             ; EDX=00000002
+0009629D 主       MOV DWORD PTR DS:[ESI+4],EAX
+000962A1 主       LEA EAX,DWORD PTR SS:[ESP+EDX]            ; EAX=007BF8A3
+000962A5 主       MOV DWORD PTR DS:[ESI],EDI
+000962A8 主       MOVZX ECX,BYTE PTR DS:[EAX]
+000962AC 主       MOV EDI,DWORD PTR SS:[ESP+58]             ; EDI=FF8408E7
+000962B1 主       ADD EAX,EDI                               ; EAX=0000018A
+000962B3 主       IMUL EAX,ECX                              ; EAX=0000D464
+000962B6 主       IMUL EAX,ECX                              ; EAX=00727DE8
+000962B9 主       IMUL EAX,EDX                              ; EAX=00E4FBD0
+000962BC 主       CDQ                                       ; EDX=00000000
+000962BD 主       PUSH 0
+000962BF 主       MOV EBX,EDX                               ; EBX=00000000
+000962C1 主       MOV EDX,DWORD PTR SS:[ESP+48]             ; EDX=0211BB82
+000962C6 主       PUSH 14C9
+000962CB 主       MOV EDI,EAX                               ; EDI=00E4FBD0
+000962CD 主       MOV EAX,DWORD PTR SS:[ESP+48]             ; EAX=5F1BFF0E
+000962D2 主       PUSH EDX
+000962D3 主       PUSH EAX
+000962D4 主       CALL __alldiv                    ; EAX=70B1C6BF, ECX=000014C9, EDX=0000197C
+000962D9 主       ADD EDI,EAX                               ; EDI=7196C28F
+000962DB 主       MOV ECX,DWORD PTR DS:[ESI+4]              ; ECX=20C45CAE
+000962DF 主       ADC EBX,EDX                               ; EBX=0000197C
+000962E1 主       MOV EDX,DWORD PTR DS:[ESI]                ; EDX=42EFF57A
+000962E4 主       ADD EDX,EDI                               ; EDX=B486B809
+000962E6 主       MOV EDI,DWORD PTR SS:[ESP+1C]             ; EDI=00000002
+000962EB 主       ADC ECX,EBX                               ; ECX=20C4762A
+000962ED 主       DEC EDI                                   ; EDI=00000001
+000962EE 主       MOV DWORD PTR DS:[ESI],EDX
+000962F1 主       MOV DWORD PTR DS:[ESI+4],ECX
+000962F5 主       MOV DWORD PTR SS:[ESP+1C],EDI
+000962FA 主       JNS untitled.000961E8
+000961E8 主       MOV EAX,DWORD PTR DS:[ESI]                ; EAX=B486B809
+000961EB 主       MOV EBX,DWORD PTR DS:[ESI+4]              ; EBX=20C4762A
+000961EF 主       MOV EDX,EAX
+000961F1 主       MOV ECX,EBX
+000961F3 主       SHRD EDX,ECX,7                            ; EDX=55690D70
+000961F7 主       SHR ECX,7                                 ; ECX=004188EC
+000961FA 主       XOR ECX,EBX                               ; ECX=2085FEC6
+000961FC 主       XOR EDX,EAX                               ; EDX=E1EFB579
+000961FE 主       PUSH 0
+00096200 主       SHRD EDX,ECX,19                           ; EDX=42FF6370
+00096204 主       PUSH 6A
+00096206 主       PUSH EBX
+00096207 主       SHR ECX,19                                ; ECX=00000010
+0009620A 主       PUSH EAX
+0009620B 主       MOV DWORD PTR SS:[ESP+60],EDX
+00096210 主       MOV DWORD PTR SS:[ESP+64],ECX
+00096215 主       CALL __alldiv                    ; EAX=150619E3, ECX=0000006A, EDX=004F22ED
+0009621A 主       MOV ECX,DWORD PTR SS:[ESP+50]             ; ECX=42FF6370
+0009621F 主       ADD ECX,EAX                               ; ECX=58057D53
+00096221 主       MOV EAX,DWORD PTR SS:[ESP+54]             ; EAX=00000010
+00096226 主       ADC EAX,EDX                               ; EAX=004F22FD
+
+
+00096228 主       MOVZX EDX,BYTE PTR SS:[ESP+EDI]           ; EDX=00000099
+0009622D 主       MOV DWORD PTR SS:[ESP+44],EAX
+00096232 主       MOV EAX,EDI                               ; EAX=00000001
+00096234 主       IMUL EAX,EDI
+00096237 主       MOV EDI,DWORD PTR SS:[ESP+44]             ; EDI=004F22FD
+0009623C 主       PUSH EDI
+0009623D 主       MOV DWORD PTR SS:[ESP+50],EDX
+00096242 主       CDQ                                       ; EDX=00000000
+00096243 主       PUSH ECX
+00096244 主       PUSH EDX
+00096245 主       PUSH EAX
+00096246 主       MOV DWORD PTR SS:[ESP+50],ECX
+0009624B 主       CALL __allmul                    ; EAX=58057D53, EDX=004F22FD
+00096250 主       MOV EDI,EAX                               ; EDI=58057D53
+00096252 主       MOV EAX,EDX                               ; EAX=004F22FD
+00096254 主       MOV DWORD PTR SS:[ESP+28],EAX
+00096259 主       MOV EAX,DWORD PTR SS:[ESP+4C]             ; EAX=00000099
+0009625E 主       CDQ                                       ; EDX=00000000
+0009625F 主       MOV ECX,EAX                               ; ECX=00000099
+00096261 主       MOV EAX,DWORD PTR DS:[ESI]                ; EAX=B486B809
+00096264 主       PUSH EBX
+00096265 主       ADD ECX,1                                 ; ECX=0000009A
+00096268 主       PUSH EAX
+00096269 主       ADC EDX,0
+0009626C 主       PUSH EDX
+0009626D 主       PUSH ECX
+0009626E 主       CALL __allmul                    ; EAX=990AB56A, ECX=B486B809, EDX=B62F15B0
+00096273 主       MOV ECX,DWORD PTR SS:[ESP+4C]             ; ECX=00000099
+00096278 主       ADD EDI,EAX                               ; EDI=F11032BD
+0009627A 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=004F22FD
+0009627F 主       ADC EAX,EDX                               ; EAX=B67E38AD
+00096281 主       MOV DWORD PTR SS:[ESP+28],EAX
+00096286 主       MOV EAX,ECX                               ; EAX=00000099
+00096288 主       IMUL EAX,ECX                              ; EAX=00005B71
+0009628B 主       IMUL EAX,ECX                              ; EAX=0036A689
+0009628E 主       CDQ                                       ; EDX=00000000
+0009628F 主       ADD EDI,EAX                               ; EDI=F146D946
+00096291 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=B67E38AD
+00096296 主       ADC EAX,EDX
+00096298 主       MOV EDX,DWORD PTR SS:[ESP+1C]             ; EDX=00000001
+0009629D 主       MOV DWORD PTR DS:[ESI+4],EAX
+000962A1 主       LEA EAX,DWORD PTR SS:[ESP+EDX]            ; EAX=007BF8A2
+000962A5 主       MOV DWORD PTR DS:[ESI],EDI
+000962A8 主       MOVZX ECX,BYTE PTR DS:[EAX]
+000962AC 主       MOV EDI,DWORD PTR SS:[ESP+58]             ; EDI=FF8408E7
+000962B1 主       ADD EAX,EDI                               ; EAX=00000189
+000962B3 主       IMUL EAX,ECX                              ; EAX=0000EAE1
+000962B6 主       IMUL EAX,ECX                              ; EAX=008C6079
+000962B9 主       IMUL EAX,EDX
+000962BC 主       CDQ                                       ; EDX=00000000
+000962BD 主       PUSH 0
+000962BF 主       MOV EBX,EDX                               ; EBX=00000000
+000962C1 主       MOV EDX,DWORD PTR SS:[ESP+48]             ; EDX=004F22FD
+000962C6 主       PUSH 14C9
+000962CB 主       MOV EDI,EAX                               ; EDI=008C6079
+000962CD 主       MOV EAX,DWORD PTR SS:[ESP+48]             ; EAX=58057D53
+000962D2 主       PUSH EDX
+000962D3 主       PUSH EAX
+000962D4 主       CALL __alldiv                    ; EAX=AF7A71B5, ECX=000014C9, EDX=000003CE
+000962D9 主       ADD EDI,EAX                               ; EDI=B006D22E
+000962DB 主       MOV ECX,DWORD PTR DS:[ESI+4]              ; ECX=B67E38AD
+000962DF 主       ADC EBX,EDX                               ; EBX=000003CE
+000962E1 主       MOV EDX,DWORD PTR DS:[ESI]                ; EDX=F146D946
+000962E4 主       ADD EDX,EDI                               ; EDX=A14DAB74
+000962E6 主       MOV EDI,DWORD PTR SS:[ESP+1C]             ; EDI=00000001
+000962EB 主       ADC ECX,EBX                               ; ECX=B67E3C7C
+000962ED 主       DEC EDI                                   ; EDI=00000000
+000962EE 主       MOV DWORD PTR DS:[ESI],EDX
+000962F1 主       MOV DWORD PTR DS:[ESI+4],ECX
+000962F5 主       MOV DWORD PTR SS:[ESP+1C],EDI
+000962FA 主       JNS untitled.000961E8
+000961E8 主       MOV EAX,DWORD PTR DS:[ESI]                ; EAX=A14DAB74
+000961EB 主       MOV EBX,DWORD PTR DS:[ESI+4]              ; EBX=B67E3C7C
+000961EF 主       MOV EDX,EAX
+000961F1 主       MOV ECX,EBX
+000961F3 主       SHRD EDX,ECX,7                            ; EDX=F9429B56
+000961F7 主       SHR ECX,7                                 ; ECX=016CFC78
+000961FA 主       XOR ECX,EBX                               ; ECX=B712C004
+000961FC 主       XOR EDX,EAX                               ; EDX=580F3022
+000961FE 主       PUSH 0
+00096200 主       SHRD EDX,ECX,19                           ; EDX=8960022C
+00096204 主       PUSH 6A
+00096206 主       PUSH EBX
+00096207 主       SHR ECX,19                                ; ECX=0000005B
+0009620A 主       PUSH EAX
+0009620B 主       MOV DWORD PTR SS:[ESP+60],EDX
+00096210 主       MOV DWORD PTR SS:[ESP+64],ECX
+00096215 主       CALL __alldiv                    ; EAX=AF6894F0, ECX=0000006A, EDX=01B8BCF2
+0009621A 主       MOV ECX,DWORD PTR SS:[ESP+50]             ; ECX=8960022C
+0009621F 主       ADD ECX,EAX                               ; ECX=38C8971C
+00096221 主       MOV EAX,DWORD PTR SS:[ESP+54]             ; EAX=0000005B
+00096226 主       ADC EAX,EDX                               ; EAX=01B8BD4E
+
+
+00096228 主       MOVZX EDX,BYTE PTR SS:[ESP+EDI]           ; EDX=00000009
+0009622D 主       MOV DWORD PTR SS:[ESP+44],EAX
+00096232 主       MOV EAX,EDI                               ; EAX=00000000
+00096234 主       IMUL EAX,EDI
+00096237 主       MOV EDI,DWORD PTR SS:[ESP+44]             ; EDI=01B8BD4E
+0009623C 主       PUSH EDI
+0009623D 主       MOV DWORD PTR SS:[ESP+50],EDX
+00096242 主       CDQ                                       ; EDX=00000000
+00096243 主       PUSH ECX
+00096244 主       PUSH EDX
+00096245 主       PUSH EAX
+00096246 主       MOV DWORD PTR SS:[ESP+50],ECX
+0009624B 主       CALL __allmul
+00096250 主       MOV EDI,EAX                               ; EDI=00000000
+00096252 主       MOV EAX,EDX
+00096254 主       MOV DWORD PTR SS:[ESP+28],EAX
+00096259 主       MOV EAX,DWORD PTR SS:[ESP+4C]             ; EAX=00000009
+0009625E 主       CDQ
+0009625F 主       MOV ECX,EAX                               ; ECX=00000009
+00096261 主       MOV EAX,DWORD PTR DS:[ESI]                ; EAX=A14DAB74
+00096264 主       PUSH EBX
+00096265 主       ADD ECX,1                                 ; ECX=0000000A
+00096268 主       PUSH EAX
+00096269 主       ADC EDX,0
+0009626C 主       PUSH EDX
+0009626D 主       PUSH ECX
+0009626E 主       CALL __allmul                    ; EAX=4D08B288, ECX=A14DAB74, EDX=20EE5CDE
+00096273 主       MOV ECX,DWORD PTR SS:[ESP+4C]             ; ECX=00000009
+00096278 主       ADD EDI,EAX                               ; EDI=4D08B288
+0009627A 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=00000000
+0009627F 主       ADC EAX,EDX                               ; EAX=20EE5CDE
+00096281 主       MOV DWORD PTR SS:[ESP+28],EAX
+00096286 主       MOV EAX,ECX                               ; EAX=00000009
+00096288 主       IMUL EAX,ECX                              ; EAX=00000051
+0009628B 主       IMUL EAX,ECX                              ; EAX=000002D9
+0009628E 主       CDQ                                       ; EDX=00000000
+0009628F 主       ADD EDI,EAX                               ; EDI=4D08B561
+00096291 主       MOV EAX,DWORD PTR SS:[ESP+28]             ; EAX=20EE5CDE
+00096296 主       ADC EAX,EDX
+00096298 主       MOV EDX,DWORD PTR SS:[ESP+1C]
+0009629D 主       MOV DWORD PTR DS:[ESI+4],EAX
+000962A1 主       LEA EAX,DWORD PTR SS:[ESP+EDX]            ; EAX=007BF8A1
+000962A5 主       MOV DWORD PTR DS:[ESI],EDI
+000962A8 主       MOVZX ECX,BYTE PTR DS:[EAX]
+000962AC 主       MOV EDI,DWORD PTR SS:[ESP+58]             ; EDI=FF8408E7
+000962B1 主       ADD EAX,EDI                               ; EAX=00000188
+000962B3 主       IMUL EAX,ECX                              ; EAX=00000DC8
+000962B6 主       IMUL EAX,ECX                              ; EAX=00007C08
+000962B9 主       IMUL EAX,EDX                              ; EAX=00000000
+000962BC 主       CDQ
+000962BD 主       PUSH 0
+000962BF 主       MOV EBX,EDX                               ; EBX=00000000
+000962C1 主       MOV EDX,DWORD PTR SS:[ESP+48]             ; EDX=01B8BD4E
+000962C6 主       PUSH 14C9
+000962CB 主       MOV EDI,EAX                               ; EDI=00000000
+000962CD 主       MOV EAX,DWORD PTR SS:[ESP+48]             ; EAX=38C8971C
+000962D2 主       PUSH EDX
+000962D3 主       PUSH EAX
+000962D4 主       CALL __alldiv                    ; EAX=5C187A6C, ECX=000014C9, EDX=00001534
+000962D9 主       ADD EDI,EAX                               ; EDI=5C187A6C
+000962DB 主       MOV ECX,DWORD PTR DS:[ESI+4]              ; ECX=20EE5CDE
+000962DF 主       ADC EBX,EDX                               ; EBX=00001534
+000962E1 主       MOV EDX,DWORD PTR DS:[ESI]                ; EDX=4D08B561
+000962E4 主       ADD EDX,EDI                               ; EDX=A9212FCD  todo 0XCD2F21A91272EE20
+000962E6 主       MOV EDI,DWORD PTR SS:[ESP+1C]             ; EDI=00000000
+000962EB 主       ADC ECX,EBX                               ; ECX=20EE7212  todo
+
+
+
+
+
+
+
+000962ED 主       DEC EDI                                   ; EDI=FFFFFFFF
+000962EE 主       MOV DWORD PTR DS:[ESI],EDX
+000962F1 主       MOV DWORD PTR DS:[ESI+4],ECX
+000962F5 主       MOV DWORD PTR SS:[ESP+1C],EDI
+000962FA 主       JNS untitled.000961E8
+00096300 主       JMP untitled.000963B3
+000963B3 主       LEA EDI,DWORD PTR SS:[EBP-20]             ; EDI=007BF9E4
+000963B6 主       MOV ECX,8                                 ; ECX=00000008
+000963BB 主       REP MOVS BYTE PTR ES:[EDI],BYTE PTR DS:[ESI]; ECX=00000000, ESI=007BF9DC, EDI=007BF9EC
+000963BD 主       ADD ESP,0FF
+000963C3 主       POPFD
+000963C4 主       POPAD                                     ; EAX=00000010, ECX=00000010, EDX=00000000, EBX=00814000, ESI=00091014, EDI=007BFA04
+000963C5 主       PUSH 8
+000963C7 主       LEA EAX,DWORD PTR SS:[EBP-20]             ; EAX=007BF9E4
+000963CA 主       PUSH EAX
+000963CB 主       PUSH untitled.0009B034
+000963D0 主       CALL untitled.00091280                    ; EAX=00000010
+000963D5 主       ADD ESP,0C
+000963D8 主       PUSH EDX
+000963D9 主       MOV ECX,EBP                               ; ECX=007BFA04
+000963DB 主       PUSH EAX
+000963DC 主       LEA EDX,DWORD PTR DS:[96404]              ; EDX=00096404
+000963E2 主       CALL untitled.00091127                    ; EAX=FFFFFFD8, ECX=0009640C, EDX=007BFA04
+000963E7 主       POP EAX                                   ; EAX=00000010
+000963E8 主       POP EDX                                   ; EDX=00000000
+000963E9 主       POP EDI                                   ; EDI=00091014
+000963EA 主       POP ESI
+000963EB 主       POP EBX
+000963EC 主       MOV ECX,DWORD PTR SS:[EBP-4]              ; ECX=4B6C4000
+000963EF 主       XOR ECX,EBP                               ; ECX=4B17BA04
+000963F1 主       CALL untitled.000910D2
+000963F6 主       ADD ESP,34
+000963F9 主       CMP EBP,ESP
+000963FB 主       CALL untitled.00091172
+00096400 主       MOV ESP,EBP
+00096402 主       POP EBP                                   ; EBP=007BFA0C
+00096403 主       RETN
+00096458 主       XOR EAX,EAX                               ; EAX=00000000
+0009645A 主       CMP EBP,ESP
+0009645C 主       CALL untitled.00091172
+00096461 主       POP EBP                                   ; EBP=007BFA2C
+00096462 主       RETN
+00092CB3 主       ADD ESP,0C
+00092CB6 主       MOV ESP,EBP
+00092CB8 主       POP EBP                                   ; EBP=007BFA88
+00092CB9 主       RETN
+00092AFA 主       MOV DWORD PTR SS:[EBP-2C],EAX
+00092AFD 主       CALL untitled.00091208                    ; ECX=000900F0, EDX=00000008
+00092B02 主       MOVZX ECX,AL                              ; ECX=00000000
+00092B05 主       TEST ECX,ECX
+00092B07 主       JNZ SHORT untitled.00092B13
+00092B09 主       MOV EDX,DWORD PTR SS:[EBP-2C]             ; EDX=00000000
+00092B0C 主       PUSH EDX
+00092B0D 主       CALL <JMP.&ucrtbased.exit>                ; EBX=007BF458, EBP=007BF450, ESI=00000104, EDI=00C5ED58
+777463FC 主       RETN 28                                   ; EBX=007BF0A8, EBP=007BF0A0, ESI=00000100, EDI=00C5D830
+777463FC 主       RETN 28                                   ; EBX=00000007, EBP=00F8F8B8, ESI=00C59348, EDI=00C579F8
+    线程 00000474 已终止, 退出代码 0
+77747FAC 00000474 RETN 14
+    RUN 跟踪已关闭
+
