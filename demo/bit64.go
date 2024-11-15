@@ -132,14 +132,14 @@ func mul(xLow, xHigh, yLow, yHigh uint32) (b Bit64) {
 		Y     uint64
 		Z     uint64
 	}
-	defer mylog.Struct("mul", MulInfo{
+	defer mylog.Struct("*", MulInfo{
 		Index: mulCount,
 		XLow:  x.Low,
 		XHigh: x.High,
 		YLow:  y.Low,
 		X:     x.Uint64(),
 		Y:     y.Uint64(),
-		Z:     x.Uint64() * y.Uint64(),
+		Z:     b.Uint64(),
 	})
 	return FromUint64(x.Uint64() * y.Uint64())
 }
@@ -158,7 +158,7 @@ func div(xLow, xHigh, yLow, yHigh uint32) (b Bit64) {
 		Y     uint64
 		Z     uint64
 	}
-	defer mylog.Struct("div", DivInfo{
+	defer mylog.Struct("/", DivInfo{
 		Index: divCount,
 		XLow:  x.Low,
 		XHigh: x.High,
@@ -166,7 +166,7 @@ func div(xLow, xHigh, yLow, yHigh uint32) (b Bit64) {
 		YHigh: y.High,
 		X:     x.Uint64(),
 		Y:     y.Uint64(),
-		Z:     x.Uint64() / y.Uint64(),
+		Z:     b.Uint64(),
 	})
 	return FromUint64(x.Uint64() / y.Uint64())
 }
