@@ -114,8 +114,8 @@ func (l *Bit64) Debug(title string) {
 }
 
 var (
-	mulCount int
-	divCount int
+	mulCount byte
+	divCount byte
 )
 
 func mul(xLow, xHigh, yLow, yHigh uint32) (b Bit64) {
@@ -123,7 +123,7 @@ func mul(xLow, xHigh, yLow, yHigh uint32) (b Bit64) {
 	x := Bit64{Low: xLow, High: xHigh}
 	y := Bit64{Low: yLow, High: yHigh}
 	type MulInfo struct {
-		Index int
+		Index byte
 		XLow  uint32
 		XHigh uint32
 		YLow  uint32
@@ -151,7 +151,7 @@ func div(xLow, xHigh, yLow, yHigh uint32) (b Bit64) {
 	x := Bit64{Low: xLow, High: xHigh}
 	y := Bit64{Low: yLow, High: yHigh}
 	type DivInfo struct {
-		Index int
+		Index byte
 		XLow  uint32
 		XHigh uint32
 		YLow  uint32
