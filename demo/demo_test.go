@@ -4,9 +4,9 @@ import (
 	"encoding/hex"
 	"testing"
 
+	"encoding/binary"
 	"github.com/ddkwork/golibrary/assert"
 	"github.com/ddkwork/golibrary/mylog"
-	"github.com/ddkwork/golibrary/stream/binary"
 )
 
 func Test_demo(t *testing.T) {
