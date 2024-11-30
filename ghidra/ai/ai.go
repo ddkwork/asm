@@ -198,8 +198,8 @@ func asm1(data []byte, t *testing.T) uint64 {
 		v = out
 		j--
 		if i == 7 {
-			assert.Unsigned(t, 0x01F16EFB, iVar11)
-			assert.Unsigned(t, 0x000FC5F63BF80DB8, out)
+			assert.UnsignedInteger(t, 0x01F16EFB, iVar11)
+			assert.UnsignedInteger(t, 0x000FC5F63BF80DB8, out)
 			assert.Equal(t, 0x000FC5F63BF80DB8, out)
 		}
 		if i == 0 {
