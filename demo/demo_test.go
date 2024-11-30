@@ -1,10 +1,10 @@
 package main
 
 import (
+	"encoding/binary"
 	"encoding/hex"
 	"testing"
 
-	"encoding/binary"
 	"github.com/ddkwork/golibrary/assert"
 	"github.com/ddkwork/golibrary/mylog"
 )
