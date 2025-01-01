@@ -2,7 +2,7 @@ module asm
 
 go 1.23.3
 
-require github.com/ddkwork/golibrary v0.0.0-20250101083646-7f7ce7d4075c
+require github.com/ddkwork/golibrary v0.0.0-20250101093329-d96f6524ebe4
 
 require (
 	gioui.org v0.7.1 // indirect
