@@ -2,10 +2,10 @@ module asm
 
 go 1.24.0
 
-require github.com/ddkwork/golibrary v0.0.91-0.20250224160512-cae108870eee
+require github.com/ddkwork/golibrary v0.0.91-0.20250225120832-ed50dea89457
 
 require (
-	gioui.org v0.8.0 // indirect
+	gioui.org v0.8.1-0.20250223181602-72a72a2bc21a // indirect
 	gioui.org/cpu v0.0.0-20220412190645-f1e9e8c3b1f7 // indirect
 	gioui.org/shader v1.0.8 // indirect
 	github.com/axgle/mahonia v0.0.0-20180208002826-3358181d7394 // indirect
