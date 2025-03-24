@@ -110,7 +110,7 @@ func (l *Bit64) Rem(r Bit64) (b Bit64) {
 }
 
 func (l *Bit64) Debug(title string) {
-	mylog.Struct(title, l)
+	mylog.Struct(l)
 }
 
 var (
@@ -133,7 +133,7 @@ func mul(xLow, xHigh, yLow, yHigh uint32) (b Bit64) {
 		Z     uint64
 	}
 	defer func() {
-		mylog.Struct("*", MulInfo{
+		mylog.Struct(MulInfo{
 			Index: mulCount,
 			XLow:  x.Low,
 			XHigh: x.High,
@@ -161,7 +161,7 @@ func div(xLow, xHigh, yLow, yHigh uint32) (b Bit64) {
 		Z     uint64
 	}
 	defer func() {
-		mylog.Struct("/", DivInfo{
+		mylog.Struct(DivInfo{
 			Index: divCount,
 			XLow:  x.Low,
 			XHigh: x.High,
